@@ -26,7 +26,7 @@ After committing locally, to push to remote repository:
     git push origin <branch-name>
 ```
 ### Merging and pull requests
-To merge to main branch, first push your branch. Then create a pull request by clicking "Compare & pull request" and notify me after.
+To merge to main branch, first push your branch. Then create a pull request by clicking "Compare & pull request" and contact me after.
 
 ## References
 - [Git Tutorial For Dummies (video)](https://www.youtube.com/watch?v=mJ-qvsxPHpY)
