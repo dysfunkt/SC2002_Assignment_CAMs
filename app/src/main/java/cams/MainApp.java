@@ -1,6 +1,6 @@
 package cams;
-
-import java.util.Scanner;
+import cams.util.*;
+import java.util.*;
 /**
  * Main Application Class
  * Entry point of the CAMs application
@@ -14,9 +14,12 @@ public class MainApp {
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        
         System.out.println(new MainApp().getGreeting());
-        System.out.println("input string:");
-        System.out.println(sc.next());
+        int selection;
+        selection = ScannerHelper.getIntegerInput("Enter an integer: ");
+        System.out.println(selection);
+        
+        
     }
 }
