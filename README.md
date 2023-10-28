@@ -1,13 +1,29 @@
 # NTU SCSE SC2002 OOP Assignment
 This is the main repository for the OOP Assignment
 
-### Notice to collaborators
+## How to collaborate
 To begin collaborating, git clone the repository onto your device.
 Go to your desired repository in command line and type in this:
 ```
     git clone https://github.com/dysfunkt/SC2002_Assignment_CAMs.git
     cd SC2002_Assignment_CAMs
 ```
+Please import this as a **GRADLE PROJECT** to prevent unnecessary stuff from being added to Git.  
+### Gradle
+To compile and build app:  
+- Windows
+```
+    gradlew.bat build
+```
+- MacOs
+```
+    gradlew build    
+```
+To run app:
+```
+    java -jar app\build\libs\app.jar
+```
+### Git
 Main branch will be locked from being pushed. All changes are to be made in your own branch and merged via pull requests.  
 To create a new branch:
 ```
