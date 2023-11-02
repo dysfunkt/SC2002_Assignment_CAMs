@@ -1,5 +1,6 @@
 package cams;
 import cams.util.*;
+import cams.object.person.*;
 import java.util.*;
 /**
  * Main Application Class
@@ -20,6 +21,8 @@ public class MainApp {
         selection = ScannerHelper.getIntegerInput("Enter an integer: ");
         System.out.println(selection);
         
-        
+        eFaculty faculty;
+        faculty = Enum.valueOf(eFaculty.class, "SCSE");
+        System.out.println(faculty);
     }
 }
