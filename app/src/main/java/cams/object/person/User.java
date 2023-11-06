@@ -14,6 +14,7 @@ public class User {
         this.userID = userID;
         this.password = password;
     }
+
     public User(String[] csv) {
         this.name = csv[0];
         this.email = csv[1];
@@ -21,6 +22,18 @@ public class User {
         this.userID = csv[3];
         this.password = csv[4];
     }
+
+    public String[] toCsv() {
+        String[] s = new String[5];
+        s[0] = this.name;
+        s[1] = this.email;
+        s[2] = this.faculty + "";
+        s[3] = this.userID;
+        s[4] = this.password;
+
+        return s;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -38,5 +51,6 @@ public class User {
             return 1;
         } else return 0;
     }
+
 
 }
