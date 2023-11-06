@@ -21,5 +21,22 @@ public class User {
         this.userID = csv[3];
         this.password = csv[4];
     }
+    public String getEmail() {
+        return email;
+    }
+    public eFaculty getFaculty() {
+        return faculty;
+    }
+    public String getName() {
+        return name;
+    }
+    public String getUserID() {
+        return userID;
+    }
+    public int checkPassword(String p) {
+        if (p.equals(password)) {
+            return 1;
+        } else return 0;
+    }
 
 }
