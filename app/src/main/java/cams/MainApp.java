@@ -3,7 +3,12 @@ import cams.util.*;
 import cams.object.person.*;
 
 import java.io.IOException;
-import java.util.*;
+import java.io.BufferedReader;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * Main Application Class
  * Entry point of the CAMs application
@@ -34,7 +39,9 @@ public class MainApp {
 
         System.out.println("Initializing Program...");
 
-        System.out.println(new MainApp().getGreeting());
+        printWelcomeAscii();
+
+        getGreeting();
     }
 
     public static boolean saveAll() {
@@ -56,9 +63,7 @@ public class MainApp {
         }
         return true;
     }
-    public String getGreeting() {
-        return "Hello World!";
-    }
+
 
     public static void main(String[] args) {
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
@@ -67,14 +72,20 @@ public class MainApp {
         }));
 
         init();
+        //call menu login menu
+        System.exit(0);
+    }
 
-        Student stdTmp = students.get(0);
-        
-        System.out.println(stdTmp.getName());
-        
-        Staff staTmp = staffs.get(0);
-        
-        System.out.println(staTmp.getName());
-        
+    private static void printWelcomeAscii() {
+        try {
+            BufferedReader reader = FileIOHelper.getFileBufferedReader("welcome_ascii.txt");
+            List<String> ascii = reader.lines().collect(Collectors.toList());
+            ascii.forEach(System.out::println);
+        } catch (IOException e) {
+            System.out.println("[ERROR] Failed to load ASCII Welcome Art!");
+        }
+    }
+    public static void getGreeting() {
+    System.out.println("Welcome to Camp Management System!");
     }
 }
