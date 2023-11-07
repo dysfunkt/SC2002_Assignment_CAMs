@@ -1,6 +1,7 @@
 package cams;
 import cams.util.*;
 import cams.object.person.*;
+import cams.ui.LoginMenuUI;
 
 import java.io.IOException;
 import java.io.BufferedReader;
@@ -73,6 +74,7 @@ public class MainApp {
 
         init();
         //call menu login menu
+        new LoginMenuUI().startMainMenu();
         System.exit(0);
     }
 
