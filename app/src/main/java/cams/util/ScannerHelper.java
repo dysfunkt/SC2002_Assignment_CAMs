@@ -1,5 +1,7 @@
 package cams.util;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class ScannerHelper {
@@ -26,6 +28,53 @@ public class ScannerHelper {
             }
         }
         return val;
+    }
+
+    public static Date getDateInput(String prompt){
+        Scanner input = getScannerInput();
+        String dateString;
+        Date date;
+        // Use SimpleDateFormat library to format the input date
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        while (true) {
+            System.out.print(prompt);
+            try {
+                // In case previous input was a primitive input
+                input.nextLine();
+                dateString = input.nextLine();
+                date = dateFormat.parse(dateString);
+                break;
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter date only.");
+            } catch (ParseException e){
+                System.out.println("Enter the date");
+            }
+        }
+        return date;
+    }
+
+    public static ArrayList<Date> getDatesInput(String prompt){
+        String dateString;
+        ArrayList<Date> datesArray = new ArrayList<>();
+        // Use SimpleDateFormat library to format the input date
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        while(true){
+            System.out.print(prompt);
+            dateString = input.nextLine();
+
+            if(dateString.equals("0")){
+                break;
+            }
+            try{
+                Date date = dateFormat.parse(dateString);
+                datesArray.add(date);
+                // You now have a Date object that you can work with
+                System.out.println("You added the date: " + date);
+            } catch (ParseException e){
+                System.out.println("Enter the date");
+            }
+        }
+        return datesArray;
     }
 
     public static String getNewPassword() {
