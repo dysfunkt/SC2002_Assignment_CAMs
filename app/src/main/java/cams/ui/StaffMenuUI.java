@@ -32,7 +32,7 @@ public class StaffMenuUI extends BaseUI {
         int choice = doMenuChoice(2, 0);
         switch (choice) {
             case 1:
-                CreateCamp();
+                CreateCamp(Staff staff);
                 return 1;
             case 2:
                 EditCamp();
@@ -65,7 +65,7 @@ public class StaffMenuUI extends BaseUI {
         }
     }
 
-    private void CreateCamp() {
+    private void CreateCamp(Staff staff) {
         String campName;
         ArrayList<Date> campDates;
         Date regCloseDate;
@@ -90,8 +90,19 @@ public class StaffMenuUI extends BaseUI {
 
         // Set camp details
         regCloseDate = ScannerHelper.getDateInput("Enter the date (yyyy-MM-DD) that the registration ends (terminate with 0):");
+        userGroup = ScannerHelper.getEnumsInput("Enter one of the faculties (terminate with 0):");
+        System.out.print("Enter Camp Location: ");
+        campLocation = input.nextLine();
+        campTotalSlots = ScannerHelper.getIntegerInput("Enter total # of slots for students: ");
+        campCommitteeSlots = ScannerHelper.getIntegerInput("Enter total # of slots for camp committee: ");
+        System.out.print("Enter Camp Description: ");
+        campDescription = input.nextLine();
+        staffInCharge = staff;
+        System.out.print("Enter Visibility (true or false): ");
+        visibility = input.nextBoolean();
 
-
+        // To be implemented
+        listOfAttendees = new ArrayList<Student>();
 
     }
 

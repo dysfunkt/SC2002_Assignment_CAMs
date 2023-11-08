@@ -4,7 +4,22 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import cams.object.person.eFaculty;
+
 public class ScannerHelper {
+
+    // Ensures String input is an enum in eFaculty
+    // Returns an eFaculty
+    private static eFaculty parseFaculty(String input){
+        // Check if faculty is valid
+        for(eFaculty faculty : eFaculty.values()){
+            if (faculty.name().equalsIgnoreCase(input)){
+                return faculty;
+            }
+        }
+        // If invalid, throw error
+        throw new IllegalArgumentException("Invalid enum value: " + input);
+    }
 
     public static Scanner instance;
 
@@ -54,8 +69,9 @@ public class ScannerHelper {
     }
 
     public static ArrayList<Date> getDatesInput(String prompt){
+        Scanner input = getScannerInput();
         String dateString;
-        ArrayList<Date> datesArray = new ArrayList<>();
+        ArrayList<Date> datesArray = new ArrayList<Date>();
         // Use SimpleDateFormat library to format the input date
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         while(true){
@@ -75,6 +91,28 @@ public class ScannerHelper {
             }
         }
         return datesArray;
+    }
+
+    public static ArrayList<eFaculty> getEnumsInput(String prompt){
+        Scanner input = getScannerInput();
+        String enumInput;
+        ArrayList<eFaculty> enumsArray = new ArrayList<eFaculty>();
+        while(true){
+            System.out.print(prompt);
+            enumInput = input.nextLine();
+            if(enumInput.equals("0")){
+                break;
+            }
+            try{
+                eFaculty faculty = parseFaculty(enumInput);
+                enumsArray.add(faculty);
+                // You now have a Date object that you can work with
+                System.out.println("Attached faculty: " + faculty);
+            } catch (IllegalArgumentException e){
+                System.out.println(e);
+            }
+        }
+        return enumsArray;
     }
 
     public static String getNewPassword() {
