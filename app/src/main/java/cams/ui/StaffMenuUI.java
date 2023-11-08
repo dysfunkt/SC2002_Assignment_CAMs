@@ -1,6 +1,7 @@
 package cams.ui;
 
 import cams.MainApp;
+import cams.object.Camp;
 import cams.object.person.Staff;
 import cams.object.person.Student;
 import cams.object.person.eFaculty;
@@ -14,8 +15,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class StaffMenuUI extends BaseUI {
+    private Staff currentStaff;
     private Scanner input = ScannerHelper.getScannerInput();
 
+    public StaffMenuUI(Staff staff){
+        this.currentStaff = staff;
+    }
     protected int generateMenuScreen() {
         printHeader("Login Menu");
         System.out.println("1) Create Camp");
@@ -32,7 +37,7 @@ public class StaffMenuUI extends BaseUI {
         int choice = doMenuChoice(2, 0);
         switch (choice) {
             case 1:
-                CreateCamp(Staff staff);
+                CreateCamp(currentStaff);
                 return 1;
             case 2:
                 EditCamp();
@@ -85,28 +90,46 @@ public class StaffMenuUI extends BaseUI {
         System.out.print("Enter Camp Name: ");
         campName = input.nextLine();
 
-        // Take an array of dates
         campDates = ScannerHelper.getDatesInput("Enter the dates (yyyy-MM-DD) that the camp happens (terminate with 0):");
 
-        // Set camp details
         regCloseDate = ScannerHelper.getDateInput("Enter the date (yyyy-MM-DD) that the registration ends (terminate with 0):");
+
         userGroup = ScannerHelper.getEnumsInput("Enter one of the faculties (terminate with 0):");
+
         System.out.print("Enter Camp Location: ");
         campLocation = input.nextLine();
+
         campTotalSlots = ScannerHelper.getIntegerInput("Enter total # of slots for students: ");
+
         campCommitteeSlots = ScannerHelper.getIntegerInput("Enter total # of slots for camp committee: ");
+
         System.out.print("Enter Camp Description: ");
         campDescription = input.nextLine();
+
         staffInCharge = staff;
+
         System.out.print("Enter Visibility (true or false): ");
         visibility = input.nextBoolean();
 
-        // To be implemented
-        listOfAttendees = new ArrayList<Student>();
+        listOfAttendees = ScannerHelper.getStudentsInput("Enter the name of the student that will be involved with the camp (terminate with 0):");
 
+        Camp campCreated = new Camp(campName, campDates, regCloseDate, userGroup, campLocation, campTotalSlots, campCommitteeSlots, campDescription, staffInCharge, listOfAttendees,visibility);
+        ArrayList<Camp> campsInCharge = currentStaff.getCampsInCharge();
+        campsInCharge.add(campCreated);
+        currentStaff.setCampsInCharge(campsInCharge);
     }
 
     private void EditCamp() {
+//        System.out.println("Enter the name of the camp you would want to edit: ");
+//        ArrayList<Camp> campsInCharge = currentStaff.getCampsInCharge();
+//        int campCount = 1;
+//        for(Camp camp: campsInCharge){
+//            System.out.println(campCount + ": " + camp.getCampName());
+//        }
+//        input.nextLine();
+//        String campName = input.nextLine();
+
+
     }
 
     private void DeleteCamp() {

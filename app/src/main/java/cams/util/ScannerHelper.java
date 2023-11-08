@@ -4,9 +4,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import cams.MainApp;
+import cams.object.person.Student;
 import cams.object.person.eFaculty;
 
 public class ScannerHelper {
+    private String studentCsv = "student.csv";
 
     // Ensures String input is an enum in eFaculty
     // Returns an eFaculty
@@ -68,6 +71,39 @@ public class ScannerHelper {
         return date;
     }
 
+    public static ArrayList<Student> getStudentsInput(String prompt){
+        Scanner input = getScannerInput();
+        ArrayList<Student> students = new ArrayList<Student>();
+        ArrayList<Student> chosenStudents = new ArrayList<Student>();
+        Student chosenStudent = null;
+        String name;
+
+        students = MainApp.students;
+
+        while(true){
+            System.out.print(prompt);
+            name = input.nextLine();
+            if(name.equals("0")){
+                break;
+            }
+            for(Student student: students){
+                if(student.getName().equalsIgnoreCase(name)){
+                    chosenStudent = student;
+                    break;
+                }
+            }
+
+            if(chosenStudent == null){
+                System.out.println("Enter a valid student name");
+                continue;
+            }
+
+            chosenStudents.add(chosenStudent);
+            System.out.println("You added the student: " + chosenStudent.getName());
+        }
+        return chosenStudents;
+    }
+
     public static ArrayList<Date> getDatesInput(String prompt){
         Scanner input = getScannerInput();
         String dateString;
@@ -97,8 +133,15 @@ public class ScannerHelper {
         Scanner input = getScannerInput();
         String enumInput;
         ArrayList<eFaculty> enumsArray = new ArrayList<eFaculty>();
+        // Repeatedly prompt for an enum until you get an array
         while(true){
-            System.out.print(prompt);
+            // Print prompt along with the available faculties
+            System.out.println(prompt);
+            System.out.println("Faculties available:");
+            Integer facultyCount = 1;
+            for(eFaculty faculty: eFaculty.values()){
+                System.out.println(facultyCount + ": " + faculty.name());
+            }
             enumInput = input.nextLine();
             if(enumInput.equals("0")){
                 break;
@@ -106,7 +149,6 @@ public class ScannerHelper {
             try{
                 eFaculty faculty = parseFaculty(enumInput);
                 enumsArray.add(faculty);
-                // You now have a Date object that you can work with
                 System.out.println("Attached faculty: " + faculty);
             } catch (IllegalArgumentException e){
                 System.out.println(e);

@@ -13,7 +13,7 @@ public class StudentCSVHelper extends CSVBaseHelper {
 
     private static StudentCSVHelper mInstance;
 
-    private StudentCSVHelper() {
+    StudentCSVHelper() {
     }
 
     public static StudentCSVHelper getInstance() {
