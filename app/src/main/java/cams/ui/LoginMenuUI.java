@@ -60,6 +60,7 @@ public class LoginMenuUI extends BaseUI{
                     if (loginStaff.isFirstLogin()) firstTimeLoginChangePassword(loginStaff);
                     //call staff menu
                     System.out.println("Development: call staff menu here");
+                    
                 } else {
                     System.out.println("Wrong Password!");
                 }
