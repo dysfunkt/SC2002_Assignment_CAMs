@@ -13,7 +13,7 @@ public class StudentCSVHelper extends CSVBaseHelper {
 
     private static StudentCSVHelper mInstance;
 
-    StudentCSVHelper() {
+    private StudentCSVHelper() {
     }
 
     public static StudentCSVHelper getInstance() {
@@ -42,4 +42,6 @@ public class StudentCSVHelper extends CSVBaseHelper {
         students.forEach((s) -> toWrite.add(s.toCsv()));
         writeToCsvFile(toWrite, csvFile);
     }
+
+    
 }

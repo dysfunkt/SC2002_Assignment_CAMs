@@ -72,15 +72,14 @@ public class StaffMenuUI extends BaseUI {
 
     private void CreateCamp(Staff staff) {
         String campName;
-        ArrayList<Date> campDates;
+        Date startDate;
+        Date endDate;
         Date regCloseDate;
         ArrayList<eFaculty> userGroup;
         String campLocation;
         int campTotalSlots;
         int campCommitteeSlots;
-        String campDescription;
-        Staff staffInCharge;
-        ArrayList<Student> listOfAttendees;
+        String campDescription;        
         boolean visibility;
 
         // In case the previous input was a primitive data type
@@ -90,7 +89,9 @@ public class StaffMenuUI extends BaseUI {
         System.out.print("Enter Camp Name: ");
         campName = input.nextLine();
 
-        campDates = ScannerHelper.getDatesInput("Enter the dates (yyyy-MM-DD) that the camp happens (terminate with 0):");
+        startDate = ScannerHelper.getDateInput("Enter the date (yyyy-MM-DD) that the camp starts (terminate with 0):");
+
+        endDate = ScannerHelper.getDateInput("Enter the date (yyyy-MM-DD) that the camp starts (terminate with 0):");
 
         regCloseDate = ScannerHelper.getDateInput("Enter the date (yyyy-MM-DD) that the registration ends (terminate with 0):");
 

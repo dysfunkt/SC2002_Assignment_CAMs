@@ -1,6 +1,7 @@
 package cams;
 import cams.util.*;
 import cams.object.person.*;
+import cams.object.Camp;
 import cams.ui.LoginMenuUI;
 
 import java.io.IOException;
@@ -21,10 +22,12 @@ public class MainApp {
 
     public static ArrayList<Student> students;
     public static ArrayList<Staff> staffs;
+    public static ArrayList<Camp> camps;
 
     public static void init() {
         StudentCSVHelper studentCsv = StudentCSVHelper.getInstance();
         StaffCSVHelper staffCsv = StaffCSVHelper.getInstance();
+        CampCSVHelper campCsv = CampCSVHelper.getInstance();
 
         try {
             System.out.println("Loading Student infomation from file...");
@@ -34,6 +37,10 @@ public class MainApp {
             System.out.println("Loading Staff infomation from file...");
             staffs = staffCsv.readFromCsv();
             System.out.println(staffs.size() + " staffs loaded successfully");
+
+            System.out.println("Loading Camp infomation from file...");
+            camps = campCsv.readFromCSV();
+            System.out.println(camps.size() + " camps loaded successfully");
         } catch (IOException e) {
             System.out.println("[ERROR] Failed to read CSV from data folder. (" + e.getLocalizedMessage() + ")");
         }
@@ -48,6 +55,7 @@ public class MainApp {
     public static boolean saveAll() {
         StudentCSVHelper studentCSVHelper = StudentCSVHelper.getInstance();
         StaffCSVHelper staffCSVHelper = StaffCSVHelper.getInstance();
+        CampCSVHelper campCSVHelper = CampCSVHelper.getInstance();
 
         try {
             System.out.println("Saving current Student infomation to file...");
@@ -57,6 +65,10 @@ public class MainApp {
             System.out.println("Saving current Staff infomation to file...");
             staffCSVHelper.writeToCsv(staffs);
             System.out.println("Staff List Saved!");
+
+            System.out.println("Saving current Camp infomation to file...");
+            campCSVHelper.writeToCsv(camps);
+            System.out.println("Camp List Saved!");
 
         } catch (IOException e) {
             System.out.println("[ERROR] Failed to save items to file. (" + e.getLocalizedMessage() + ")");
