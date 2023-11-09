@@ -1,9 +1,8 @@
 package cams.ui;
 
 import cams.MainApp;
-//import cams.object.Camp;
+import cams.object.Camp;
 import cams.object.person.*;
-import cams.ui.LoginMenuUI;
 import cams.util.ScannerHelper;
 
 import org.checkerframework.checker.units.qual.s;
@@ -21,26 +20,26 @@ public class StudentMenuUI extends BaseUI{
     @Override
     protected int generateMenuScreen() {
         printHeader("Student Menu");
-        System.out.println("1) Register For Camp");
-        System.out.println("2) Withdraw From Camp");
-        System.out.println("3) View All Camps"); //print list of camps and their remaining slots
+        System.out.println("1) View All Camps");    //print list of camps AND their remaining slots
+        System.out.println("2) Register For Camp");
+        System.out.println("3) Withdraw From Camp");
         System.out.println("4) View Your Camps");
-        System.out.println("5) Submit Enquiry");
-        System.out.println("6) View Enquiries"); 
+        System.out.println("5) Submit An Enquiry");
+        System.out.println("6) View Your Enquiries"); 
         System.out.println("7) Change Password");
-        System.out.println("8) Exit Student Menu");
+        System.out.println("0) Exit Student Menu");
         printBreaks();
 
         int choice = doMenuChoice(10, 0);
         switch(choice){
             case 1:
-                this.studentRegisterForCamp();
+                this.studentViewAllCamps(); //samtan dying
                 break;
             case 2:
-                this.studentWithdrawFromCamp();
-                break;
+                this.studentRegisterForCamp();
+                return 1;
             case 3:
-                this.studentViewAllCamps();
+                this.studentWithdrawFromCamp();
                 break;
             case 4:
                 this.studentRegisteredCamps();
@@ -53,8 +52,8 @@ public class StudentMenuUI extends BaseUI{
                 break;
             case 7:
                 this.studentChangePassword(currentStudent);
-                break;
-            case 8:
+                return -1;
+            case 0:
                 return -1;
 
             default:
@@ -64,17 +63,17 @@ public class StudentMenuUI extends BaseUI{
     }
 
 
+    private void studentViewAllCamps(){
+
+    }
+
+
     private void studentRegisterForCamp(){
 
     }
 
 
     private void studentWithdrawFromCamp(){
-
-    }
-
-
-    private void studentViewAllCamps(){
 
     }
 
@@ -103,4 +102,3 @@ public class StudentMenuUI extends BaseUI{
 
 
 //using LoginMenuUI.current
-//

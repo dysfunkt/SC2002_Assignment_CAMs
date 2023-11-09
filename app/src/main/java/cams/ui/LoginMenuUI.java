@@ -98,8 +98,9 @@ public class LoginMenuUI extends BaseUI{
                         System.out.println("Development: call camp committee menu here");
                     } else {
                         //call student menu here
-                        //new StudentMenuUI().generateMenuScreen();
                         //System.out.println("Development: call student menu here");
+                        StudentMenuUI studentMenu = new StudentMenuUI(currentStudent); 
+                        studentMenu.generateMenuScreen();
                     }
                 } else {
                     System.out.println("Wrong Password!");
