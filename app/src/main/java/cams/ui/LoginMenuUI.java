@@ -3,6 +3,7 @@ package cams.ui;
 import cams.MainApp;
 import cams.util.ScannerHelper;
 import cams.object.person.*;
+import cams.ui.StudentMenuUI;
 
 import java.util.Scanner;
 
@@ -97,7 +98,8 @@ public class LoginMenuUI extends BaseUI{
                         System.out.println("Development: call camp committee menu here");
                     } else {
                         //call student menu here
-                        System.out.println("Development: call student menu here");
+                        //new StudentMenuUI().generateMenuScreen();
+                        //System.out.println("Development: call student menu here");
                     }
                 } else {
                     System.out.println("Wrong Password!");
