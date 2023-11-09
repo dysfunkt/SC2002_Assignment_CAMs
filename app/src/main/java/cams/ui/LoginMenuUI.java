@@ -95,6 +95,8 @@ public class LoginMenuUI extends BaseUI{
                     if (loginStudent.isFirstLogin()) firstTimeLoginChangePassword(loginStudent);
                     if (currentStudent.isCampCommittee()) {
                         //call camp committee menu here
+                        CampCommitteeMenuUI campCommitteeMenu = new CampCommitteeMenuUI(currentStudent);
+                        campCommitteeMenu.generateMenuScreen();
                         System.out.println("Development: call camp committee menu here");
                     } else {
                         //call student menu here
