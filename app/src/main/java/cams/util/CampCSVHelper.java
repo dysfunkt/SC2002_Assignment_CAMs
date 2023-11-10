@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import cams.object.Camp;
+import cams.object.appitem.Camp;
 
 
 public class CampCSVHelper extends CSVBaseHelper{

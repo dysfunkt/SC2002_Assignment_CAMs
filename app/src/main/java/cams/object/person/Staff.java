@@ -2,7 +2,7 @@ package cams.object.person;
 
 import java.util.ArrayList;
 
-import cams.object.Camp;
+import cams.object.appitem.Camp;
 
 public class Staff extends User{
     private ArrayList<Camp> campsInCharge;
