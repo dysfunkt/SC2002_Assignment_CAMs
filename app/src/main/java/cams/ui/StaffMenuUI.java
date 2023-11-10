@@ -2,25 +2,18 @@ package cams.ui;
 
 import cams.MainApp;
 import cams.object.Camp;
-import cams.object.person.Staff;
-import cams.object.person.Student;
 import cams.object.person.eFaculty;
 import cams.util.ScannerHelper;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 public class StaffMenuUI extends BaseUI {
-    private Staff currentStaff;
+    
     private Scanner input = ScannerHelper.getScannerInput();
 
-    public StaffMenuUI(Staff staff){
-        this.currentStaff = staff;
-    }
+    
     protected int generateMenuScreen() {
         printHeader("Login Menu");
         System.out.println("1) Create Camp");
@@ -32,55 +25,61 @@ public class StaffMenuUI extends BaseUI {
         System.out.println("7) View All Suggestions and Approve");
         System.out.println("8) Generate Camp Report");
         System.out.println("9) Generate Performance Report");
-        System.out.println("0) Exit");
+        System.out.println("10) Log out");
+        System.out.println("0) Exit Application");
         printBreaks();
-        int choice = doMenuChoice(2, 0);
+        int choice = doMenuChoice(10, 0);
         switch (choice) {
             case 1:
-                CreateCamp(currentStaff);
-                return 1;
+                CreateCamp();
+                break;
             case 2:
                 EditCamp();
-                return 1;
+                break;
             case 3:
                 DeleteCamp();
-                return 1;
+                break;
             case 4:
                 ViewAllCamps();
-                return 1;
+                break;
             case 5:
                 ViewYourCamp();
-                return 1;
+                break;
             case 6:
                 ViewAllEnquiries();
-                return 1;
+                break;
             case 7:
                 ViewAllSuggestions();
-                return 1;
+                break;
             case 8:
                 GenerateCampReport();
-                return 1;
+                break;
             case 9:
                 GeneratePerformanceReport();
-                return 1;
+                break;
+            case 10:
+                System.out.println("You have successfully logged out.");
+                return -1;
             case 0:
                 return 1; //shutdown
             default:
                 throw new MenuChoiceInvalidException("Login Menu");
         }
+        return 0;
     }
 
-    private void CreateCamp(Staff staff) {
+    private void CreateCamp() {
         String campName;
         Date startDate;
         Date endDate;
         Date regCloseDate;
-        ArrayList<eFaculty> userGroup;
+        eFaculty userGroup;
         String campLocation;
         int campTotalSlots;
         int campCommitteeSlots;
-        String campDescription;        
-        boolean visibility;
+        String campDescription;   
+        String staffInCharge;   
+        Boolean visibility;  
 
         // In case the previous input was a primitive data type
         input.nextLine();
@@ -89,35 +88,41 @@ public class StaffMenuUI extends BaseUI {
         System.out.print("Enter Camp Name: ");
         campName = input.nextLine();
 
-        startDate = ScannerHelper.getDateInput("Enter the date (yyyy-MM-DD) that the camp starts (terminate with 0):");
+        startDate = ScannerHelper.getDateInput("Enter the date (yyyy-MM-DD) that the camp starts (terminate with 0): ");
 
-        endDate = ScannerHelper.getDateInput("Enter the date (yyyy-MM-DD) that the camp starts (terminate with 0):");
+        endDate = ScannerHelper.getDateInput("Enter the date (yyyy-MM-DD) that the camp starts (terminate with 0): ");
 
-        regCloseDate = ScannerHelper.getDateInput("Enter the date (yyyy-MM-DD) that the registration ends (terminate with 0):");
+        regCloseDate = ScannerHelper.getDateInput("Enter the date (yyyy-MM-DD) that the registration ends (terminate with 0): ");
 
-        userGroup = ScannerHelper.getEnumsInput("Enter one of the faculties (terminate with 0):");
+        int choice = ScannerHelper.getIntegerInput("Set group camp is open to (1 for your faculty, 2 for whole NTU): ", 0 ,3);
+        switch (choice) {
+            case 1: 
+                userGroup = MainApp.currentUser.getFaculty();
+                break;
+            case 2:
+                userGroup = Enum.valueOf(eFaculty.class, "NTU");
+                break;
+            default: 
+                userGroup = MainApp.currentUser.getFaculty();
+        }
 
         System.out.print("Enter Camp Location: ");
         campLocation = input.nextLine();
 
         campTotalSlots = ScannerHelper.getIntegerInput("Enter total # of slots for students: ");
 
-        campCommitteeSlots = ScannerHelper.getIntegerInput("Enter total # of slots for camp committee: ");
+        campCommitteeSlots = ScannerHelper.getIntegerInput("Enter total # of slots for camp committee (Max 10): ", 0, 11);
 
         System.out.print("Enter Camp Description: ");
         campDescription = input.nextLine();
 
-        staffInCharge = staff;
+        staffInCharge = MainApp.currentUser.getUserID();
 
-        System.out.print("Enter Visibility (true or false): ");
-        visibility = input.nextBoolean();
+        visibility = ScannerHelper.getYesNoInput("Make camp visible?");
 
-        listOfAttendees = ScannerHelper.getStudentsInput("Enter the name of the student that will be involved with the camp (terminate with 0):");
-
-        Camp campCreated = new Camp(campName, campDates, regCloseDate, userGroup, campLocation, campTotalSlots, campCommitteeSlots, campDescription, staffInCharge, listOfAttendees,visibility);
-        ArrayList<Camp> campsInCharge = currentStaff.getCampsInCharge();
-        campsInCharge.add(campCreated);
-        currentStaff.setCampsInCharge(campsInCharge);
+        
+        MainApp.camps.add(new Camp(campName, startDate, endDate, regCloseDate, userGroup, campLocation, campTotalSlots, campCommitteeSlots, campDescription, staffInCharge, visibility));
+        
     }
 
     private void EditCamp() {

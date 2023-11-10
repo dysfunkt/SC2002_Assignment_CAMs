@@ -15,7 +15,7 @@ public class Camp {
     private Date startDate;
     private Date endDate;
     private Date regCloseDate;
-    private ArrayList<eFaculty> userGroup;
+    private eFaculty userGroup;
     private String campLocation;
     private int campTotalSlots;
     private int campCommitteeSlots;
@@ -27,7 +27,7 @@ public class Camp {
     private boolean visibility;
 
     public Camp(String campName, Date startDate, Date endDate, Date regCloseDate, 
-                ArrayList<eFaculty> userGroup, String campLocation, int campTotalSlots, 
+                eFaculty userGroup, String campLocation, int campTotalSlots, 
                 int campCommitteeSlots, String campDescription, String staffInCharge, 
                 ArrayList<String> listOfAttendees, ArrayList<String> listOfCampCommittees, 
                 ArrayList<String> leavers, boolean visibility) {
@@ -48,9 +48,9 @@ public class Camp {
     }
 
     public Camp(String campName, Date startDate, Date endDate, Date regCloseDate, 
-                ArrayList<eFaculty> userGroup, String campLocation, int campTotalSlots, 
+                eFaculty userGroup, String campLocation, int campTotalSlots, 
                 int campCommitteeSlots, String campDescription, String staffInCharge, 
-                boolean visibility) {
+                Boolean visibility) {
         this.campName = campName;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -61,9 +61,9 @@ public class Camp {
         this.campCommitteeSlots = campCommitteeSlots;
         this.campDescription = campDescription;
         this.staffInCharge = staffInCharge;
-        this.listOfAttendees = listOfAttendees;
-        this.listOfCampCommittees = listOfCampCommittees;
-        this.leavers = leavers;
+        this.listOfAttendees = new ArrayList<String>();
+        this.listOfCampCommittees = new ArrayList<String>();
+        this.leavers = new ArrayList<>();
         this.visibility = visibility;
     }
 
@@ -72,7 +72,7 @@ public class Camp {
         this.startDate = CSVStringtoDate(csv[1]);
         this.endDate = CSVStringtoDate(csv[2]);
         this.regCloseDate = CSVStringtoDate(csv[3]);
-        this.userGroup = CSVStringtoArraylistEnum(csv[4]);
+        this.userGroup = Enum.valueOf(eFaculty.class, csv[4]);
         this.campLocation = csv[5];
         this.campTotalSlots = Integer.valueOf(csv[6]);
         this.campCommitteeSlots = Integer.valueOf(csv[7]);
@@ -90,7 +90,7 @@ public class Camp {
         c[1] = DateToCSVString(this.startDate);
         c[2] = DateToCSVString(this.endDate);
         c[3] = DateToCSVString(this.regCloseDate);
-        c[4] = arraylistEnumtoCSVStrring(this.userGroup);
+        c[4] = this.userGroup + "";
         c[5] = this.campLocation;
         c[6] = this.campTotalSlots + "";
         c[7] = this.campCommitteeSlots + "";
@@ -99,7 +99,7 @@ public class Camp {
         c[10] = arraylistStringtoCSVString(this.listOfAttendees);
         c[11] = arraylistStringtoCSVString(this.listOfCampCommittees);
         c[12] = arraylistStringtoCSVString(this.leavers);
-        c[14] = this.visibility + "";
+        c[13] = this.visibility + "";
         return c;
     }
 
@@ -178,11 +178,11 @@ public class Camp {
         this.regCloseDate = regCloseDate;
     }
 
-    public ArrayList<eFaculty> getUserGroup() {
+    public eFaculty getUserGroup() {
         return userGroup;
     }
 
-    public void setUserGroup(ArrayList<eFaculty> userGroup) {
+    public void setUserGroup(eFaculty userGroup) {
         this.userGroup = userGroup;
     }
 

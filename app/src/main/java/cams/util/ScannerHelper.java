@@ -9,8 +9,7 @@ import cams.object.person.Student;
 import cams.object.person.eFaculty;
 
 public class ScannerHelper {
-    private String studentCsv = "student.csv";
-
+    
     // Ensures String input is an enum in eFaculty
     // Returns an eFaculty
     private static eFaculty parseFaculty(String input){
@@ -48,6 +47,38 @@ public class ScannerHelper {
         return val;
     }
 
+    public static int getIntegerInput(String prompt, int min) {
+        while (true) {
+            int val = getIntegerInput(prompt);
+            if (val > min) return val;
+            System.out.println("Invalid Input. Please ensure you enter a number greater than " + min);
+        }
+    }
+
+    public static int getIntegerInput(String prompt, int min, int max) {
+        while (true) {
+            int val = getIntegerInput(prompt, min);
+            if (val < max) return val;
+            System.out.println("Invalid Input. Please ensure you enter a number less than " + max);
+        }
+    }
+
+    public static boolean getYesNoInput(String prompt) {
+        Scanner input = getScannerInput();
+        String ans;
+        while (true) {
+            System.out.print(prompt + " [Y]es/[N]o: ");
+            try {
+                ans = input.nextLine().toLowerCase();
+                if (ans.charAt(0) == 'y') return true;
+                else if (ans.charAt(0) == 'n') return false;
+                else throw new InputMismatchException();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid Input. Please answer either yes or no");
+            }
+        }
+    }
+
     public static Date getDateInput(String prompt){
         Scanner input = getScannerInput();
         String dateString;
@@ -58,7 +89,7 @@ public class ScannerHelper {
             System.out.print(prompt);
             try {
                 // In case previous input was a primitive input
-                input.nextLine();
+                //input.nextLine();
                 dateString = input.nextLine();
                 date = dateFormat.parse(dateString);
                 break;

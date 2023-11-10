@@ -7,7 +7,6 @@ import cams.ui.LoginMenuUI;
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,6 +19,7 @@ import java.util.stream.Collectors;
 
 public class MainApp {
 
+    public static User currentUser;
     public static ArrayList<Student> students;
     public static ArrayList<Staff> staffs;
     public static ArrayList<Camp> camps;
