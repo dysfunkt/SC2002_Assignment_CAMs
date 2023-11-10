@@ -3,6 +3,7 @@ package cams.ui;
 import cams.MainApp;
 import cams.util.ScannerHelper;
 import cams.object.person.*;
+import cams.ui.StudentMenuUI;
 
 import java.util.Scanner;
 
@@ -31,6 +32,7 @@ public class LoginMenuUI extends BaseUI{
                 } else {
                     //call student menu here
                     System.out.println("Development: call student menu here");
+                    //if (new StudentMenuUI().generateMenuScreen()) return 1;
                 }
                 break;
             case 0:
