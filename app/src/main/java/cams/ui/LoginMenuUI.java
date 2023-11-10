@@ -16,7 +16,7 @@ public class LoginMenuUI extends BaseUI{
         printHeader("Login Menu");
         System.out.println("1) Staff Login");
         System.out.println("2) Student Login");
-        System.out.println("0) Exit");
+        System.out.println("0) Exit Application");
         printBreaks();
 
         int choice = doMenuChoice(2, 0);
@@ -36,6 +36,7 @@ public class LoginMenuUI extends BaseUI{
                 }
                 break;
             case 0:
+                System.out.println("Closing application...");
                 return 1; //shutdown
             default:
                 throw new MenuChoiceInvalidException("Login Menu");

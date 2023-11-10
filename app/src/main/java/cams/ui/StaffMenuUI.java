@@ -61,6 +61,7 @@ public class StaffMenuUI extends BaseUI {
                 System.out.println("You have successfully logged out.");
                 return -1;
             case 0:
+                System.out.println("Closing application...");
                 return 1; //shutdown
             default:
                 throw new MenuChoiceInvalidException("Login Menu");
