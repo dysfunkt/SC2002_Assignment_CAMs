@@ -1,7 +1,7 @@
 package cams.ui;
 
 import cams.MainApp;
-import cams.object.Camp;
+import cams.object.appitem.Camp;
 import cams.object.person.eFaculty;
 import cams.util.ScannerHelper;
 
@@ -13,7 +13,7 @@ public class StaffMenuUI extends BaseUI {
     
     private Scanner input = ScannerHelper.getScannerInput();
 
-    
+
     protected int generateMenuScreen() {
         printHeader("Login Menu");
         System.out.println("1) Create Camp");
@@ -143,6 +143,7 @@ public class StaffMenuUI extends BaseUI {
     }
 
     private void ViewAllCamps() {
+        
     }
 
     private void ViewYourCamp() {
