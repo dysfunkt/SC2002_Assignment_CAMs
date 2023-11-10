@@ -1,6 +1,5 @@
 package cams.ui;
 
-import cams.MainApp;
 import cams.util.ScannerHelper;
 
 import java.util.stream.Stream;
