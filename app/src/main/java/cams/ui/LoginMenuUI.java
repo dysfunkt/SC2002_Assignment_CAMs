@@ -93,16 +93,7 @@ public class LoginMenuUI extends BaseUI{
                 if (loginStudent.checkPassword(passwordInput)) {
                     MainApp.currentUser = loginStudent;
                     loginSuccess = true;
-                    System.out.println("Successfully logged in as " + currentStudent.getUserID());
-                    if (loginStudent.isFirstLogin()) firstTimeLoginChangePassword(loginStudent);
-                    if (currentStudent.isCampCommittee()) {
-                        //call camp committee menu here
-                        System.out.println("Development: call camp committee menu here");
-                    } else {
-                        //call student menu here
-                        //new StudentMenuUI().generateMenuScreen();
-                        //System.out.println("Development: call student menu here");
-                    }
+                    System.out.println("Successfully logged in as " + MainApp.currentUser.getUserID());
                 } else {
                     System.out.println("Wrong Password!");
                 }
