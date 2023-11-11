@@ -22,7 +22,7 @@ public class CampCSVHelper extends CSVBaseHelper{
         return mInstance;
     }
 
-    public ArrayList<Camp> readFromCSV() throws IOException {
+    public ArrayList<Camp> readFromCsv() throws IOException {
         if (!FileIOHelper.exists(this.campCsv)) return new ArrayList<>(); //empty arraylist
         BufferedReader csvFile = FileIOHelper.getFileBufferedReader(this.campCsv);
         List<String[]> csvLines = readAll(csvFile, 1);
@@ -36,7 +36,7 @@ public class CampCSVHelper extends CSVBaseHelper{
     }
 
     public void writeToCsv(ArrayList<Camp> camps) throws IOException {
-        String[] header = {"CampName" ,"StartDate", "EndDate", "RegistrationCloseDate", 
+        String[] header = {"CampID", "CampName" ,"StartDate", "EndDate", "RegistrationCloseDate", 
                         "UserGroup", "CampLocation", "CampTotalSlots", "CampCommitteeSlots", 
                         "CampDescription", "staffInCharge", "listOfAttendees", 
                         "listOfCampCommittees", "leavers", "visibility"};
