@@ -152,6 +152,25 @@ public class StaffCampMenuUI extends BaseUI{
         }
         return campsInCharge;
     }
-    private void GeneratePerformanceReport(){}
+    private void GeneratePerformanceReport(){
+        ArrayList<Camp> campsInCharge = ViewYourCamps();
+
+        if (campsInCharge == null || campsInCharge.isEmpty()) {
+            System.out.println("No camps available to generate performance report.");
+            return;
+        }
+
+        int campNo = doMenuChoice(campsInCharge.size(), 0);
+        Camp chosenCamp = campsInCharge.get(campNo - 1);
+
+        // Using methods in the Camp class to get the list of attendees and committee members
+        ArrayList<Student> committeeMembers = chosenCamp.getListOfCampCommittees()(); //The camp function should store objects
+
+
+        // Print the performance report for camp committee members
+        for (int i=0;i<committeeMembers.size();i++){
+            System.out.printf("Camp Committee Name: %s Points: %d", committeeMembers[i], committeeMembers[i].getPoints());
+        }
+    }
 
 }
