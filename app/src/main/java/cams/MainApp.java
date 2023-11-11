@@ -1,7 +1,8 @@
 package cams;
+import cams.object.appitem.Camp;
 import cams.util.*;
 import cams.object.person.*;
-import cams.object.Camp;
+import cams.object.appitem.Camp;
 import cams.ui.LoginMenuUI;
 
 import java.io.IOException;

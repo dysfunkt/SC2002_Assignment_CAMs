@@ -6,7 +6,6 @@ import cams.object.appitem.Camp;
 
 public class Staff extends User{
     private ArrayList<Camp> campsInCharge;
-
     public Staff(String name, String email, String facultyString, String userID, String password, Boolean firstLogin) {
         super(name, email, facultyString, userID, password, firstLogin);
         campsInCharge = new ArrayList<Camp>();
