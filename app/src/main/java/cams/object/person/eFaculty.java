@@ -5,5 +5,6 @@ public enum eFaculty {
     ADM,
     EEE,
     NBS,
-    SSS
+    SSS,
+    NTU
 }

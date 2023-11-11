@@ -1,7 +1,6 @@
 package cams.util;
 
 import cams.object.person.Staff;
-import cams.object.person.Student;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

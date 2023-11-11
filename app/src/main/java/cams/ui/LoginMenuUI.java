@@ -10,29 +10,38 @@ import java.util.Scanner;
 public class LoginMenuUI extends BaseUI{
 
     private Scanner input = ScannerHelper.getScannerInput();
-    public Staff currentStaff;
-    public Student currentStudent;
+    
     
     protected int generateMenuScreen() {
         printHeader("Login Menu");
         System.out.println("1) Staff Login");
         System.out.println("2) Student Login");
-        System.out.println("0) Exit");
+        System.out.println("0) Exit Application");
         printBreaks();
 
         int choice = doMenuChoice(2, 0);
         switch (choice) {
             case 1:
                 StaffLogin(); 
-                return 1;
+                if(new StaffMenuUI().startMainMenu()) return 1;
+                break;
             case 2:
-                StudentLogin();
-                return 1;
+                if (StudentLogin()){
+                    //call camp committee menu here
+                    System.out.println("Development: call CC menu here");
+                } else {
+                    //call student menu here
+                    System.out.println("Development: call student menu here");
+                    //if (new StudentMenuUI().generateMenuScreen()) return 1;
+                }
+                break;
             case 0:
+                System.out.println("Closing application...");
                 return 1; //shutdown
             default:
                 throw new MenuChoiceInvalidException("Login Menu");
         }
+        return 0;
     }
 
     private void StaffLogin() {
@@ -55,13 +64,11 @@ public class LoginMenuUI extends BaseUI{
                 System.out.println("Username does not exist!");
             } else {
                 if (loginStaff.checkPassword(passwordInput)) {
-                    currentStaff = loginStaff;
+                    MainApp.currentUser = loginStaff;
                     loginSuccess = true;
-                    System.out.println("Successfully logged in as " + currentStaff.getUserID());
+                    System.out.println("Successfully logged in as " + MainApp.currentUser.getUserID());
                     if (loginStaff.isFirstLogin()) firstTimeLoginChangePassword(loginStaff);
-                    //call staff menu
-                    System.out.println("Development: call staff menu here");
-                    
+                    //finish login sequence                    
                 } else {
                     System.out.println("Wrong Password!");
                 }
@@ -69,8 +76,9 @@ public class LoginMenuUI extends BaseUI{
         } while (!loginSuccess);
     }
 
-    private void StudentLogin() {
+    private Boolean StudentLogin() {
         Boolean loginSuccess = false;
+        Student loginStudent = null;
         input.nextLine();
         do {
             System.out.print("Enter Username: ");
@@ -78,7 +86,7 @@ public class LoginMenuUI extends BaseUI{
             System.out.print("Enter Password: ");
             String passwordInput = input.nextLine();
 
-            Student loginStudent = null;
+            
 
             for (int i = 0; i < MainApp.students.size(); i++) {
                 if (MainApp.students.get(i).getUserID().equals(usernameInput)) {
@@ -89,26 +97,29 @@ public class LoginMenuUI extends BaseUI{
                 System.out.println("Username does not exist!");
             } else {
                 if (loginStudent.checkPassword(passwordInput)) {
-                    currentStudent = loginStudent;
+                    MainApp.currentUser = loginStudent;
                     loginSuccess = true;
                     System.out.println("Successfully logged in as " + currentStudent.getUserID());
                     if (loginStudent.isFirstLogin()) firstTimeLoginChangePassword(loginStudent);
                     if (currentStudent.isCampCommittee()) {
                         //call camp committee menu here
-                        CampCommitteeMenuUI campCommitteeMenu = new CampCommitteeMenuUI(currentStudent);
-                        campCommitteeMenu.generateMenuScreen();
                         System.out.println("Development: call camp committee menu here");
                     } else {
                         //call student menu here
+                        //new StudentMenuUI().generateMenuScreen();
                         //System.out.println("Development: call student menu here");
-                        StudentMenuUI studentMenu = new StudentMenuUI(currentStudent); 
-                        studentMenu.generateMenuScreen();
                     }
                 } else {
                     System.out.println("Wrong Password!");
                 }
             }
         } while (!loginSuccess);
+        if (loginStudent.isFirstLogin()) firstTimeLoginChangePassword(loginStudent);
+        if (loginStudent.isCampCommittee()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private void firstTimeLoginChangePassword(User s) {
