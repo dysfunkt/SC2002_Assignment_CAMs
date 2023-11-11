@@ -3,8 +3,6 @@ package cams.ui;
 import cams.MainApp;
 import cams.util.ScannerHelper;
 import cams.object.person.*;
-import cams.ui.StudentMenuUI;
-
 import java.util.Scanner;
 
 public class LoginMenuUI extends BaseUI{
@@ -23,16 +21,14 @@ public class LoginMenuUI extends BaseUI{
         switch (choice) {
             case 1:
                 StaffLogin(); 
-                if(new StaffMenuUI().startMainMenu()) return 1;
+                if (new StaffMenuUI().startMainMenu()) return 1;
                 break;
             case 2:
                 if (StudentLogin()){
-                    //call camp committee menu here
-                    System.out.println("Development: call CC menu here");
+                    if (new CampCommitteeMenuUI().startMainMenu()) return 1;
+                    
                 } else {
-                    //call student menu here
-                    System.out.println("Development: call student menu here");
-                    //if (new StudentMenuUI().generateMenuScreen()) return 1;
+                    if (new StudentMenuUI().startMainMenu()) return 1;
                 }
                 break;
             case 0:
@@ -85,8 +81,6 @@ public class LoginMenuUI extends BaseUI{
             String usernameInput = input.nextLine();
             System.out.print("Enter Password: ");
             String passwordInput = input.nextLine();
-
-            
 
             for (int i = 0; i < MainApp.students.size(); i++) {
                 if (MainApp.students.get(i).getUserID().equals(usernameInput)) {
