@@ -68,7 +68,7 @@ public class CampCommitteeMenuUI extends BaseUI {
     }
 
     private void viewCampDetails() {
-        // Implement logic to view camp details
+        
         
     }
 
