@@ -56,66 +56,73 @@ public class StudentMenuUI extends BaseUI{
         
         return 0;
     }
+    
     private void generateCampsMenu() {
-        printHeader("Manage Camps");
-        System.out.println("1) View All Camps");
-        System.out.println("2) Register For Camp");
-        System.out.println("3) Withdraw From Camp"); 
-        System.out.println("4) View Registered Camps");
-        System.out.println("5) Sign up for camp committee");
-        System.out.println("6) Back to Student Menu");
-        printBreaks();
-
-        int choice = doMenuChoice(6, 0);
-
-        switch (choice) {
-            case 1:
-                studentViewAllCamps();
-                break;
-            case 2:
-                studentRegisterForCamp();
-                break;
-            case 3:
-                studentWithdrawFromCamp();
-                break;
-            case 4:
-                studentRegisteredCamps();
-                break;
-            case 5:
-                signupForCommittee();
-            case 6:
-                // Back to the main menu
-                break;
-            default:
-                throw new MenuChoiceInvalidException("Camps Menu");
+        while (true) {  // Add a loop to stay in the submenu
+            printHeader("Manage Camps");
+            System.out.println("1) View All Camps");
+            System.out.println("2) Register For Camp");
+            System.out.println("3) Withdraw From Camp"); 
+            System.out.println("4) View Registered Camps");
+            System.out.println("5) Sign up for camp committee");
+            System.out.println("6) Back to Student Menu");
+            printBreaks();
+    
+            int choice = doMenuChoice(6, 0);
+    
+            switch (choice) {
+                case 1:
+                    studentViewAllCamps();
+                    break;
+                case 2:
+                    studentRegisterForCamp();
+                    break;
+                case 3:
+                    studentWithdrawFromCamp();
+                    break;
+                case 4:
+                    studentRegisteredCamps();
+                    break;
+                case 5:
+                    signupForCommittee();
+                    break;
+                case 6:
+                    return;  // Exit the loop and go back to the Student Menu
+                default:
+                    throw new MenuChoiceInvalidException("Camps Menu");
+            }
         }
     }
-    
     
     private void generateEnquiriesMenu() {
-        printHeader("Manage Enquiries");
-        System.out.println("1) Submit Enquiries");
-        System.out.println("2) View Enquiries");
-        System.out.println("3) Back to Student Menu");
-        printBreaks();
-
-        int choice = doMenuChoice(3, 0);
-
-        switch (choice) {
-            case 1:
-                studentSubmitEnquiry();
-                break;
-            case 2:
-                studentViewEnquiries();
-                break;
-            case 8:
-                // Back to the main menu
-                break;
-            default:
-                throw new MenuChoiceInvalidException("Enquiries Menu");
+        while (true) {  // Add a loop to stay in the submenu
+            printHeader("Manage Enquiries");
+            System.out.println("1) Submit Enquiries");
+            System.out.println("2) View Enquiries");
+            System.out.println("3) Delete Enquiries");
+            System.out.println("4) Back to Student Menu");
+            printBreaks();
+    
+            int choice = doMenuChoice(4, 0);
+    
+            switch (choice) {
+                case 1:
+                    studentSubmitEnquiry();
+                    break;
+                case 2:
+                    studentViewEnquiries();
+                    break;
+                case 3:
+                    deleteEnquiries();
+                    break;    
+                case 4:
+                    return;  // Exit the loop and go back to the Student Menu
+                default:
+                    throw new MenuChoiceInvalidException("Enquiries Menu");
+            }
         }
     }
-
+    
 
 
     private void studentViewAllCamps() {
@@ -177,6 +184,8 @@ public class StudentMenuUI extends BaseUI{
             // Check if the student is already registered for the camp
             if (selectedCamp.getListOfAttendees().contains(MainApp.currentUser.getUserID())) {
                 System.out.println("You are already registered for this camp.");
+            } else if (selectedCamp.getLeavers().contains(MainApp.currentUser.getUserID())) {
+                System.out.println("You cannot register for this camp as you have previously withdrawn from it.");
             } else {
                 // Check if there are available spots
                 if (selectedCamp.getCampTotalSlots() > 0) {
@@ -191,6 +200,7 @@ public class StudentMenuUI extends BaseUI{
             System.out.println("Invalid Camp Number. Please enter a valid number.");
         }
     }
+    
     
     
     private void studentWithdrawFromCamp() {
@@ -220,8 +230,13 @@ public class StudentMenuUI extends BaseUI{
     
             // Check if the student is registered for the camp (extra check for safety)
             if (selectedCamp != null && selectedCamp.getListOfAttendees().contains(MainApp.currentUser.getUserID())) {
-                // Withdraw the student from the camp
+                // Add the student's name to the leavers list
+                selectedCamp.getLeavers().add(MainApp.currentUser.getUserID());
+    
+                // Increment total slots and withdraw the student from the camp
+                selectedCamp.setCampTotalSlots(selectedCamp.getCampTotalSlots() + 1);
                 selectedCamp.getListOfAttendees().remove(MainApp.currentUser.getUserID());
+    
                 System.out.println("Withdrawal successful from " + selectedCamp.getCampName() + ".");
             } else {
                 System.out.println("You are not registered for this camp.");
@@ -230,6 +245,9 @@ public class StudentMenuUI extends BaseUI{
             System.out.println("Invalid Camp Number. Please enter a valid number.");
         }
     }
+    
+    
+    
     
     private Camp getRegisteredCampByNumber(int number) {
         int count = 0;
@@ -283,6 +301,14 @@ public class StudentMenuUI extends BaseUI{
         // Get the current student
         Student currentStudent = (Student) MainApp.currentUser;
     
+        // Check if the user is already in a committee
+        for (Camp camp : MainApp.camps) {
+            if (camp.getListOfCampCommittees().contains(currentStudent.getUserID())) {
+                System.out.println("You are already a committee member for the camp '" + camp.getCampName() + "'.");
+                return;
+            }
+        }
+    
         // Create an ArrayList to store registered camps
         ArrayList<Camp> registeredCamps = new ArrayList<>();
     
@@ -323,14 +349,9 @@ public class StudentMenuUI extends BaseUI{
             // Check if there are available committee slots
             int availableCommitteeSlots = selectedCamp.getCampCommitteeSlots() - selectedCamp.getListOfCampCommittees().size();
             if (availableCommitteeSlots > 0) {
-                // Check if the user is already a committee member
-                if (selectedCamp.getListOfCampCommittees().contains(MainApp.currentUser.getUserID())) {
-                    System.out.println("You are already a committee member for your selected camp.");
-                } else {
-                    // Add the user to the committee members
-                    selectedCamp.getListOfCampCommittees().add(MainApp.currentUser.getUserID());
-                    System.out.println("Sign up for Camp Committee successful for " + selectedCamp.getCampName() + ".");
-                }
+                // Add the user to the committee members
+                selectedCamp.getListOfCampCommittees().add(currentStudent.getUserID());
+                System.out.println("Sign up for Camp Committee successful for " + selectedCamp.getCampName() + ".");
             } else {
                 System.out.println("Sorry, no available committee slots for this camp.");
             }
@@ -338,6 +359,7 @@ public class StudentMenuUI extends BaseUI{
             System.out.println("Invalid Camp Number. Please enter a valid number.");
         }
     }
+    
     
     
     
@@ -398,6 +420,59 @@ private void studentViewEnquiries() {
     printBreaks();
     }   
 
+    private void deleteEnquiries() {
+        // Get the current student
+        Student currentStudent = (Student) MainApp.currentUser;
+    
+        // Display the enquiries submitted by the current student
+        int index = 1;
+        for (Enquiry enquiry : MainApp.enquiries) {
+            if (enquiry.getCreatedBy().equals(currentStudent.getUserID())) {
+                System.out.println("Enquiry ID: " + enquiry.getEnquiryID());
+                System.out.println("Camp ID: " + enquiry.getCampID());
+                System.out.println("Enquiry Message: " + enquiry.getEnquiryMessage());
+                System.out.println("Processed: " + enquiry.isProcessed());
+                System.out.println("Reply Viewed: " + enquiry.isReplyViewed());
+                System.out.println("=================");
+                index++;
+            }
+        }
+    
+        // Check if there are no enquiries
+        if (index == 1) {
+            System.out.println("You haven't submitted any enquiries.");
+            return;
+        }
+    
+        // Get the Enquiry ID to delete from the user
+        int enquiryToDelete = ScannerHelper.getIntegerInput("Enter the Enquiry ID to delete (0 to cancel): ");
+    
+        if (enquiryToDelete == 0) {
+            System.out.println("Deletion canceled.");
+            return;
+        }
+    
+        // Find the Enquiry using the ID
+        Enquiry enquiryToDeleteObject = null;
+        for (Enquiry enquiry : MainApp.enquiries) {
+            if (enquiry.getEnquiryID() == enquiryToDelete && enquiry.getCreatedBy().equals(currentStudent.getUserID())) {
+                enquiryToDeleteObject = enquiry;
+                break;
+            }
+        }
+    
+        // Check if the Enquiry was found
+        if (enquiryToDeleteObject != null) {
+            // Remove the Enquiry from the list
+            MainApp.enquiries.remove(enquiryToDeleteObject);
+            System.out.println("Enquiry deleted successfully.");
+        } else {
+            System.out.println("Invalid Enquiry ID or you don't have permission to delete this enquiry.");
+        }
+    
+        printBreaks();
+    }
+    
 
     private void studentChangePassword() {
         printBreaks();
