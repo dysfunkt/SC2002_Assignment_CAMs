@@ -24,51 +24,95 @@ public class StudentMenuUI extends BaseUI{
     @Override
     protected int generateMenuScreen() {
         printHeader("Student Menu");
-        System.out.println("1) View All Camp");
-        System.out.println("2) Register For Camp");
-        System.out.println("3) Withdraw From Camps"); 
-        System.out.println("4) View Your Camps");
-        System.out.println("5) Submit An Enquiry");
-        System.out.println("6) View Your Enquiries"); 
-        System.out.println("7) Change Password");
-        System.out.println("8) Log out");
-        System.out.println("0) Exit Application");
+        System.out.println("1) Manage Camps");
+        System.out.println("2) Manage Enquiries");
+        System.out.println("3) Change Password"); 
+        System.out.println("4) Log out");
+        System.out.println("5) Exit Application");
         printBreaks();
 
-        int choice = doMenuChoice(10, 0);
+        int choice = doMenuChoice(5, 0);
         switch(choice){
             case 1:
-                this.studentViewAllCamps(); //samtan dying
+                generateCampsMenu(); //samtan dying
                 break;
             case 2:
-                this.studentRegisterForCamp();
+                generateEnquiriesMenu();
                 break;
             case 3:
-                this.studentWithdrawFromCamp();
-                break;
-            case 4:
-                this.studentRegisteredCamps();
-                break;
-            case 5:
-                this.studentSubmitEnquiry();
-                break;
-            case 6:
-                this.studentViewEnquiries();
-                break;
-            case 7:
                 this.studentChangePassword();
                 break;
-            case 8:
+            case 4:
                 System.out.println("You have successfully logged out.");
                 return -1;
-            case 0:
+            case 5:
+            
                 System.out.println("Closing application...");
                 return 1; //shutdown
             default:
                 throw new MenuChoiceInvalidException("Student Menu");
-        }
+            }
+        
         return 0;
     }
+    private void generateCampsMenu() {
+        printHeader("Manage Camps");
+        System.out.println("1) View All Camps");
+        System.out.println("2) Register For Camp");
+        System.out.println("3) Withdraw From Camp"); 
+        System.out.println("4) View Registered Camps");
+        System.out.println("5) Back to Student Menu");
+        printBreaks();
+
+        int choice = doMenuChoice(5, 0);
+
+        switch (choice) {
+            case 1:
+                studentViewAllCamps();
+                break;
+            case 2:
+                studentRegisterForCamp();
+                break;
+            case 3:
+                studentWithdrawFromCamp();
+                break;
+            case 4:
+                studentRegisteredCamps();
+                break;
+            case 5:
+                // Back to the main menu
+                break;
+            default:
+                throw new MenuChoiceInvalidException("Camps Menu");
+        }
+    }
+    
+    
+    private void generateEnquiriesMenu() {
+        printHeader("Manage Enquiries");
+        System.out.println("1) Submit Enquiries");
+        System.out.println("2) View Enquiries");
+        System.out.println("3) Back to Student Menu");
+        printBreaks();
+
+        int choice = doMenuChoice(3, 0);
+
+        switch (choice) {
+            case 1:
+                studentSubmitEnquiry();
+                break;
+            case 2:
+                studentViewEnquiries();
+                break;
+            case 8:
+                // Back to the main menu
+                break;
+            default:
+                throw new MenuChoiceInvalidException("Enquiries Menu");
+        }
+    }
+
+
 
     private void studentViewAllCamps() {
         System.out.println("=== All Available Camps ===");
@@ -87,7 +131,6 @@ public class StudentMenuUI extends BaseUI{
             }
         }
         
-    
         // Display the eligible camps
         if (eligibleCamps.isEmpty()) {
             System.out.println("No camps available for your faculty.");
@@ -230,6 +273,70 @@ public class StudentMenuUI extends BaseUI{
         }
     }
 
+    private void signupForCommittee() {
+        System.out.println("=== Sign Up for Camp Committee ===");
+    
+        // Get the current student
+        Student currentStudent = (Student) MainApp.currentUser;
+    
+        // Create an ArrayList to store registered camps
+        ArrayList<Camp> registeredCamps = new ArrayList<>();
+    
+        // Loop through all camps
+        for (Camp camp : MainApp.camps) {
+            // Check if the current student is in the list of attendees
+            if (camp.getListOfAttendees().contains(currentStudent.getUserID())) {
+                registeredCamps.add(camp);
+            }
+        }
+    
+        // Display the registered camps
+        if (registeredCamps.isEmpty()) {
+            System.out.println("You need to be registered for a camp to sign up for the committee.");
+            return;
+        } else {
+            System.out.println("=== Your Registered Camps ===");
+            int index = 1;
+            for (Camp camp : registeredCamps) {
+                System.out.println(index + ") " + camp.getCampName());
+                index++;
+            }
+        }
+    
+        // Get the camp number from the user
+        int selectedCampNumber = ScannerHelper.getIntegerInput("Enter the Camp Number to sign up for committee (0 to cancel): ");
+    
+        if (selectedCampNumber == 0) {
+            System.out.println("Sign up for Committee canceled.");
+            return;
+        }
+    
+        // Check if the selected camp number is within the valid range
+        if (selectedCampNumber >= 1 && selectedCampNumber <= registeredCamps.size()) {
+            // Find the selected camp using the number
+            Camp selectedCamp = registeredCamps.get(selectedCampNumber - 1);
+    
+            // Check if there are available committee slots
+            int availableCommitteeSlots = selectedCamp.getCampCommitteeSlots() - selectedCamp.getListOfCampCommittees().size();
+            if (availableCommitteeSlots > 0) {
+                // Check if the user is already a committee member
+                if (selectedCamp.getListOfCampCommittees().contains(MainApp.currentUser.getUserID())) {
+                    System.out.println("You are already a committee member for your selected camp.");
+                } else {
+                    // Add the user to the committee members
+                    selectedCamp.getListOfCampCommittees().add(MainApp.currentUser.getUserID());
+                    System.out.println("Sign up for Camp Committee successful for " + selectedCamp.getCampName() + ".");
+                }
+            } else {
+                System.out.println("Sorry, no available committee slots for this camp.");
+            }
+        } else {
+            System.out.println("Invalid Camp Number. Please enter a valid number.");
+        }
+    }
+    
+    
+    
 
     private void studentSubmitEnquiry(){
 
