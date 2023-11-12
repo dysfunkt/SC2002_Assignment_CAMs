@@ -164,7 +164,7 @@ public class StaffCampMenuUI extends BaseUI{
         Camp chosenCamp = campsInCharge.get(campNo - 1);
 
         // Using methods in the Camp class to get the list of attendees and committee members
-        ArrayList<Student> committeeMembers = chosenCamp.getListOfCampCommittees()(); //The camp function should store objects
+        ArrayList<Student> committeeMembers = chosenCamp.getListOfCampCommittees(); //The camp function should store objects
 
 
         // Print the performance report for camp committee members
