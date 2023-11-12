@@ -4,7 +4,11 @@ public class Student extends User{
 
     private Boolean campCommittee;
     private int points;
-    public Student(String name, String email, String facultyString, String userID, String password, Boolean firstLogin, Boolean campCommittee, int points ) {
+    private int campIDCommittingfor;
+    
+
+    public Student(String name, String email, String facultyString, String userID, String password, Boolean firstLogin, Boolean campCommittee, int campIDCommittingfor) {
+
         super(name, email, facultyString, userID, password, firstLogin);
         this.campCommittee = campCommittee;
         this.points = points;
