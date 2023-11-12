@@ -4,6 +4,7 @@ public class UniqueID {
     private int campID;
     private int enquiryID;
     private int suggestionID;
+    private static int lastAssignedSuggestionId;
 
     public UniqueID() {
         this.campID = 0;
@@ -47,5 +48,9 @@ public class UniqueID {
     }
     public void incrementSuggestionID() {
         this.suggestionID++;
+    }
+    public int getSuggestionId() {
+        lastAssignedSuggestionId++;
+        return lastAssignedSuggestionId;
     }
 }

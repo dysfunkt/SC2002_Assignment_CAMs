@@ -95,7 +95,7 @@ public class StaffMenuUI extends BaseUI {
 
         startDate = ScannerHelper.getDateInput("Enter the date (yyyy-MM-DD) that the camp starts (terminate with 0): ");
 
-        endDate = ScannerHelper.getDateInput("Enter the date (yyyy-MM-DD) that the camp starts (terminate with 0): ");
+        endDate = ScannerHelper.getDateInput("Enter the date (yyyy-MM-DD) that the camp ends (terminate with 0): ");
 
         regCloseDate = ScannerHelper.getDateInput("Enter the date (yyyy-MM-DD) that the registration ends (terminate with 0): ");
 
