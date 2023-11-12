@@ -24,9 +24,9 @@ public class StudentMenuUI extends BaseUI{
     @Override
     protected int generateMenuScreen() {
         printHeader("Student Menu");
-        System.out.println("1) Register For Camp");
-        System.out.println("2) Withdraw From Camp");
-        System.out.println("3) View All Camps"); 
+        System.out.println("1) View All Camp");
+        System.out.println("2) Register For Camp");
+        System.out.println("3) Withdraw From Camps"); 
         System.out.println("4) View Your Camps");
         System.out.println("5) Submit An Enquiry");
         System.out.println("6) View Your Enquiries"); 
@@ -94,11 +94,12 @@ public class StudentMenuUI extends BaseUI{
     
         // Loop through all camps
         for (Camp camp : MainApp.camps) {
-            // Check eligibility criteria (e.g., same faculty)
-            if (camp.getUserGroup() == currentStudent.getFaculty()) {
+            // Check eligibility criteria (e.g., if the user group is the same as the current student's faculty or "NTU")
+            if (camp.getUserGroup() == eFaculty.NTU || camp.getUserGroup() == currentStudent.getFaculty()) {
                 eligibleCamps.add(camp);
             }
         }
+        
     
         // Display the eligible camps
         if (eligibleCamps.isEmpty()) {
@@ -119,7 +120,7 @@ public class StudentMenuUI extends BaseUI{
 
 
     private void studentRegisteredCamps(){
-
+        
     }
 
 
