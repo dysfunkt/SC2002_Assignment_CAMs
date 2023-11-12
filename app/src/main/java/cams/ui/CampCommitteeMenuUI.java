@@ -1,11 +1,21 @@
 package cams.ui;
 
+import cams.MainApp;
 import cams.object.appitem.Camp;
+import cams.object.appitem.Suggestion;
+import cams.object.appitem.UniqueID;
 import cams.object.person.Student;
 import cams.util.ScannerHelper;
+import cams.util.StaffCSVHelper;
+import cams.util.SuggestionCSVHelper;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import cams.object.appitem.Suggestion;
+import cams.util.SuggestionCSVHelper;
 
 public class CampCommitteeMenuUI extends BaseUI {
 
@@ -63,45 +73,26 @@ public class CampCommitteeMenuUI extends BaseUI {
     }
 
     private void submitSuggestions() {
-        // Implement logic to submit suggestions
-        
-        printHeader("Submit Suggestions");
-        
-        // Retrieve camp
-        Camp currentCamp = getCurrentCamp(); 
-    
-        System.out.println("Enter your suggestions:");
-        String suggestions = input.nextLine();
-    
-        // Assuming you have a method in the Camp class to add suggestions
-        currentCamp.addSuggestions(suggestions);
-    
-        System.out.println("Suggestions submitted successfully!");
-        
     }
+    
+    
+    
 
     private void viewAndReplyToEnquiries() {
-        // Implement logic to view and reply to enquiries
-        printHeader("Submit Suggestions");
-    
-        // Assuming you have a Camp object available
-        Camp currentCamp = getCurrentCamp(); // You need to implement a method to get the current camp
+        //iterate through all camps and check if this person is committing for the camp
 
-        System.out.println("Enter your suggestions:");
-        String suggestions = input.nextLine();
+        //ID of the camp the student is commitiing for
 
-        // Assuming you have a method in the Camp class to add suggestions
-        currentCamp.addSuggestions(suggestions);
-
-        System.out.println("Suggestions submitted successfully!");
     }
 
     private void editDeleteAndViewSuggestions() {
         // Implement logic to edit, delete, and view suggestions
+
     }
 
     private void generateReport() {
         // Implement logic to generate a report
+
     }
 
     private void trackPoints() {

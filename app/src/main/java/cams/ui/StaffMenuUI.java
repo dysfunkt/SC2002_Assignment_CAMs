@@ -70,6 +70,7 @@ public class StaffMenuUI extends BaseUI {
     }
 
     private void CreateCamp() {
+        int campID;
         String campName;
         Date startDate;
         Date endDate;
@@ -86,6 +87,9 @@ public class StaffMenuUI extends BaseUI {
         input.nextLine();
 
         // Set camp details
+        campID = MainApp.uniqueID.getNextCampID();
+        MainApp.uniqueID.incrementCampID();
+
         System.out.print("Enter Camp Name: ");
         campName = input.nextLine();
 
@@ -122,7 +126,7 @@ public class StaffMenuUI extends BaseUI {
         visibility = ScannerHelper.getYesNoInput("Make camp visible?");
 
         
-        MainApp.camps.add(new Camp(campName, startDate, endDate, regCloseDate, userGroup, campLocation, campTotalSlots, campCommitteeSlots, campDescription, staffInCharge, visibility));
+        MainApp.camps.add(new Camp(campID, campName, startDate, endDate, regCloseDate, userGroup, campLocation, campTotalSlots, campCommitteeSlots, campDescription, staffInCharge, visibility));
         
     }
 

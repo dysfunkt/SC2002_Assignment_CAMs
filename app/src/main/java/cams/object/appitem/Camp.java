@@ -11,6 +11,7 @@ import cams.object.person.*;
 
 public class Camp { 
 
+    private int campID;
     private String campName;
     private Date startDate;
     private Date endDate;
@@ -26,11 +27,13 @@ public class Camp {
     private ArrayList<String> leavers;
     private boolean visibility;
 
-    public Camp(String campName, Date startDate, Date endDate, Date regCloseDate, 
+    public Camp(int campID, String campName, Date startDate, Date endDate, Date regCloseDate, 
                 eFaculty userGroup, String campLocation, int campTotalSlots, 
                 int campCommitteeSlots, String campDescription, String staffInCharge, 
                 ArrayList<String> listOfAttendees, ArrayList<String> listOfCampCommittees, 
                 ArrayList<String> leavers, boolean visibility) {
+        
+        this.campID = campID;
         this.campName = campName;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -47,10 +50,11 @@ public class Camp {
         this.visibility = visibility;
     }
 
-    public Camp(String campName, Date startDate, Date endDate, Date regCloseDate, 
+    public Camp(int campID, String campName, Date startDate, Date endDate, Date regCloseDate, 
                 eFaculty userGroup, String campLocation, int campTotalSlots, 
                 int campCommitteeSlots, String campDescription, String staffInCharge, 
                 Boolean visibility) {
+        this.campID = campID;     
         this.campName = campName;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -68,38 +72,40 @@ public class Camp {
     }
 
     public Camp(String[] csv) {
-        this.campName = csv[0];
-        this.startDate = CSVStringtoDate(csv[1]);
-        this.endDate = CSVStringtoDate(csv[2]);
-        this.regCloseDate = CSVStringtoDate(csv[3]);
-        this.userGroup = Enum.valueOf(eFaculty.class, csv[4]);
-        this.campLocation = csv[5];
-        this.campTotalSlots = Integer.valueOf(csv[6]);
-        this.campCommitteeSlots = Integer.valueOf(csv[7]);
-        this.campDescription = csv[8];
-        this.staffInCharge = csv[9];
-        this.listOfAttendees = CSVStringtoArraylistString(csv[10]);
-        this.listOfCampCommittees = CSVStringtoArraylistString(csv[11]);
-        this.leavers = CSVStringtoArraylistString(csv[12]);
-        this.visibility = Boolean.valueOf(csv[13]);
+        this.campID = Integer.valueOf(csv[0]);
+        this.campName = csv[1];
+        this.startDate = CSVStringtoDate(csv[2]);
+        this.endDate = CSVStringtoDate(csv[3]);
+        this.regCloseDate = CSVStringtoDate(csv[4]);
+        this.userGroup = Enum.valueOf(eFaculty.class, csv[5]);
+        this.campLocation = csv[6];
+        this.campTotalSlots = Integer.valueOf(csv[7]);
+        this.campCommitteeSlots = Integer.valueOf(csv[8]);
+        this.campDescription = csv[9];
+        this.staffInCharge = csv[10];
+        this.listOfAttendees = CSVStringtoArraylistString(csv[11]);
+        this.listOfCampCommittees = CSVStringtoArraylistString(csv[12]);
+        this.leavers = CSVStringtoArraylistString(csv[13]);
+        this.visibility = Boolean.valueOf(csv[14]);
     }
 
     public String[] toCsv() {
-        String[] c = new String[14];
-        c[0] = this.campName;
-        c[1] = DateToCSVString(this.startDate);
-        c[2] = DateToCSVString(this.endDate);
-        c[3] = DateToCSVString(this.regCloseDate);
-        c[4] = this.userGroup + "";
-        c[5] = this.campLocation;
-        c[6] = this.campTotalSlots + "";
-        c[7] = this.campCommitteeSlots + "";
-        c[8] = this.campDescription;
-        c[9] = this.staffInCharge;
-        c[10] = arraylistStringtoCSVString(this.listOfAttendees);
-        c[11] = arraylistStringtoCSVString(this.listOfCampCommittees);
-        c[12] = arraylistStringtoCSVString(this.leavers);
-        c[13] = this.visibility + "";
+        String[] c = new String[15];
+        c[0] = this.campID + "";
+        c[1] = this.campName;
+        c[2] = DateToCSVString(this.startDate);
+        c[3] = DateToCSVString(this.endDate);
+        c[4] = DateToCSVString(this.regCloseDate);
+        c[5] = this.userGroup + "";
+        c[6] = this.campLocation;
+        c[7] = this.campTotalSlots + "";
+        c[8] = this.campCommitteeSlots + "";
+        c[9] = this.campDescription;
+        c[10] = this.staffInCharge;
+        c[11] = arraylistStringtoCSVString(this.listOfAttendees);
+        c[12] = arraylistStringtoCSVString(this.listOfCampCommittees);
+        c[13] = arraylistStringtoCSVString(this.leavers);
+        c[14] = this.visibility + "";
         return c;
     }
 
@@ -117,25 +123,6 @@ public class Camp {
         String[] splitArray = s.split(",");        
         ArrayList<String> l = new ArrayList<>(Arrays.asList(splitArray));
 
-        return l;
-    }
-
-    public String arraylistEnumtoCSVStrring(ArrayList<eFaculty> u) {
-        StringJoiner stringJoiner = new StringJoiner(",");
-        for (eFaculty item : u) {
-            stringJoiner.add(item.toString());
-        }
-        String s = stringJoiner.toString();
-
-        return s;
-    }
-
-    public ArrayList<eFaculty> CSVStringtoArraylistEnum(String s) {
-        String[] splitArray = s.split(",");        
-        ArrayList<eFaculty> l = new ArrayList<>();
-        for (String item : splitArray) {
-            l.add(Enum.valueOf(eFaculty.class, item));
-        }
         return l;
     }
 

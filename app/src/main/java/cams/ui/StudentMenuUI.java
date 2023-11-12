@@ -7,6 +7,7 @@ import cams.object.person.*;
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 import cams.util.CampCSVHelper;
 import cams.util.ScannerHelper;
@@ -82,31 +83,39 @@ public class StudentMenuUI extends BaseUI{
     }
 
 
-    private void studentViewAllCamps(){
-        try {
-            CampCSVHelper campCSVHelper = CampCSVHelper.getInstance();
-            List<Camp> camps = campCSVHelper.readFromCSV();
-
-            for (Camp camp : camps) {
-                //only print if visibility is true and the user group matches the current user's faculty
-                if (camp.isVisibility() && camp.getUserGroup().equals(MainApp.currentUser.getFaculty())) {
-            
-                    System.out.println("CampName: " + camp.getCampName());
-                    System.out.println("StartDate: " + camp.getStartDate());
-                    System.out.println("EndDate: " + camp.getEndDate());
-                    System.out.println("RegCloseDate: " + camp.getRegCloseDate());
-                    System.out.println("CampLocation: " + camp.getCampLocation());
-                    System.out.println("CampTotalSlots: " + camp.getCampTotalSlots());
-                    System.out.println("CampDescription: " + camp.getCampDescription());
-                    System.out.println("StaffInCharge: " + camp.getStaffInCharge());
-                    System.out.println("ListOfAttendees: " + camp.getListOfAttendees());
-            
-                    //separate each camp with a line
-                    System.out.println("--------------------------");
-                }
-            } 
-        }   catch (IOException e) {e.printStackTrace();}
+    private void studentViewAllCamps() {
+        System.out.println("=== All Available Camps ===");
+    
+        // Get the current student
+        Student currentStudent = (Student) MainApp.currentUser;
+    
+        // Create an ArrayList to store eligible camps
+        ArrayList<Camp> eligibleCamps = new ArrayList<>();
+    
+        // Loop through all camps
+        for (Camp camp : MainApp.camps) {
+            // Check eligibility criteria (e.g., same faculty)
+            if (camp.getUserGroup() == currentStudent.getFaculty()) {
+                eligibleCamps.add(camp);
+            }
+        }
+    
+        // Display the eligible camps
+        if (eligibleCamps.isEmpty()) {
+            System.out.println("No camps available for your faculty.");
+        } else {
+            for (Camp camp : eligibleCamps) {
+                System.out.println("Camp ID: " + MainApp.uniqueID.getNextCampID());
+                System.out.println("Camp Name: " + camp.getCampName());
+                System.out.println("Start Date: " + camp.getStartDate());
+                System.out.println("End Date: " + camp.getEndDate());
+                System.out.println("Capacity: " + camp.getCampTotalSlots());
+                System.out.println("Available Spots: " + (camp.getCampTotalSlots() - camp.getListOfAttendees().size()));
+                System.out.println("=================");
+            }
+        }
     }
+    
 
 
     private void studentRegisteredCamps(){
