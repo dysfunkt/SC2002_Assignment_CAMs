@@ -5,11 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="50b2125a-650c-4a3c-bd52-22ccd5097238" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/modules/CAMs.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/cams/ui/StaffCampMenuUI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/cams/ui/StaffEditCampMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/cams/ui/StaffEnquiryMenuUI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/cams/ui/StaffSuggestionsMenuUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/cams/MainApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/cams/MainApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/cams/object/person/Staff.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/cams/object/person/Staff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/cams/ui/LoginMenuUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/cams/ui/LoginMenuUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/cams/ui/StaffMenuUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/cams/ui/StaffMenuUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/cams/util/ScannerHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/cams/util/ScannerHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/cams/util/StudentCSVHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/cams/util/StudentCSVHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/staff.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/staff.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +34,12 @@
       <state>
         <projects_view>
           <tree_state>
-            <expand />
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CAMs" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
             <select />
           </tree_state>
         </projects_view>
@@ -65,6 +78,11 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.43793103" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

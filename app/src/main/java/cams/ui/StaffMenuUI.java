@@ -2,10 +2,10 @@ package cams.ui;
 
 import cams.MainApp;
 import cams.object.appitem.Camp;
-import cams.object.person.eFaculty;
+import cams.object.person.Staff;
 import cams.util.ScannerHelper;
 
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -13,51 +13,30 @@ public class StaffMenuUI extends BaseUI {
     
     private Scanner input = ScannerHelper.getScannerInput();
 
-
     protected int generateMenuScreen() {
         printHeader("Login Menu");
-        System.out.println("1) Create Camp");
-        System.out.println("2) Edit Camp");
-        System.out.println("3) Delete Camp");
-        System.out.println("4) View All Camps");
-        System.out.println("5) View Your Camps");
-        System.out.println("6) View All Enquiries and Reply");
-        System.out.println("7) View All Suggestions and Approve");
-        System.out.println("8) Generate Camp Report");
-        System.out.println("9) Generate Performance Report");
-        System.out.println("10) Log out");
+        System.out.println("1) Go To Camp Menu");
+        System.out.println("2) Go to Enquiries Menu");
+        System.out.println("3) Go to Suggestions Menu");
+        System.out.println("4) Change Password");
+        System.out.println("5) Log out");
         System.out.println("0) Exit Application");
         printBreaks();
         int choice = doMenuChoice(10, 0);
         switch (choice) {
             case 1:
-                CreateCamp();
+                if(new StaffCampMenuUI().startMainMenu()) return 1;
                 break;
             case 2:
-                EditCamp();
+                if(new StaffEnquiryMenuUI().startMainMenu()) return 1;
                 break;
             case 3:
-                DeleteCamp();
+                if(new StaffSuggestionsMenuUI().startMainMenu()) return 1;
                 break;
             case 4:
-                ViewAllCamps();
+                ChangePassword();
                 break;
             case 5:
-                ViewYourCamp();
-                break;
-            case 6:
-                ViewAllEnquiries();
-                break;
-            case 7:
-                ViewAllSuggestions();
-                break;
-            case 8:
-                GenerateCampReport();
-                break;
-            case 9:
-                GeneratePerformanceReport();
-                break;
-            case 10:
                 System.out.println("You have successfully logged out.");
                 return -1;
             case 0:
@@ -68,6 +47,9 @@ public class StaffMenuUI extends BaseUI {
         }
         return 0;
     }
+
+
+    public void ChangePassword(){}
 
     private void CreateCamp() {
         int campID;
@@ -164,4 +146,5 @@ public class StaffMenuUI extends BaseUI {
 
     private void GeneratePerformanceReport() {
     }
+
 }

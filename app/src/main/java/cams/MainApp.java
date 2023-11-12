@@ -1,4 +1,5 @@
 package cams;
+import cams.object.appitem.Camp;
 import cams.util.*;
 import cams.object.appitem.*;
 import cams.object.person.*;
