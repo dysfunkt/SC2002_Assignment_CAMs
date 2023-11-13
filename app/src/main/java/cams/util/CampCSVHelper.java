@@ -39,7 +39,7 @@ public class CampCSVHelper extends CSVBaseHelper{
         String[] header = {"CampID", "CampName" ,"StartDate", "EndDate", "RegistrationCloseDate", 
                         "UserGroup", "CampLocation", "CampTotalSlots", "CampCommitteeSlots", 
                         "CampDescription", "staffInCharge", "listOfAttendees", 
-                        "listOfCampCommittees", "leavers", "visibility"};
+                        "ListOfCampCommittees", "Leavers", "Visibility"};
         BufferedWriter csvFile = FileIOHelper.getFileBufferedWriter(this.campCsv);
         ArrayList<String[]> toWrite = new ArrayList<>(); 
         toWrite.add(header);

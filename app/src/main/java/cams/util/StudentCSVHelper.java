@@ -35,7 +35,9 @@ public class StudentCSVHelper extends CSVBaseHelper {
     }
 
     public void writeToCsv(ArrayList<Student> students) throws IOException {
-        String[] header = {"Name" ,"Email", "Faculty", "UserID", "Password", "FirstLogin", "CampCommittee"};
+        String[] header = {"Name" ,"Email", "Faculty", "UserID", "Password", 
+                            "FirstLogin", "JoinedCamps", "CampCommittee", "Points", 
+                            "CampIDCommittingFor"};
         BufferedWriter csvFile = FileIOHelper.getFileBufferedWriter(this.studentCsv);
         ArrayList<String[]> toWrite = new ArrayList<>(); 
         toWrite.add(header);

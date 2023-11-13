@@ -27,7 +27,7 @@ public class StaffCSVHelper extends CSVBaseHelper{
         BufferedReader csvFile = FileIOHelper.getFileBufferedReader(this.staffCsv);
         List<String[]> csvLines = readAll(csvFile, 1);
         ArrayList<Staff> staffs = new ArrayList<>();
-        if (csvLines.size() == 0) return staffs;
+        if (csvLines.size() == 0) return staffs;                                                                                            
         for (String[] str : csvLines) {
             Staff s = new Staff(str);
             staffs.add(s);
@@ -36,7 +36,7 @@ public class StaffCSVHelper extends CSVBaseHelper{
     }
 
     public void writeToCsv(ArrayList<Staff> staffs) throws IOException {
-        String[] header = {"Name" ,"Email", "Faculty", "UserID", "Password", "FirstLogin"};
+        String[] header = {"Name" ,"Email", "Faculty", "UserID", "Password", "FirstLogin", "CampInChargeID", "CSVPad"};
         BufferedWriter csvFile = FileIOHelper.getFileBufferedWriter(this.staffCsv);
         ArrayList<String[]> toWrite = new ArrayList<>();
         toWrite.add(header);
