@@ -1,13 +1,12 @@
 package cams.object.appitem;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.StringJoiner;
+
 
 import cams.object.person.*;
+import cams.util.CSVStringHelper;
 
 public class Camp { 
 
@@ -17,7 +16,7 @@ public class Camp {
     private Date endDate;
     private Date regCloseDate;
     private eFaculty userGroup;
-    private String campLocation;
+    private eLocation campLocation;
     private int campTotalSlots;
     private int campCommitteeSlots;
     private String campDescription;
@@ -28,7 +27,7 @@ public class Camp {
     private boolean visibility;
 
     public Camp(int campID, String campName, Date startDate, Date endDate, Date regCloseDate, 
-                eFaculty userGroup, String campLocation, int campTotalSlots, 
+                eFaculty userGroup, eLocation campLocation, int campTotalSlots, 
                 int campCommitteeSlots, String campDescription, String staffInCharge, 
                 ArrayList<String> listOfAttendees, ArrayList<String> listOfCampCommittees, 
                 ArrayList<String> leavers, boolean visibility) {
@@ -51,7 +50,7 @@ public class Camp {
     }
 
     public Camp(int campID, String campName, Date startDate, Date endDate, Date regCloseDate, 
-                eFaculty userGroup, String campLocation, int campTotalSlots, 
+                eFaculty userGroup, eLocation campLocation, int campTotalSlots, 
                 int campCommitteeSlots, String campDescription, String staffInCharge, 
                 Boolean visibility) {
         this.campID = campID;     
@@ -67,25 +66,25 @@ public class Camp {
         this.staffInCharge = staffInCharge;
         this.listOfAttendees = new ArrayList<String>();
         this.listOfCampCommittees = new ArrayList<String>();
-        this.leavers = new ArrayList<>();
+        this.leavers = new ArrayList<String>();
         this.visibility = visibility;
     }
 
     public Camp(String[] csv) {
         this.campID = Integer.valueOf(csv[0]);
         this.campName = csv[1];
-        this.startDate = CSVStringtoDate(csv[2]);
-        this.endDate = CSVStringtoDate(csv[3]);
-        this.regCloseDate = CSVStringtoDate(csv[4]);
+        this.startDate = CSVStringHelper.CSVStringtoDate(csv[2]);
+        this.endDate = CSVStringHelper.CSVStringtoDate(csv[3]);
+        this.regCloseDate = CSVStringHelper.CSVStringtoDate(csv[4]);
         this.userGroup = Enum.valueOf(eFaculty.class, csv[5]);
-        this.campLocation = csv[6];
+        this.campLocation = Enum.valueOf(eLocation.class, csv[6]);
         this.campTotalSlots = Integer.valueOf(csv[7]);
         this.campCommitteeSlots = Integer.valueOf(csv[8]);
         this.campDescription = csv[9];
         this.staffInCharge = csv[10];
-        this.listOfAttendees = CSVStringtoArraylistString(csv[11]);
-        this.listOfCampCommittees = CSVStringtoArraylistString(csv[12]);
-        this.leavers = CSVStringtoArraylistString(csv[13]);
+        this.listOfAttendees = CSVStringHelper.CSVStringtoArraylistString(csv[11]);
+        this.listOfCampCommittees = CSVStringHelper.CSVStringtoArraylistString(csv[12]);
+        this.leavers = CSVStringHelper.CSVStringtoArraylistString(csv[13]);
         this.visibility = Boolean.valueOf(csv[14]);
     }
 
@@ -93,59 +92,27 @@ public class Camp {
         String[] c = new String[15];
         c[0] = this.campID + "";
         c[1] = this.campName;
-        c[2] = DateToCSVString(this.startDate);
-        c[3] = DateToCSVString(this.endDate);
-        c[4] = DateToCSVString(this.regCloseDate);
+        c[2] = CSVStringHelper.DateToCSVString(this.startDate);
+        c[3] = CSVStringHelper.DateToCSVString(this.endDate);
+        c[4] = CSVStringHelper.DateToCSVString(this.regCloseDate);
         c[5] = this.userGroup + "";
-        c[6] = this.campLocation;
+        c[6] = this.campLocation + "";
         c[7] = this.campTotalSlots + "";
         c[8] = this.campCommitteeSlots + "";
         c[9] = this.campDescription;
         c[10] = this.staffInCharge;
-        c[11] = arraylistStringtoCSVString(this.listOfAttendees);
-        c[12] = arraylistStringtoCSVString(this.listOfCampCommittees);
-        c[13] = arraylistStringtoCSVString(this.leavers);
+        c[11] = CSVStringHelper.arraylistStringtoCSVString(this.listOfAttendees);
+        c[12] = CSVStringHelper.arraylistStringtoCSVString(this.listOfCampCommittees);
+        c[13] = CSVStringHelper.arraylistStringtoCSVString(this.leavers);
         c[14] = this.visibility + "";
         return c;
     }
 
-    public String arraylistStringtoCSVString(ArrayList<String> l) {
-        StringJoiner stringJoiner = new StringJoiner(",");
-        for (String item : l) {
-            stringJoiner.add(item);
-        }
-        String s = stringJoiner.toString();
-        
-        return s;
-    }
-
-    public ArrayList<String> CSVStringtoArraylistString(String s) {
-        String[] splitArray = s.split(",");        
-        ArrayList<String> l = new ArrayList<>(Arrays.asList(splitArray));
-
-        return l;
-    }
-
-    public Date CSVStringtoDate(String s) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            return dateFormat.parse(s);
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    public String DateToCSVString(Date d) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        return dateFormat.format(d);
-    }
-
-    public String getCampLocation() {
+    public eLocation getCampLocation() {
         return campLocation;
     }
 
-    public void setCampLocation(String campLocation) {
+    public void setCampLocation(eLocation campLocation) {
         this.campLocation = campLocation;
     }
 
@@ -277,4 +244,32 @@ public class Camp {
         this.leavers = leavers;
     }
 
+
+    /**
+     * @return int return the campID
+     */
+    public int getCampID() {
+        return campID;
+    }
+
+    public int remainingAttendeeSlots() {
+        return campTotalSlots - listOfAttendees.size() - listOfCampCommittees.size();
+    }
+
+    public int remainingCommitteeSlots() {
+        return campCommitteeSlots - listOfCampCommittees.size();
+    }
+
+    public Boolean isClash(Date start, Date end) {
+        return !end.before(startDate) && !start.after(endDate);
+        
+    }
+
+    public void addAttendee(String userID) {
+        listOfAttendees.add(userID);
+    }
+
+    public void addCommittee(String userID) {
+        listOfCampCommittees.add(userID);
+    }
 }

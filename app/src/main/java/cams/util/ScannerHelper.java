@@ -5,23 +5,11 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 import cams.MainApp;
+import cams.object.appitem.eLocation;
 import cams.object.person.Student;
 import cams.object.person.eFaculty;
 
 public class ScannerHelper {
-    
-    // Ensures String input is an enum in eFaculty
-    // Returns an eFaculty
-    private static eFaculty parseFaculty(String input){
-        // Check if faculty is valid
-        for(eFaculty faculty : eFaculty.values()){
-            if (faculty.name().equalsIgnoreCase(input)){
-                return faculty;
-            }
-        }
-        // If invalid, throw error
-        throw new IllegalArgumentException("Invalid enum value: " + input);
-    }
 
     public static Scanner instance;
 
@@ -60,6 +48,15 @@ public class ScannerHelper {
             int val = getIntegerInput(prompt, min);
             if (val < max) return val;
             System.out.println("Invalid Input. Please ensure you enter a number less than " + max);
+        }
+    }
+
+    public static int getIntegerInput(String prompt, ArrayList<Integer> acceptedValues, String errorMsg) {
+        Set<Integer> unique = new HashSet<>(acceptedValues);
+        while (true) {
+            int val = getIntegerInput(prompt);
+            if (unique.contains(val)||val == 0) return val;
+            System.out.println(errorMsg);
         }
     }
 
@@ -160,32 +157,52 @@ public class ScannerHelper {
         return datesArray;
     }
 
-    public static ArrayList<eFaculty> getEnumsInput(String prompt){
+    public static eFaculty getFacultyInput() {
         Scanner input = getScannerInput();
-        String enumInput;
-        ArrayList<eFaculty> enumsArray = new ArrayList<eFaculty>();
-        // Repeatedly prompt for an enum until you get an array
-        while(true){
-            // Print prompt along with the available faculties
-            System.out.println(prompt);
-            System.out.println("Faculties available:");
-            Integer facultyCount = 1;
-            for(eFaculty faculty: eFaculty.values()){
-                System.out.println(facultyCount + ": " + faculty.name());
-            }
-            enumInput = input.nextLine();
-            if(enumInput.equals("0")){
-                break;
-            }
-            try{
-                eFaculty faculty = parseFaculty(enumInput);
-                enumsArray.add(faculty);
-                System.out.println("Attached faculty: " + faculty);
-            } catch (IllegalArgumentException e){
-                System.out.println(e);
+
+        System.out.println("Choose Faculty: ");
+        for (eFaculty l : eFaculty.values()) {
+            System.out.println(l.ordinal() + 1 + ") " + l.name());
+        }
+
+        while (true) {
+            System.out.print("Enter choice: ");
+            if (input.hasNextInt()) {
+                int choice = input.nextInt();
+                if (choice > 0 && choice <= eFaculty.values().length) {
+                    return eFaculty.values()[choice - 1];
+                } else {
+                    System.out.println("Invalid input. Please enter a valid number.");
+                }
+            } else {
+                System.out.println("Invalid input. Please enter a number.");
+                input.next(); // consume the invalid input
             }
         }
-        return enumsArray;
+    }
+
+    public static eLocation getLocationInput() {
+        Scanner input = getScannerInput();
+
+        System.out.println("Choose location of camp: ");
+        for (eLocation l : eLocation.values()) {
+            System.out.println(l.ordinal() + 1 + ") " + l.name());
+        }
+
+        while (true) {
+            System.out.print("Enter choice: ");
+            if (input.hasNextInt()) {
+                int choice = input.nextInt();
+                if (choice > 0 && choice <= eLocation.values().length) {
+                    return eLocation.values()[choice - 1];
+                } else {
+                    System.out.println("Invalid input. Please enter a valid number.");
+                }
+            } else {
+                System.out.println("Invalid input. Please enter a number.");
+                input.next(); // consume the invalid input
+            }
+        }
     }
 
     public static String getNewPassword() {

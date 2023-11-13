@@ -1,13 +1,16 @@
 package cams.ui;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.Scanner;
 
 import cams.MainApp;
-import cams.object.appitem.Camp;
-import cams.object.person.Staff;
-import cams.object.person.eFaculty;
+import cams.object.appitem.*;
+import cams.object.person.*;
+import cams.util.CSVStringHelper;
+import cams.util.IDHelper;
 import cams.util.ScannerHelper;
 
 public class StaffCampMenuUI extends BaseUI{
@@ -19,7 +22,7 @@ public class StaffCampMenuUI extends BaseUI{
         System.out.println("1) Create Camp");
         System.out.println("2) Edit Camp");
         System.out.println("3) Delete Camp");
-        System.out.println("4) View All Camps");
+        System.out.println("4) View Camps");
         System.out.println("5) View Your Camps");
         System.out.println("6) Generate Camp Report");
         System.out.println("7) Return to Staff Menu");
@@ -28,22 +31,22 @@ public class StaffCampMenuUI extends BaseUI{
         int choice = doMenuChoice(10, 0);
         switch (choice) {
             case 1:
-                CreateCamp();
+                createCamp();
                 break;
             case 2:
-                EditCamp();
+                editCamp();
                 break;
             case 3:
-                DeleteCamp();
+                deleteCamp();
                 break;
             case 4:
-                ViewAllCamps();
+                viewAllCamps();
                 break;
             case 5:
-                ViewYourCamps();
+                viewYourCamps();
                 break;
             case 6:
-                GeneratePerformanceReport();
+                generatePerformanceReport();
                 break;
             case 7:
                 System.out.println("Switching back to Staff Menu.");
@@ -56,13 +59,15 @@ public class StaffCampMenuUI extends BaseUI{
         }
         return 0;
     }
-    private void CreateCamp() {
+
+    private void createCamp() {
+        int campID;
         String campName;
         Date startDate;
         Date endDate;
         Date regCloseDate;
         eFaculty userGroup;
-        String campLocation;
+        eLocation campLocation;
         int campTotalSlots;
         int campCommitteeSlots;
         String campDescription;
@@ -73,6 +78,9 @@ public class StaffCampMenuUI extends BaseUI{
         input.nextLine();
 
         // Set camp details
+        campID = MainApp.uniqueID.getNextCampID();
+        MainApp.uniqueID.incrementCampID();
+
         System.out.print("Enter Camp Name: ");
         campName = input.nextLine();
 
@@ -95,7 +103,7 @@ public class StaffCampMenuUI extends BaseUI{
         }
 
         System.out.print("Enter Camp Location: ");
-        campLocation = input.nextLine();
+        campLocation = ScannerHelper.getLocationInput();
 
         campTotalSlots = ScannerHelper.getIntegerInput("Enter total # of slots for students: ");
 
@@ -108,52 +116,97 @@ public class StaffCampMenuUI extends BaseUI{
 
         visibility = ScannerHelper.getYesNoInput("Make camp visible?");
 
-        MainApp.camps.add(new Camp(campName, startDate, endDate, regCloseDate, userGroup, campLocation, campTotalSlots, campCommitteeSlots, campDescription, staffInCharge, visibility));
+        MainApp.camps.add(new Camp(campID, campName, startDate, endDate, regCloseDate, userGroup, campLocation, campTotalSlots, campCommitteeSlots, campDescription, staffInCharge, visibility));
     }
 
-    private void EditCamp(){
-        ArrayList<Camp> campsInCharge = ViewYourCamps();
-        int campNo = ScannerHelper.getIntegerInput("Enter the number of the camp that you want to edit: ", 1, campsInCharge.size());
-        Camp chosenCamp = campsInCharge.get(campNo - 1);
-
+    private void editCamp(){
+        viewYourCamps();
+        int campNo = ScannerHelper.getIntegerInput("Enter the ID of the camp that you want to edit: ");
+        Camp chosenCamp = IDHelper.getCampFromID(campNo);
+        if (chosenCamp == null) return;
         new StaffEditCampMenu(chosenCamp).startMainMenu();
     }
 
-    private void DeleteCamp(){
-        ArrayList<Camp> campsInCharge = ViewYourCamps();
-        int campNo = ScannerHelper.getIntegerInput("Enter the number of the camp that you want to delete: ", 1, campsInCharge.size());
-        Camp chosenCamp = campsInCharge.get(campNo - 1);
+    private void deleteCamp(){
+        viewYourCamps();
+        int campNo = ScannerHelper.getIntegerInput("Enter the ID of the camp that you want to delete: ");
+        Camp chosenCamp = IDHelper.getCampFromID(campNo);
+        if (chosenCamp == null) return;
+        if(!ScannerHelper.getYesNoInput("Confirm delete?")) {
+            System.out.println("Delete action cancelled.");
+            return;
+        }
+        
         MainApp.camps.remove(chosenCamp);
+        System.out.println("Camp deleted.");
     }
 
-    private void ViewAllCamps() {
-        int campCount = 1;
-        for(Camp camp : MainApp.camps){
-            System.out.println(campCount + ": " + camp.getCampName());
+    private void viewAllCamps() {
+        printHeader("View Camps");
+        System.out.println("Filter by: ");
+        System.out.println("1) View All");
+        System.out.println("2) Faculty");
+        System.out.println("3) Location");
+        System.out.println("4) Camp Dates");
+        System.out.println("5) Registration Date");
+        System.out.println("0) Cancel");
+        printBreaks();
+        int choice = doMenuChoice(6, 0);
+        input.nextLine();
+        ArrayList<Camp> campsToDisplay = new ArrayList<>();
+        switch (choice) {
+            case 1:
+                for (Camp camp : MainApp.camps) {
+                    campsToDisplay.add(camp);
+                }
+                break;
+            case 2:
+                eFaculty facultyFilter = ScannerHelper.getFacultyInput();
+                for (Camp camp : MainApp.camps) {
+                    if (camp.getUserGroup().equals(facultyFilter)) campsToDisplay.add(camp);
+                }
+                break;
+            case 3:
+                eLocation locationFilter = ScannerHelper.getLocationInput();
+                for (Camp camp : MainApp.camps) {
+                    if (camp.getCampLocation().equals(locationFilter)) campsToDisplay.add(camp);
+                }
+                break;
+            case 4:
+                Date startDate = ScannerHelper.getDateInput("From (yyyy-MM-dd): ");
+                Date endDate = ScannerHelper.getDateInput("To (yyyy-MM-dd): ");
+                for (Camp camp : MainApp.camps) {
+                    if ((camp.getStartDate().after(startDate) || camp.getStartDate().equals(startDate)) && (camp.getEndDate().before(endDate) || camp.getEndDate().equals(endDate))) 
+                        campsToDisplay.add(camp);
+                } 
+                break;
+            case 5: 
+                Date closingDate = ScannerHelper.getDateInput("Registration closing date by (yyyy-MM-dd): ");
+                for (Camp camp : MainApp.camps) {
+                    if (camp.getRegCloseDate().before(closingDate) || camp.getRegCloseDate().equals(closingDate)) 
+                        campsToDisplay.add(camp);
+                } 
+                break;
+            case 0:
+                return;
+            default:
+                break;
         }
+        printBreaks();
+        printListOfCamps(campsToDisplay);
     }
 
-    private ArrayList<Camp> ViewYourCamps() {
-        ArrayList<Camp> campsInCharge;
+    private void viewYourCamps() {
+        ArrayList<Camp> campsInCharge = ((Staff)MainApp.currentUser).getCampsInCharge();
 
-        // Down-casting check
-        if (MainApp.currentUser instanceof Staff) {
-            campsInCharge = ((Staff) MainApp.currentUser).getCampsInCharge();
-        } else {
-            System.out.println("Invalid - you have to be a Staff to edit camps");
-            return null;
-        }
-
-        System.out.println("These are the camps under your charge: ");
-        int campCount = 1;
-        for(Camp camp: campsInCharge){
-            System.out.println(campCount + ": " + camp.getCampName());
-            campCount++;
-        }
-        return campsInCharge;
+        System.out.println("List of camps under your charge: ");
+        printBreaks();
+        printListOfCamps(campsInCharge);
+        
     }
-    private void GeneratePerformanceReport(){
-        ArrayList<Camp> campsInCharge = ViewYourCamps();
+
+    private void generatePerformanceReport(){
+        ArrayList<Camp> campsInCharge = ((Staff)MainApp.currentUser).getCampsInCharge();
 
         if (campsInCharge == null || campsInCharge.isEmpty()) {
             System.out.println("No camps available to generate performance report.");
@@ -164,13 +217,26 @@ public class StaffCampMenuUI extends BaseUI{
         Camp chosenCamp = campsInCharge.get(campNo - 1);
 
         // Using methods in the Camp class to get the list of attendees and committee members
-        ArrayList<Student> committeeMembers = chosenCamp.getListOfCampCommittees(); //The camp function should store objects
+        //ArrayList<Student> committeeMembers = chosenCamp.getListOfCampCommittees(); //The camp function should store objects
 
 
         // Print the performance report for camp committee members
-        for (int i=0;i<committeeMembers.size();i++){
-            System.out.printf("Camp Committee Name: %s Points: %d", committeeMembers[i], committeeMembers[i].getPoints());
+
+        //for (int i=0;i<committeeMembers.size();i++){
+        //    System.out.printf("Camp Committee Name: %s Points: %d", committeeMembers[i], committeeMembers[i].getPoints());
+        //}
+    }
+    
+    private void printListOfCamps(ArrayList<Camp> list) {
+        Collections.sort(list, Comparator.comparing(Camp::getCampName));
+        String formatTemplate = "%-2s| %-10s| %-11s| %-11s| %-16s| %-8s| %-12s| %s";
+        if (list.size()==0) {
+            System.out.println("No Camps to Display!");
+            return;
+        }
+        System.out.println(String.format(formatTemplate, "ID", "Camp Name", "Start Date", "End Date", "Reg. Close Date", "Faculty", "Location", "Description"));
+        for (Camp camp : list) {
+            System.out.println(String.format(formatTemplate, camp.getCampID(), camp.getCampName(), CSVStringHelper.DateToCSVString(camp.getStartDate()), CSVStringHelper.DateToCSVString(camp.getEndDate()), CSVStringHelper.DateToCSVString(camp.getRegCloseDate()), camp.getUserGroup() + "", camp.getCampLocation() + "", camp.getCampDescription()));
         }
     }
-
 }
