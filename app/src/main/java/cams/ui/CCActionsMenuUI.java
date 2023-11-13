@@ -1,21 +1,6 @@
 package cams.ui;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.Scanner;
-
-import cams.MainApp;
-import cams.object.appitem.*;
-import cams.object.person.*;
-import cams.util.CSVStringHelper;
-import cams.util.IDHelper;
-import cams.util.ScannerHelper;
-
-public class CampCommitteeActionsMenuUI extends BaseUI{
-    private Scanner input = ScannerHelper.getScannerInput();
-
+public class CCActionsMenuUI extends BaseUI{
     protected int generateMenuScreen() {
         printHeader("Camp Committee Actions Menu");
         System.out.println("1) View Camp Details"); //Details of the camp they have registered for

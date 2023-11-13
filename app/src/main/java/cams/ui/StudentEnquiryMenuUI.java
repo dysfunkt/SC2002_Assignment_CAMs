@@ -7,7 +7,6 @@ import cams.util.ScannerHelper;
 import java.util.Scanner;
 
 public class StudentEnquiryMenuUI extends BaseUI{
-    @Override
     protected int generateMenuScreen() {
         printHeader("Student Enquiry Enquiries");
         System.out.println("1) Submit Enquiries");
@@ -27,7 +26,7 @@ public class StudentEnquiryMenuUI extends BaseUI{
                 studentViewEnquiries();
                 break;
             case 3:
-                studentdeleteEnquiries();
+                studentDeleteEnquiries();
                 break;
             case 4:
                 System.out.println("Switching back to Student Menu.");
@@ -97,7 +96,7 @@ public class StudentEnquiryMenuUI extends BaseUI{
         printBreaks();
         } 
 
-    private void studentdeleteEnquiries() {
+    private void studentDeleteEnquiries() {
     // Get the current student
     Student currentStudent = (Student) MainApp.currentUser;
 
