@@ -2,7 +2,10 @@ package cams.ui;
 
 import java.util.Scanner;
 
+import cams.MainApp;
 import cams.util.ScannerHelper;
+import cams.object.appitem.*;
+import cams.object.person.*;
 
 public class StaffEnquiryMenuUI extends BaseUI{
 
@@ -38,9 +41,9 @@ public class StaffEnquiryMenuUI extends BaseUI{
     public void ViewAllEnquiries() {
         printHeader("View All Enquiries");
         // Assuming 'enquiries' is a list containing all Enquiry objects
-        for (Enquiry enquiry : enquiries) {
+        for (Enquiry enquiry : MainApp.enquiries) {
             // Display relevant information about each enquiry
-            if (staff.getCampsInCharge().stream().anyMatch(camp -> camp.getCampID() == enquiry.getCampID())){
+            if (((Staff)MainApp.currentUser).getCampsInCharge().stream().anyMatch(camp -> camp.getCampID() == enquiry.getCampID())){
                 System.out.println("Enquiry ID: " + enquiry.getEnquiryID());
                 System.out.println("Camp ID: " + enquiry.getCampID());
                 System.out.println("Created By: " + enquiry.getCreatedBy());
@@ -61,7 +64,7 @@ public class StaffEnquiryMenuUI extends BaseUI{
     
         // Find the Enquiry with the given ID
         Enquiry selectedEnquiry = null;
-        for (Enquiry enquiry : enquiries) {
+        for (Enquiry enquiry : MainApp.enquiries) {
             if (enquiry.getEnquiryID() == enquiryIDToReply) {
                 selectedEnquiry = enquiry;
                 break;
