@@ -9,21 +9,31 @@ import java.util.List;
 import java.util.StringJoiner;
 
 public class CSVStringHelper {
-    public static String arraylistStringtoCSVString(ArrayList<String> l) {
-        StringJoiner stringJoiner = new StringJoiner(",");
-        for (String item : l) {
-            stringJoiner.add(item);
+    public static String arraylistStringtoCSVString(ArrayList<String> list) {
+        if (list.isEmpty()) {
+            return ""; 
         }
-        String s = stringJoiner.toString();
-        
-        return s;
+        if (list.size() == 1) {
+            return list.get(0); // Return the single item as is
+        }
+        StringBuilder result = new StringBuilder();
+        result.append(list.get(0));
+        for (int i = 1; i < list.size(); i++) {
+            result.append(",").append(list.get(i));
+        }
+
+        return result.toString();
     }
 
-    public static ArrayList<String> CSVStringtoArraylistString(String s) {
-        String[] splitArray = s.split(",");        
-        ArrayList<String> l = new ArrayList<>(Arrays.asList(splitArray));
+    public static ArrayList<String> CSVStringtoArraylistString(String inputString) {
+        ArrayList<String> resultList = new ArrayList<>();
+        if (inputString != null && !inputString.isEmpty()) {
+            String[] items = inputString.split(", ");
 
-        return l;
+            // Add the items to the ArrayList
+            resultList.addAll(Arrays.asList(items));
+        }
+        return resultList;
     }
 
     public static Date CSVStringtoDate(String s) {
