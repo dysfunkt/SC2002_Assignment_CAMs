@@ -2,6 +2,11 @@ package cams.ui;
 
 import java.util.Scanner;
 
+import cams.MainApp;
+import cams.object.appitem.*;
+import cams.object.person.*;
+import cams.util.CSVStringHelper;
+import cams.util.IDHelper;
 import cams.util.ScannerHelper;
 
 public class StaffSuggestionsMenuUI extends BaseUI{
@@ -38,7 +43,7 @@ public class StaffSuggestionsMenuUI extends BaseUI{
         printHeader("View All Suggestions");
 
         // Assuming 'suggestions' is a list containing all Suggestion objects
-        for (Suggestion suggestion : suggestions) {
+        for (Suggestion suggestion : MainApp.suggestions) {
             // Display relevant information about each suggestion
             System.out.println("Suggestion ID: " + suggestion.getSuggestionID());
             System.out.println("Camp ID: " + suggestion.getCampID());
@@ -51,7 +56,7 @@ public class StaffSuggestionsMenuUI extends BaseUI{
         }
         printBreaks();
     }
-   public void ApproveSuggestion() {
+    public void ApproveSuggestion() {
     printHeader("Approve Suggestion");
     System.out.print("Enter Suggestion ID to approve: ");
     int suggestionIDToApprove = input.nextInt();
@@ -59,7 +64,7 @@ public class StaffSuggestionsMenuUI extends BaseUI{
 
     // Find the Suggestion with the given ID
     Suggestion selectedSuggestion = null;
-    for (Suggestion suggestion : suggestions) {
+    for (Suggestion suggestion : MainApp.suggestions) {
         if (suggestion.getSuggestionID() == suggestionIDToApprove) {
             selectedSuggestion = suggestion;
             break;
