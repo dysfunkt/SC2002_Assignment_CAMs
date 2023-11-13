@@ -25,7 +25,7 @@ public class LoginMenuUI extends BaseUI{
                 break;
             case 2:
                 if (StudentLogin()){
-                    if (new CampCommitteeMenuUI().startMainMenu()) return 1;
+                    if (new CCMenuUI().startMainMenu()) return 1;
                     
                 } else {
                     if (new StudentMenuUI().startMainMenu()) return 1;

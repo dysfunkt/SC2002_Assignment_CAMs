@@ -8,7 +8,6 @@ import cams.object.appitem.*;
 import cams.object.person.*;
 
 public class StaffEnquiryMenuUI extends BaseUI{
-
     private Scanner input = ScannerHelper.getScannerInput();
 
     protected int generateMenuScreen() {

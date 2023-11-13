@@ -1,7 +1,6 @@
 package cams.object.person;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import cams.util.CSVStringHelper;
 

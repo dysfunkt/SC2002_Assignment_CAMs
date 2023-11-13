@@ -10,11 +10,10 @@ import cams.MainApp;
 import cams.object.appitem.*;
 import cams.object.person.*;
 import cams.util.CSVStringHelper;
-import cams.util.IDHelper;
 import cams.util.ScannerHelper;
 
 
-public class CampCommitteeCampMenuUI extends BaseUI{
+public class CCCampMenuUI extends BaseUI{
     private Scanner input = ScannerHelper.getScannerInput();
 
     protected int generateMenuScreen() {
@@ -32,7 +31,7 @@ public class CampCommitteeCampMenuUI extends BaseUI{
                 viewAllCamps();
                 break;
             case 2:
-                if (registerForCamp()) return -1;
+                registerForCamp();
                 break;
             case 3:
                 withdrawFromCamp();   
