@@ -1,7 +1,7 @@
 package cams.ui;
 
 import cams.MainApp;
-import cams.object.appitem.*;
+import cams.object.appitem.Camp;
 import cams.object.person.*;
 import cams.util.ScannerHelper;
 
@@ -42,7 +42,7 @@ public class StudentMenuUI extends BaseUI{
                 if(new StudentEnquiryMenuUI().startMainMenu()) return 1;
                 break;
             case 3:
-                changePassword();
+                studentChangePassword();
                 break;
             case 4:
                 System.out.println("You have successfully logged out.");
@@ -58,7 +58,8 @@ public class StudentMenuUI extends BaseUI{
         return 0;
     }
     
-    private void changePassword() {
+
+    private void studentChangePassword() {
         printBreaks();
         System.out.println("Enter your new password: ");
         MainApp.currentUser.changePassword(ScannerHelper.getNewPassword());
