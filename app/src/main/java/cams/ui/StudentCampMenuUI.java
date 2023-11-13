@@ -13,13 +13,12 @@ import cams.util.CSVStringHelper;
 import cams.util.IDHelper;
 import cams.util.ScannerHelper;
 
-
 public class StudentCampMenuUI extends BaseUI{
 
     private Scanner input = ScannerHelper.getScannerInput();
 
     protected int generateMenuScreen() {
-        printHeader("Camps Menu");
+        printHeader("Staff Camps Menu");
         System.out.println("1) View Camps");
         System.out.println("2) Register For Camp");
         System.out.println("3) Withdraw From Camp"); 
@@ -32,7 +31,7 @@ public class StudentCampMenuUI extends BaseUI{
 
         switch (choice) {
             case 1:
-                ViewAllCamps();
+                viewAllCamps();
                 break;
             case 2:
                 if(registerForCamp()) return -1;
@@ -55,7 +54,7 @@ public class StudentCampMenuUI extends BaseUI{
         return 0;
     }
 
-    private void ViewAllCamps() {
+    private void viewAllCamps() {
         printHeader("View Camps");
         System.out.println("Filter by: ");
         System.out.println("1) View All");

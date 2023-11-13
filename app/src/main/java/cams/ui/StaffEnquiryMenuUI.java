@@ -12,7 +12,7 @@ public class StaffEnquiryMenuUI extends BaseUI{
     private Scanner input = ScannerHelper.getScannerInput();
 
     protected int generateMenuScreen() {
-        printHeader("Enquiry Menu");
+        printHeader("Staff Enquiry Menu");
         System.out.println("1) View All Enquiries");
         System.out.println("2) Reply to an Enquiry");
         System.out.println("3) Return to Staff Menu");
@@ -21,10 +21,10 @@ public class StaffEnquiryMenuUI extends BaseUI{
         int choice = doMenuChoice(10, 0);
         switch (choice) {
             case 1:
-                ViewAllEnquiries();
+                viewAllEnquiries();
                 break;
             case 2:
-                ReplyEnquiry();
+                replyEnquiry();
                 break;
             case 3:
                 System.out.println("Switching back to Staff Menu.");
@@ -38,6 +38,7 @@ public class StaffEnquiryMenuUI extends BaseUI{
         return 0;
     }
 
+  
     public void ViewAllEnquiries() {
         printHeader("View All Enquiries");
         // Assuming 'enquiries' is a list containing all Enquiry objects

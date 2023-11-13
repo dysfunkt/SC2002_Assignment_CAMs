@@ -15,7 +15,7 @@ public class StaffMenuUI extends BaseUI {
     private Scanner input = ScannerHelper.getScannerInput();
 
     protected int generateMenuScreen() {
-        printHeader("Staff Menu");
+        printHeader("Staff Main Menu");
         System.out.println("1) Go To Camp Menu");
         System.out.println("2) Go to Enquiries Menu");
         System.out.println("3) Go to Suggestions Menu");
@@ -44,7 +44,7 @@ public class StaffMenuUI extends BaseUI {
                 System.out.println("Closing application...");
                 return 1; //shutdown
             default:
-                throw new MenuChoiceInvalidException("Login Menu");
+                throw new MenuChoiceInvalidException("Staff Main Menu");
         }
         return 0;
     }

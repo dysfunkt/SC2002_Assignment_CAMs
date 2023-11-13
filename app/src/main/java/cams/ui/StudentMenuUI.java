@@ -25,12 +25,12 @@ public class StudentMenuUI extends BaseUI{
     @Override
     protected int generateMenuScreen() {
         if (((Student)MainApp.currentUser).isCampCommittee()) return -1;
-        printHeader("Student Menu");
+        printHeader("Student Main Menu");
         System.out.println("1) Go To Camp Menu");
         System.out.println("2) Go to Enquiries Menu");
         System.out.println("3) Change Password"); 
         System.out.println("4) Log out");
-        System.out.println("5) Exit Application");
+        System.out.println("0) Exit Application");
         printBreaks();
 
         int choice = doMenuChoice(5, 0);
@@ -47,12 +47,11 @@ public class StudentMenuUI extends BaseUI{
             case 4:
                 System.out.println("You have successfully logged out.");
                 return -1;
-            case 5:
-            
+            case 0:
                 System.out.println("Closing application...");
                 return 1; //shutdown
             default:
-                throw new MenuChoiceInvalidException("Student Menu");
+                throw new MenuChoiceInvalidException("Student Main Menu");
             }
         
         return 0;

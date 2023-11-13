@@ -9,11 +9,12 @@ import java.util.Scanner;
 public class StudentEnquiryMenuUI extends BaseUI{
     @Override
     protected int generateMenuScreen() {
-        printHeader("Manage Enquiries");
+        printHeader("Student Enquiry Enquiries");
         System.out.println("1) Submit Enquiries");
         System.out.println("2) View Enquiries");
         System.out.println("3) Delete Enquiries");
-        System.out.println("3) Back to Student Menu");
+        System.out.println("4) Back to Student Menu");
+        System.out.println("0) Exit Application");
         printBreaks();
 
         int choice = doMenuChoice(3, 0);
@@ -31,8 +32,11 @@ public class StudentEnquiryMenuUI extends BaseUI{
             case 4:
                 System.out.println("Switching back to Student Menu.");
                 return -1;
+            case 0:
+                System.out.println("Closing application...");
+                return 1; //shutdown
             default:
-                throw new MenuChoiceInvalidException("Student Enquiries Menu");
+                throw new MenuChoiceInvalidException("Student Enquiry Menu");
         }
         return 0;
     }

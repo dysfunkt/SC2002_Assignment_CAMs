@@ -118,7 +118,7 @@ public class StaffEditCampMenu extends BaseUI{
                 System.out.println("Cancelling edit. Retuning to Camp Menu...");
                 return -1;
             default:
-                throw new MenuChoiceInvalidException("Edit Camp Menu");
+                throw new MenuChoiceInvalidException("Staff Edit Camps Menu");
         }
     }
 
