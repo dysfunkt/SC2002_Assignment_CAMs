@@ -35,7 +35,37 @@ public class StaffSuggestionsMenuUI extends BaseUI{
         return 0;
     }
 
-    public void ViewAllSuggestions(){}
-    public void ApproveSuggestion(){}
+   public void ApproveSuggestion() {
+    printHeader("Approve Suggestion");
+    System.out.print("Enter Suggestion ID to approve: ");
+    int suggestionIDToApprove = input.nextInt();
+    input.nextLine(); // Consume the newline character
+
+    // Find the Suggestion with the given ID
+    Suggestion selectedSuggestion = null;
+    for (Suggestion suggestion : suggestions) {
+        if (suggestion.getSuggestionID() == suggestionIDToApprove) {
+            selectedSuggestion = suggestion;
+            break;
+        }
+    }
+
+    // Check if the suggestion was found
+    if (selectedSuggestion != null) {
+        if (!selectedSuggestion.isProcessed()) {
+            // Set the suggestion as approved
+            selectedSuggestion.approve(true);
+
+            System.out.println("Suggestion approved successfully!");
+        } else {
+            System.out.println("Suggestion with ID " + suggestionIDToApprove + " has already been processed.");
+        }
+    } else {
+        System.out.println("Suggestion with ID " + suggestionIDToApprove + " not found.");
+    }
+
+    printBreaks();
 }
+
+
 
