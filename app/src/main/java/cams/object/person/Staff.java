@@ -40,4 +40,12 @@ public class Staff extends User{
     public void setCampsInCharge(ArrayList<Integer> campsInChargeID) {
         this.campsInChargeID = campsInChargeID;
     }
+
+    public void createCamp(int campID) {
+        this.campsInChargeID.add(campID);
+    }
+
+    public void deleteCamp(int campID) {
+        this.campsInChargeID.remove(Integer.valueOf(campID));
+    }
 }
