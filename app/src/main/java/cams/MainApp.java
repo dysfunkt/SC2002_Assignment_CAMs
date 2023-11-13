@@ -9,6 +9,9 @@ import java.io.BufferedReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Main Application Class
@@ -18,7 +21,7 @@ import java.util.stream.Collectors;
  */
 
 public class MainApp {
-
+    public static Date todayDate;
     public static User currentUser;
     public static UniqueID uniqueID;
     public static ArrayList<Student> students;
@@ -62,6 +65,8 @@ public class MainApp {
         } catch (IOException e) {
             System.out.println("[ERROR] Failed to read CSV from data folder. (" + e.getLocalizedMessage() + ")");
         }
+
+        todayDate = getTodayDate();
 
         System.out.println("Initializing Program...");
 
@@ -131,7 +136,21 @@ public class MainApp {
             System.out.println("[ERROR] Failed to load ASCII Welcome Art!");
         }
     }
+
     public static void getGreeting() {
-    System.out.println("Welcome to Camp Management System!");
+        System.out.println("Welcome to Camp Management System!");
+        System.out.println("Todays date: " + todayDate);
+    }
+
+    public static Date getTodayDate() {
+        java.time.LocalDate today = java.time.LocalDate.now();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            return dateFormat.parse(today.toString());
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

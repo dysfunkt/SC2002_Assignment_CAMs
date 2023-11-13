@@ -8,8 +8,7 @@ import java.util.Scanner;
 public class LoginMenuUI extends BaseUI{
 
     private Scanner input = ScannerHelper.getScannerInput();
-    
-    
+
     protected int generateMenuScreen() {
         printHeader("Login Menu");
         System.out.println("1) Staff Login");
@@ -20,8 +19,9 @@ public class LoginMenuUI extends BaseUI{
         int choice = doMenuChoice(2, 0);
         switch (choice) {
             case 1:
-                StaffLogin(); 
-                if (new StaffMenuUI().startMainMenu()) return 1;
+                if(StaffLogin()){
+                    if(new StaffMenuUI().startMainMenu()) return 1;
+                }
                 break;
             case 2:
                 if (StudentLogin()){
@@ -40,7 +40,7 @@ public class LoginMenuUI extends BaseUI{
         return 0;
     }
 
-    private void StaffLogin() {
+    private boolean StaffLogin() {
         Boolean loginSuccess = false;
         input.nextLine();
         do {
@@ -64,12 +64,14 @@ public class LoginMenuUI extends BaseUI{
                     loginSuccess = true;
                     System.out.println("Successfully logged in as " + MainApp.currentUser.getUserID());
                     if (loginStaff.isFirstLogin()) firstTimeLoginChangePassword(loginStaff);
-                    //finish login sequence                    
+                    //finish login sequence
+                    return loginSuccess;
                 } else {
                     System.out.println("Wrong Password!");
                 }
             }
         } while (!loginSuccess);
+        return false;
     }
 
     private Boolean StudentLogin() {

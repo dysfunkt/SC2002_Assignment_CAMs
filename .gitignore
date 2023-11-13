@@ -4,4 +4,9 @@
 # Ignore Gradle build output directory
 build
 
-
+data\camp.csv
+data\enquiry.csv
+data\staff.csv
+data\student.csv
+data\suggestion.csv
+data\uniqueid.csv
