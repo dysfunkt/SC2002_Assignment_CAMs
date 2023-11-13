@@ -13,13 +13,12 @@ import cams.util.CSVStringHelper;
 import cams.util.IDHelper;
 import cams.util.ScannerHelper;
 
-
 public class StudentCampMenuUI extends BaseUI{
 
     private Scanner input = ScannerHelper.getScannerInput();
 
     protected int generateMenuScreen() {
-        printHeader("Camps Menu");
+        printHeader("Staff Camps Menu");
         System.out.println("1) View Camps");
         System.out.println("2) Register For Camp");
         System.out.println("3) Withdraw From Camp"); 
@@ -32,7 +31,7 @@ public class StudentCampMenuUI extends BaseUI{
 
         switch (choice) {
             case 1:
-                ViewAllCamps();
+                viewAllCamps();
                 break;
             case 2:
                 if(registerForCamp()) return -1;
@@ -55,7 +54,7 @@ public class StudentCampMenuUI extends BaseUI{
         return 0;
     }
 
-    private void ViewAllCamps() {
+    private void viewAllCamps() {
         printHeader("View Camps");
         System.out.println("Filter by: ");
         System.out.println("1) View All");
@@ -150,46 +149,6 @@ public class StudentCampMenuUI extends BaseUI{
         }
     }
 
-    private void studentRegisterForCamp() {
-        System.out.println("Choose the Camp you want to join:");
-    
-        // Display available camps with numbers
-        int index = 1;
-        for (Camp camp : MainApp.camps) {
-            System.out.println(index + ") " + camp.getCampName());
-            index++;
-        }
-    
-        // Get the camp number from the user
-        int selectedCampNumber = ScannerHelper.getIntegerInput("Enter the Camp Number to join (0 to cancel): ");
-    
-        if (selectedCampNumber == 0) {
-            System.out.println("Registration canceled.");
-            return;
-        }
-    
-        // Check if the selected camp number is within the valid range
-        if (selectedCampNumber >= 1 && selectedCampNumber <= MainApp.camps.size()) {
-            // Find the selected camp using the number
-            Camp selectedCamp = MainApp.camps.get(selectedCampNumber - 1);
-    
-            // Check if the student is already registered for the camp
-            if (selectedCamp.getListOfAttendees().contains(MainApp.currentUser.getUserID())) {
-                System.out.println("You are already registered for this camp.");
-            } else {
-                // Check if there are available spots
-                if (selectedCamp.getCampTotalSlots() > 0) {
-                    // Register the student for the camp
-                    selectedCamp.getListOfAttendees().add(MainApp.currentUser.getUserID());
-                    System.out.println("Registration successful for " + selectedCamp.getCampName() + ".");
-                } else {
-                    System.out.println("Sorry, no available spots for this camp.");
-                }
-            }
-        } else {
-            System.out.println("Invalid Camp Number. Please enter a valid number.");
-        }
-    }
 
     private Boolean registerForCamp() {
         ArrayList<Camp> campsToDisplay = new ArrayList<>();
@@ -333,70 +292,9 @@ public class StudentCampMenuUI extends BaseUI{
                 System.out.println("Camp Name: " + camp.getCampName());
                 System.out.println("Start Date: " + camp.getStartDate());
                 System.out.println("End Date: " + camp.getEndDate());
-                System.out.println("=================");
+                printBreaks();
             }
         }
     }
 
-    private void signupForCommittee() {
-        System.out.println("=== Sign Up for Camp Committee ===");
-    
-        // Get the current student
-        Student currentStudent = (Student) MainApp.currentUser;
-    
-        // Create an ArrayList to store registered camps
-        ArrayList<Camp> registeredCamps = new ArrayList<>();
-    
-        // Loop through all camps
-        for (Camp camp : MainApp.camps) {
-            // Check if the current student is in the list of attendees
-            if (camp.getListOfAttendees().contains(currentStudent.getUserID())) {
-                registeredCamps.add(camp);
-            }
-        }
-    
-        // Display the registered camps
-        if (registeredCamps.isEmpty()) {
-            System.out.println("You need to be registered for a camp to sign up for the committee.");
-            return;
-        } else {
-            System.out.println("=== Your Registered Camps ===");
-            int index = 1;
-            for (Camp camp : registeredCamps) {
-                System.out.println(index + ") " + camp.getCampName());
-                index++;
-            }
-        }
-    
-        // Get the camp number from the user
-        int selectedCampNumber = ScannerHelper.getIntegerInput("Enter the Camp Number to sign up for committee (0 to cancel): ");
-    
-        if (selectedCampNumber == 0) {
-            System.out.println("Sign up for Committee canceled.");
-            return;
-        }
-    
-        // Check if the selected camp number is within the valid range
-        if (selectedCampNumber >= 1 && selectedCampNumber <= registeredCamps.size()) {
-            // Find the selected camp using the number
-            Camp selectedCamp = registeredCamps.get(selectedCampNumber - 1);
-    
-            // Check if there are available committee slots
-            int availableCommitteeSlots = selectedCamp.getCampCommitteeSlots() - selectedCamp.getListOfCampCommittees().size();
-            if (availableCommitteeSlots > 0) {
-                // Check if the user is already a committee member
-                if (selectedCamp.getListOfCampCommittees().contains(MainApp.currentUser.getUserID())) {
-                    System.out.println("You are already a committee member for your selected camp.");
-                } else {
-                    // Add the user to the committee members
-                    selectedCamp.getListOfCampCommittees().add(MainApp.currentUser.getUserID());
-                    System.out.println("Sign up for Camp Committee successful for " + selectedCamp.getCampName() + ".");
-                }
-            } else {
-                System.out.println("Sorry, no available committee slots for this camp.");
-            }
-        } else {
-            System.out.println("Invalid Camp Number. Please enter a valid number.");
-        }
-    }
 }
