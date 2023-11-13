@@ -253,7 +253,7 @@ public class Camp {
     }
 
     public int remainingAttendeeSlots() {
-        return campTotalSlots - listOfAttendees.size() - listOfCampCommittees.size();
+        return campTotalSlots - listOfAttendees.size() - campCommitteeSlots;
     }
 
     public int remainingCommitteeSlots() {
