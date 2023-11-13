@@ -1,28 +1,10 @@
 package cams.ui;
 
 import cams.MainApp;
-import cams.object.appitem.Camp;
 import cams.object.person.*;
 import cams.util.ScannerHelper;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Scanner;
-import java.util.ArrayList;
-
-
-import cams.util.ScannerHelper;
-
-
 public class StudentMenuUI extends BaseUI{
-    //private Student currentStudent;
-    private Scanner input = ScannerHelper.getScannerInput();
-
-    //public StudentMenuUI (Student student){
-    //this.currentStudent = student;
-    //}
-
-    @Override
     protected int generateMenuScreen() {
         if (((Student)MainApp.currentUser).isCampCommittee()) return -1;
         printHeader("Student Main Menu");

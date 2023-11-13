@@ -1,18 +1,9 @@
 package cams.ui;
 
 import cams.MainApp;
-import cams.object.appitem.*;
-import cams.object.person.*;
 import cams.util.ScannerHelper;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Scanner;
-
-
 public class StaffMenuUI extends BaseUI {
-    
-    private Scanner input = ScannerHelper.getScannerInput();
 
     protected int generateMenuScreen() {
         printHeader("Staff Main Menu");

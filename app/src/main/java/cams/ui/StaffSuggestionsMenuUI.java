@@ -4,9 +4,6 @@ import java.util.Scanner;
 
 import cams.MainApp;
 import cams.object.appitem.*;
-import cams.object.person.*;
-import cams.util.CSVStringHelper;
-import cams.util.IDHelper;
 import cams.util.ScannerHelper;
 
 public class StaffSuggestionsMenuUI extends BaseUI{

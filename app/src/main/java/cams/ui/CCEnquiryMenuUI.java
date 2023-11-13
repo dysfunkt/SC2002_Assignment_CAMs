@@ -1,21 +1,6 @@
 package cams.ui;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.Scanner;
-
-import cams.MainApp;
-import cams.object.appitem.*;
-import cams.object.person.*;
-import cams.util.CSVStringHelper;
-import cams.util.IDHelper;
-import cams.util.ScannerHelper;
-
-public class CampCommitteeEnquiryMenuUI extends BaseUI{
-    private Scanner input = ScannerHelper.getScannerInput();
-
+public class CCEnquiryMenuUI extends BaseUI{
     protected int generateMenuScreen() {
         printHeader("Camp Committee Enquiry Menu");
         System.out.println("1) Submit Enquiries");

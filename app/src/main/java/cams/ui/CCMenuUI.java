@@ -1,21 +1,9 @@
 package cams.ui;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.Scanner;
-
 import cams.MainApp;
-import cams.object.appitem.*;
-import cams.object.person.*;
-import cams.util.CSVStringHelper;
-import cams.util.IDHelper;
 import cams.util.ScannerHelper;
 
-public class CampCommitteeMenuUI extends BaseUI {
-
-    private Scanner input = ScannerHelper.getScannerInput();
+public class CCMenuUI extends BaseUI {
 
     protected int generateMenuScreen() {
         printHeader("Camp Committee Main Menu");
@@ -30,13 +18,13 @@ public class CampCommitteeMenuUI extends BaseUI {
         int choice = doMenuChoice(7, 0);
         switch (choice) {
             case 1:
-                if (new CampCommitteeCampMenuUI().startMainMenu()) return 1;
+                if (new CCCampMenuUI().startMainMenu()) return 1;
                 break;
             case 2:
-                if (new CampCommitteeEnquiryMenuUI().startMainMenu()) return 1;
+                if (new CCEnquiryMenuUI().startMainMenu()) return 1;
                 break;
             case 3:
-                if (new CampCommitteeActionsMenuUI().startMainMenu()) return 1;
+                if (new CCActionsMenuUI().startMainMenu()) return 1;
                 break;
             case 4:
                 changePassword();
