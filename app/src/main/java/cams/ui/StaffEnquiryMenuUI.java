@@ -38,7 +38,6 @@ public class StaffEnquiryMenuUI extends BaseUI{
         return 0;
     }
 
-  
     public void viewAllEnquiries() {
         printHeader("View All Enquiries");
         // Assuming 'enquiries' is a list containing all Enquiry objects
