@@ -100,7 +100,7 @@ public class StaffEditCampMenu extends BaseUI{
             case 0:
                 return -1;
             default:
-                throw new MenuChoiceInvalidException("Edit Camp Menu");
+                throw new MenuChoiceInvalidException("Staff Edit Camps Menu");
         }
     }
 

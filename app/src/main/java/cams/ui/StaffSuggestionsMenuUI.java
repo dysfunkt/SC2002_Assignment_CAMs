@@ -9,7 +9,7 @@ public class StaffSuggestionsMenuUI extends BaseUI{
     private Scanner input = ScannerHelper.getScannerInput();
 
     protected int generateMenuScreen() {
-        printHeader("Suggestions Menu");
+        printHeader("Staff Suggestions Menu");
         System.out.println("1) View All Suggestions");
         System.out.println("2) Approve a Suggestion");
         System.out.println("3) Return to Staff Menu");

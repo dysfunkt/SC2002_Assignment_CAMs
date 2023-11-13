@@ -18,7 +18,7 @@ public class StaffCampMenuUI extends BaseUI{
     private Scanner input = ScannerHelper.getScannerInput();
 
     protected int generateMenuScreen() {
-        printHeader("Camps Menu");
+        printHeader("Staff Camps Menu");
         System.out.println("1) Create Camp");
         System.out.println("2) Edit Camp");
         System.out.println("3) Delete Camp");
@@ -55,7 +55,7 @@ public class StaffCampMenuUI extends BaseUI{
                 System.out.println("Closing application...");
                 return 1; //shutdown
             default:
-                throw new MenuChoiceInvalidException("Staff Camp Menu");
+                throw new MenuChoiceInvalidException("Staff Camps Menu");
         }
         return 0;
     }
