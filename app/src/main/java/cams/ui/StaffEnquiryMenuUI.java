@@ -38,8 +38,7 @@ public class StaffEnquiryMenuUI extends BaseUI{
         return 0;
     }
 
-  
-    public void ViewAllEnquiries() {
+    public void viewAllEnquiries() {
         printHeader("View All Enquiries");
         // Assuming 'enquiries' is a list containing all Enquiry objects
         for (Enquiry enquiry : MainApp.enquiries) {
@@ -57,7 +56,7 @@ public class StaffEnquiryMenuUI extends BaseUI{
         }
         printBreaks();
     }
-    public void ReplyEnquiry() {
+    public void replyEnquiry() {
         printHeader("Reply to Enquiry");
         System.out.print("Enter Enquiry ID to reply: ");
         int enquiryIDToReply = input.nextInt();
