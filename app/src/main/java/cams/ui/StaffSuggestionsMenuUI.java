@@ -34,7 +34,23 @@ public class StaffSuggestionsMenuUI extends BaseUI{
         }
         return 0;
     }
+    public void ViewAllSuggestions() {
+        printHeader("View All Suggestions");
 
+        // Assuming 'suggestions' is a list containing all Suggestion objects
+        for (Suggestion suggestion : suggestions) {
+            // Display relevant information about each suggestion
+            System.out.println("Suggestion ID: " + suggestion.getSuggestionID());
+            System.out.println("Camp ID: " + suggestion.getCampID());
+            System.out.println("Created By: " + suggestion.getCreatedBy());
+            System.out.println("Suggestion Message: " + suggestion.getSuggestionMessage());
+            System.out.println("Processed: " + suggestion.isProcessed());
+            System.out.println("Deleted: " + suggestion.isDeleted());
+            System.out.println("Approved: " + suggestion.isApproved());
+            System.out.println("-----------------------------");
+        }
+        printBreaks();
+    }
    public void ApproveSuggestion() {
     printHeader("Approve Suggestion");
     System.out.print("Enter Suggestion ID to approve: ");
@@ -65,6 +81,7 @@ public class StaffSuggestionsMenuUI extends BaseUI{
     }
 
     printBreaks();
+}
 }
 
 
