@@ -115,28 +115,43 @@ public class StaffCampMenuUI extends BaseUI{
         staffInCharge = MainApp.currentUser.getUserID();
 
         visibility = ScannerHelper.getYesNoInput("Make camp visible?");
-
-        MainApp.camps.add(new Camp(campID, campName, startDate, endDate, regCloseDate, userGroup, campLocation, campTotalSlots, campCommitteeSlots, campDescription, staffInCharge, visibility));
+        Camp newCamp = new Camp(campID, campName, startDate, endDate, regCloseDate, userGroup, campLocation, campTotalSlots, campCommitteeSlots, campDescription, staffInCharge, visibility);
+        MainApp.camps.add(newCamp);
+        ((Staff)MainApp.currentUser).createCamp(newCamp.getCampID());
+        System.out.println("Camp created successfully.");
     }
 
     private void editCamp(){
-        viewYourCamps();
-        int campNo = ScannerHelper.getIntegerInput("Enter the ID of the camp that you want to edit: ");
+        ArrayList<Camp> campList = ((Staff)MainApp.currentUser).getCampsInCharge();
+        int campNo = ScannerHelper.getIntegerInput("Enter the ID of the camp to edit (Enter 0 to cancel): ", IDHelper.extractCampIDs(campList),"Enter one of the IDs!");
+        if (campNo == 0) {
+            System.out.println("Cancelling edit. Retuning to Camp Menu...");
+            return;
+        }
         Camp chosenCamp = IDHelper.getCampFromID(campNo);
         if (chosenCamp == null) return;
         new StaffEditCampMenu(chosenCamp).startMainMenu();
     }
 
     private void deleteCamp(){
-        viewYourCamps();
-        int campNo = ScannerHelper.getIntegerInput("Enter the ID of the camp that you want to delete: ");
-        Camp chosenCamp = IDHelper.getCampFromID(campNo);
-        if (chosenCamp == null) return;
-        if(!ScannerHelper.getYesNoInput("Confirm delete?")) {
-            System.out.println("Delete action cancelled.");
+        ArrayList<Camp> campList = ((Staff)MainApp.currentUser).getCampsInCharge();
+        int campNo = ScannerHelper.getIntegerInput("Enter the ID of the camp to delete (Enter 0 to cancel): ", IDHelper.extractCampIDs(campList),"Enter one of the IDs!");
+        if (campNo == 0) {
+            System.out.println("Cancelling delete. Retuning to Camp Menu...");
             return;
         }
-        
+        Camp chosenCamp = IDHelper.getCampFromID(campNo);
+        if (chosenCamp == null) return;
+        if (chosenCamp.getListOfAttendees().size() != 0 || chosenCamp.getListOfCampCommittees().size() != 0) {
+            System.out.println("You cannot delete a camp with registeed participants.");
+            System.out.println("Cancelling delete. Retuning to Camp Menu...");
+            return;
+        }
+        if(!ScannerHelper.getYesNoInput("Confirm delete?")) {
+            System.out.println("Cancelling delete. Retuning to Camp Menu...");
+            return;
+        }
+        ((Staff)MainApp.currentUser).deleteCamp(chosenCamp.getCampID());
         MainApp.camps.remove(chosenCamp);
         System.out.println("Camp deleted.");
     }
@@ -202,7 +217,6 @@ public class StaffCampMenuUI extends BaseUI{
         System.out.println("List of camps under your charge: ");
         printBreaks();
         printListOfCamps(campsInCharge);
-        
     }
 
     private void generatePerformanceReport(){
