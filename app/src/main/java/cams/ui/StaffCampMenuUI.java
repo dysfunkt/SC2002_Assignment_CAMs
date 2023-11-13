@@ -125,7 +125,7 @@ public class StaffCampMenuUI extends BaseUI{
         ArrayList<Camp> campList = ((Staff)MainApp.currentUser).getCampsInCharge();
         int campNo = ScannerHelper.getIntegerInput("Enter the ID of the camp to edit (Enter 0 to cancel): ", IDHelper.extractCampIDs(campList),"Enter one of the IDs!");
         if (campNo == 0) {
-            System.out.println("Cancelling edit. Retuning to Camp Menu...");
+            System.out.println("Cancelling edit. Returning to Camp Menu...");
             return;
         }
         Camp chosenCamp = IDHelper.getCampFromID(campNo);
@@ -137,18 +137,18 @@ public class StaffCampMenuUI extends BaseUI{
         ArrayList<Camp> campList = ((Staff)MainApp.currentUser).getCampsInCharge();
         int campNo = ScannerHelper.getIntegerInput("Enter the ID of the camp to delete (Enter 0 to cancel): ", IDHelper.extractCampIDs(campList),"Enter one of the IDs!");
         if (campNo == 0) {
-            System.out.println("Cancelling delete. Retuning to Camp Menu...");
+            System.out.println("Cancelling delete. Returning to Camp Menu...");
             return;
         }
         Camp chosenCamp = IDHelper.getCampFromID(campNo);
         if (chosenCamp == null) return;
         if (chosenCamp.getListOfAttendees().size() != 0 || chosenCamp.getListOfCampCommittees().size() != 0) {
-            System.out.println("You cannot delete a camp with registeed participants.");
-            System.out.println("Cancelling delete. Retuning to Camp Menu...");
+            System.out.println("You cannot delete a camp with registered participants.");
+            System.out.println("Cancelling delete. Returning to Camp Menu...");
             return;
         }
         if(!ScannerHelper.getYesNoInput("Confirm delete?")) {
-            System.out.println("Cancelling delete. Retuning to Camp Menu...");
+            System.out.println("Cancelling delete. Returning to Camp Menu...");
             return;
         }
         ((Staff)MainApp.currentUser).deleteCamp(chosenCamp.getCampID());
