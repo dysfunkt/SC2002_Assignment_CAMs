@@ -8,8 +8,8 @@ public class StaffMenuUI extends BaseUI {
     protected int generateMenuScreen() {
         printHeader("Staff Main Menu");
         System.out.println("1) Go To Camp Menu");
-        System.out.println("2) Go to Enquiries Menu");
-        System.out.println("3) Go to Suggestions Menu");
+        System.out.println("2) Go To Enquiry Menu");
+        System.out.println("3) Go To Suggestions Menu");
         System.out.println("4) Change Password");
         System.out.println("5) Log out");
         System.out.println("0) Exit Application");

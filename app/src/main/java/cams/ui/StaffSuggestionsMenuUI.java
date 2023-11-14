@@ -17,7 +17,7 @@ public class StaffSuggestionsMenuUI extends BaseUI{
         System.out.println("3) Return to Staff Menu");
         System.out.println("0) Exit Application");
         printBreaks();
-        int choice = doMenuChoice(10, 0);
+        int choice = doMenuChoice(3, 0);
         switch (choice) {
             case 1:
                 ViewAllSuggestions();

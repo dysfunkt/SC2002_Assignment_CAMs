@@ -139,7 +139,7 @@ public class MainApp {
 
     public static void getGreeting() {
         System.out.println("Welcome to Camp Management System!");
-        System.out.println("Todays date: " + todayDate);
+        System.out.println("Today's date: " + todayDate);
     }
 
     public static Date getTodayDate() {

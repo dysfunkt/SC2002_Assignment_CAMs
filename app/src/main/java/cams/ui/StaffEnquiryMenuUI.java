@@ -13,11 +13,11 @@ public class StaffEnquiryMenuUI extends BaseUI{
     protected int generateMenuScreen() {
         printHeader("Staff Enquiry Menu");
         System.out.println("1) View All Enquiries");
-        System.out.println("2) Reply to an Enquiry");
+        System.out.println("2) Reply To An Enquiry");
         System.out.println("3) Return to Staff Menu");
         System.out.println("0) Exit Application");
         printBreaks();
-        int choice = doMenuChoice(10, 0);
+        int choice = doMenuChoice(4, 0);
         switch (choice) {
             case 1:
                 viewAllEnquiries();

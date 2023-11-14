@@ -22,7 +22,7 @@ public class StudentCampMenuUI extends BaseUI{
         System.out.println("2) Register For Camp");
         System.out.println("3) Withdraw From Camp"); 
         System.out.println("4) View Registered Camps");
-        System.out.println("5) Back to Student Menu");
+        System.out.println("5) Return to Student Menu");
         System.out.println("0) Exit Application");
         printBreaks();
 
@@ -36,10 +36,10 @@ public class StudentCampMenuUI extends BaseUI{
                 if(registerForCamp()) return -1;
                 break;
             case 3:
-                studentWithdrawFromCamp();
+                withdrawFromCamp();
                 break;
             case 4:
-                studentRegisteredCamps();
+                viewRegisteredCamps();
                 break;
             case 5:
                 System.out.println("Switching back to Student Menu.");
@@ -214,7 +214,7 @@ public class StudentCampMenuUI extends BaseUI{
         return false;
     }
 
-    private void studentWithdrawFromCamp() {
+    private void withdrawFromCamp() {
         System.out.println("=== Your Registered Camps ===");
     
         // Display camps the student is registered for with numbers
@@ -265,7 +265,7 @@ public class StudentCampMenuUI extends BaseUI{
         return null;
     }
 
-    private void studentRegisteredCamps() {
+    private void viewRegisteredCamps() {
         System.out.println("=== Your Registered Camps ===");
     
         // Get the current student
@@ -295,5 +295,4 @@ public class StudentCampMenuUI extends BaseUI{
             }
         }
     }
-
 }
