@@ -25,6 +25,7 @@ public class UniqueIDCSVHelper extends CSVBaseHelper{
         if (!FileIOHelper.exists(this.uniqueIDCsv)) return new UniqueID();
         BufferedReader csvFile = FileIOHelper.getFileBufferedReader(this.uniqueIDCsv);
         List<String[]> csvLines = readAll((csvFile), 1);
+        if (csvLines.size()==0) return new UniqueID();
         UniqueID uniqueID = new UniqueID(csvLines.get(0));
         return uniqueID;
     }
