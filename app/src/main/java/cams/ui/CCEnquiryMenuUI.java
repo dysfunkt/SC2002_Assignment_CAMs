@@ -3,8 +3,9 @@ package cams.ui;
 public class CCEnquiryMenuUI extends BaseUI{
     protected int generateMenuScreen() {
         printHeader("Camp Committee Enquiry Menu");
-        System.out.println("1) Submit Enquiries");
+        System.out.println("1) Submit An Enquiry");
         System.out.println("2) View Enquiries");
+        System.out.println("3) Delete An Enquiry");
         System.out.println("3) Return to Camp Committee Menu");
         System.out.println("0) Exit Application");
         printBreaks();

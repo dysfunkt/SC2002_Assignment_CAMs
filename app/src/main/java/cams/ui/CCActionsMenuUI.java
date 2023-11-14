@@ -3,9 +3,9 @@ package cams.ui;
 public class CCActionsMenuUI extends BaseUI{
     protected int generateMenuScreen() {
         printHeader("Camp Committee Actions Menu");
-        System.out.println("1) View Camp Details"); //Details of the camp they have registered for
+        System.out.println("1) View Registered Camp Details"); //Details of the camp they have registered for
         System.out.println("2) View Enquiries"); 
-        System.out.println("3) Reply to Enquiry");
+        System.out.println("3) Reply To An Enquiry");
         System.out.println("4) Submit a Suggestion");
         System.out.println("5) View My Suggestions");
         System.out.println("6) Edit a Suggestion");

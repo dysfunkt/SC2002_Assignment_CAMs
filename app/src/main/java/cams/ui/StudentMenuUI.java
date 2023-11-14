@@ -9,7 +9,7 @@ public class StudentMenuUI extends BaseUI{
         if (((Student)MainApp.currentUser).isCampCommittee()) return -1;
         printHeader("Student Main Menu");
         System.out.println("1) Go To Camp Menu");
-        System.out.println("2) Go to Enquiries Menu");
+        System.out.println("2) Go To Enquiry Menu");
         System.out.println("3) Change Password"); 
         System.out.println("4) Log out");
         System.out.println("0) Exit Application");

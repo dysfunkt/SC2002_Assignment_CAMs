@@ -8,14 +8,14 @@ public class CCMenuUI extends BaseUI {
     protected int generateMenuScreen() {
         printHeader("Camp Committee Main Menu");
         System.out.println("1) Go To Camp Menu");
-        System.out.println("2) Go to Enquiries Menu");
-        System.out.println("3) Go to Committee Actions Menu");
+        System.out.println("2) Go To Enquiry Menu");
+        System.out.println("3) Go To Committee Actions Menu");
         System.out.println("4) Change Password");
         System.out.println("5) Log out");
         System.out.println("0) Exit Application");
         printBreaks();
 
-        int choice = doMenuChoice(7, 0);
+        int choice = doMenuChoice(5, 0);
         switch (choice) {
             case 1:
                 if (new CCCampMenuUI().startMainMenu()) return 1;
