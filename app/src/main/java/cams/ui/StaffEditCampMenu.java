@@ -32,6 +32,7 @@ public class StaffEditCampMenu extends BaseUI{
         System.out.println("0) Cancel Edit");
         printBreaks();
         int choice = doMenuChoice(11, 0);
+        input.nextLine();
         switch (choice) {
             case 1:
                 String campName;
@@ -107,7 +108,7 @@ public class StaffEditCampMenu extends BaseUI{
                 if (!visibility) {
                     if (campToEdit.getListOfAttendees().size() != 0 || campToEdit.getListOfCampCommittees().size() != 0) {
                         System.out.println("You cannot make a camp with registered participants not visible.");
-                        System.out.println("Cancelling edit. Retuning to Camp Menu...");
+                        System.out.println("Cancelling edit. Returning to Camp Menu...");
                         return -1;
                     }
                 }
@@ -115,7 +116,7 @@ public class StaffEditCampMenu extends BaseUI{
                 System.out.println("Camp Visibility edited successfully.");
                 return -1;
             case 0:
-                System.out.println("Cancelling edit. Retuning to Camp Menu...");
+                System.out.println("Cancelling edit. Returning to Camp Menu...");
                 return -1;
             default:
                 throw new MenuChoiceInvalidException("Staff Edit Camps Menu");
