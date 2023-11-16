@@ -29,7 +29,7 @@ public class StaffEditCampMenu extends BaseUI{
         System.out.println("8) Total Number of Committee Slots");
         System.out.println("9) Camp Description");
         System.out.println("10) Visibility");
-        System.out.println("0) Cancel edit");
+        System.out.println("0) Cancel Edit");
         printBreaks();
         int choice = doMenuChoice(11, 0);
         input.nextLine();
