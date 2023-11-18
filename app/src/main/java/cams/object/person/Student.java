@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import cams.util.CSVStringHelper;
 
+
 public class Student extends User{
 
     private ArrayList<Integer> joinedCamps;

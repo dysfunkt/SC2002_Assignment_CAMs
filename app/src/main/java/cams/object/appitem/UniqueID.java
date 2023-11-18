@@ -39,6 +39,7 @@ public class UniqueID {
     public int getNextEnquiryID() {
         return enquiryID + 1;
     }
+
     public void incrementEnquiryID() {
         this.enquiryID++;
     }
@@ -46,9 +47,11 @@ public class UniqueID {
     public int getNextSuggestionID() {
         return suggestionID + 1;
     }
+
     public void incrementSuggestionID() {
         this.suggestionID++;
     }
+    
     public int getSuggestionId() {
         lastAssignedSuggestionId++;
         return lastAssignedSuggestionId;

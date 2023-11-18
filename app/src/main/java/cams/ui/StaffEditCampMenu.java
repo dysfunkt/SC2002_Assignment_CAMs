@@ -122,5 +122,4 @@ public class StaffEditCampMenu extends BaseUI{
                 throw new MenuChoiceInvalidException("Staff Edit Camps Menu");
         }
     }
-
 }

@@ -20,10 +20,10 @@ public class StaffSuggestionsMenuUI extends BaseUI{
         int choice = doMenuChoice(3, 0);
         switch (choice) {
             case 1:
-                ViewAllSuggestions();
+                viewAllSuggestions();
                 break;
             case 2:
-                ApproveSuggestion();
+                approveSuggestion();
                 break;
             case 3:
                 System.out.println("Switching back to Staff Menu.");
@@ -36,7 +36,9 @@ public class StaffSuggestionsMenuUI extends BaseUI{
         }
         return 0;
     }
-    public void ViewAllSuggestions() {
+
+
+    public void viewAllSuggestions() {
         printHeader("View All Suggestions");
 
         // Assuming 'suggestions' is a list containing all Suggestion objects
@@ -53,7 +55,9 @@ public class StaffSuggestionsMenuUI extends BaseUI{
         }
         printBreaks();
     }
-    public void ApproveSuggestion() {
+
+
+    public void approveSuggestion() {
     printHeader("Approve Suggestion");
     System.out.print("Enter Suggestion ID to approve: ");
     int suggestionIDToApprove = input.nextInt();
@@ -83,7 +87,7 @@ public class StaffSuggestionsMenuUI extends BaseUI{
     }
 
     printBreaks();
-}
+    }
 }
 
 

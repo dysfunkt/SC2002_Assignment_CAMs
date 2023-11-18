@@ -1,12 +1,15 @@
 package cams.ui;
 
 import cams.MainApp;
+import cams.object.appitem.Camp;
 import cams.object.appitem.Enquiry;
 import cams.object.person.Student;
 import cams.util.ScannerHelper;
 import java.util.Scanner;
 
 public class StudentEnquiryMenuUI extends BaseUI{
+    private Scanner input = ScannerHelper.getScannerInput();
+    
     protected int generateMenuScreen() {
         printHeader("Student Enquiry Menu");
         System.out.println("1) Submit An Enquiry");
@@ -40,33 +43,49 @@ public class StudentEnquiryMenuUI extends BaseUI{
         return 0;
     }
 
+
     private void studentSubmitEnquiry() {
         printHeader("Submit Enquiry");
     
-        // Get the current student
+        // Get current student
         Student currentStudent = (Student) MainApp.currentUser;
     
-        // Use the standard Scanner class to get the enquiry message from the user
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter your enquiry message: ");
-        String enquiryMessage = scanner.nextLine();
+        // Display only the camps that the student has registered for
+        System.out.println("Available Camps: ");
+        for (int campID : currentStudent.getJoinedCamps()) {
+            Camp camp = MainApp.camps.stream().filter(c -> c.getCampID() == campID).findFirst().orElse(null);
+            if (camp != null) {
+                System.out.println("Camp ID: " + camp.getCampID() + ", Camp Name: " + camp.getCampName());
+            }
+        }
     
-        // Increment the enquiryID using UniqueID class
-        int newEnquiryID = MainApp.uniqueID.getNextEnquiryID();
-        MainApp.uniqueID.incrementEnquiryID();
+        // Get the Camp ID for which the student wants to submit an enquiry
+        int selectedCampID = ScannerHelper.getIntegerInput("Enter the Camp ID for which you want to submit an enquiry: ");
     
-        // Create a new Enquiry object
-        Enquiry newEnquiry = new Enquiry(newEnquiryID, 0, currentStudent.getUserID(), enquiryMessage);
+        // Check if the student is registered for the specified camp
+        if (currentStudent.getJoinedCamps().contains(selectedCampID)) {
+            System.out.print("Enter your enquiry message: ");
+            String enquiryMessage = input.nextLine();
     
-        // Add the new enquiry to the list of enquiries
-        MainApp.enquiries.add(newEnquiry);
+            // Increment the enquiryID using UniqueID class
+            int newEnquiryID = MainApp.uniqueID.getNextEnquiryID();
+            MainApp.uniqueID.incrementEnquiryID();
     
-        // Print out the new enquiryID
-        System.out.println("Enquiry submitted successfully. Your Enquiry ID is: " + newEnquiryID);
+            // Create a new Enquiry object
+            Enquiry newEnquiry = new Enquiry(newEnquiryID, selectedCampID, currentStudent.getUserID(), enquiryMessage);
+    
+            // Add the new enquiry to the list of enquiries
+            MainApp.enquiries.add(newEnquiry);
+    
+            // Print out the new enquiryID
+            System.out.println("Enquiry submitted successfully. Your Enquiry ID is: " + newEnquiryID);
+        } else {
+            System.out.println("You are not registered for the specified camp.");
+        }
+    
         printBreaks();
     }
     
-
 
     private void studentViewEnquiries() {
         printHeader("View Enquiries");
@@ -95,6 +114,7 @@ public class StudentEnquiryMenuUI extends BaseUI{
     
         printBreaks();
         } 
+
 
     private void studentDeleteEnquiries() {
         // Get the current student

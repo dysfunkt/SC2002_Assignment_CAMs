@@ -60,6 +60,7 @@ public class StaffCampMenuUI extends BaseUI{
         return 0;
     }
 
+
     private void createCamp() {
         int campID;
         String campName;
@@ -86,7 +87,7 @@ public class StaffCampMenuUI extends BaseUI{
 
         startDate = ScannerHelper.getDateInput("Enter the date (yyyy-MM-DD) that the camp starts (terminate with 0): ");
 
-        endDate = ScannerHelper.getDateInput("Enter the date (yyyy-MM-DD) that the camp starts (terminate with 0): ");
+        endDate = ScannerHelper.getDateInput("Enter the date (yyyy-MM-DD) that the camp ends (terminate with 0): ");
 
         regCloseDate = ScannerHelper.getDateInput("Enter the date (yyyy-MM-DD) that the registration ends (terminate with 0): ");
 
@@ -121,6 +122,7 @@ public class StaffCampMenuUI extends BaseUI{
         System.out.println("Camp created successfully.");
     }
 
+
     private void editCamp(){
         ArrayList<Camp> campList = ((Staff)MainApp.currentUser).getCampsInCharge();
         int campNo = ScannerHelper.getIntegerInput("Enter the ID of the camp to edit (Enter 0 to cancel): ", IDHelper.extractCampIDs(campList),"Enter one of the IDs!");
@@ -132,6 +134,7 @@ public class StaffCampMenuUI extends BaseUI{
         if (chosenCamp == null) return;
         new StaffEditCampMenu(chosenCamp).startMainMenu();
     }
+
 
     private void deleteCamp(){
         ArrayList<Camp> campList = ((Staff)MainApp.currentUser).getCampsInCharge();
@@ -155,6 +158,7 @@ public class StaffCampMenuUI extends BaseUI{
         MainApp.camps.remove(chosenCamp);
         System.out.println("Camp deleted.");
     }
+
 
     private void viewAllCamps() {
         printHeader("View Camps");
@@ -211,6 +215,7 @@ public class StaffCampMenuUI extends BaseUI{
         printListOfCamps(campsToDisplay);
     }
 
+
     private void viewYourCamps() {
         ArrayList<Camp> campsInCharge = ((Staff)MainApp.currentUser).getCampsInCharge();
 
@@ -218,6 +223,7 @@ public class StaffCampMenuUI extends BaseUI{
         printBreaks();
         printListOfCamps(campsInCharge);
     }
+
 
     private void generatePerformanceReport(){
         ArrayList<Camp> campsInCharge = ((Staff)MainApp.currentUser).getCampsInCharge();
@@ -241,6 +247,7 @@ public class StaffCampMenuUI extends BaseUI{
         //}
     }
     
+
     private void printListOfCamps(ArrayList<Camp> list) {
         Collections.sort(list, Comparator.comparing(Camp::getCampName));
         String formatTemplate = "%-2s| %-10s| %-11s| %-11s| %-16s| %-8s| %-12s| %-16s| %-16s| %s";

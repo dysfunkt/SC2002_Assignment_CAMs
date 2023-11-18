@@ -37,9 +37,10 @@ public class StaffEnquiryMenuUI extends BaseUI{
         return 0;
     }
 
+
     public void viewAllEnquiries() {
         printHeader("View All Enquiries");
-        // Assuming 'enquiries' is a list containing all Enquiry objects
+   
         for (Enquiry enquiry : MainApp.enquiries) {
             // Display relevant information about each enquiry
             if (((Staff)MainApp.currentUser).getCampsInCharge().stream().anyMatch(camp -> camp.getCampID() == enquiry.getCampID())){
@@ -55,11 +56,13 @@ public class StaffEnquiryMenuUI extends BaseUI{
         }
         printBreaks();
     }
+
+
     public void replyEnquiry() {
         printHeader("Reply to Enquiry");
         System.out.print("Enter Enquiry ID to reply: ");
         int enquiryIDToReply = input.nextInt();
-        input.nextLine(); // Consume the newline character
+        input.nextLine(); 
     
         // Find the Enquiry with the given ID
         Enquiry selectedEnquiry = null;
@@ -85,7 +88,6 @@ public class StaffEnquiryMenuUI extends BaseUI{
         } else {
             System.out.println("Enquiry with ID " + enquiryIDToReply + " not found.");
         }
-    
         printBreaks();
     }
 }
