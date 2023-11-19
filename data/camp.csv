@@ -1,2 +1,3 @@
 CampID|||CampName|||StartDate|||EndDate|||RegistrationCloseDate|||UserGroup|||CampLocation|||CampTotalSlots|||CampCommitteeSlots|||CampDescription|||staffInCharge|||listOfAttendees|||ListOfCampCommittees|||Leavers|||Visibility
-1|||hi|||2023-11-11|||2023-11-11|||2023-11-11|||ADM|||NORTHSPINE|||10|||10|||hi|||OURIN||||||||||||true
+1|||ADM Orientation|||2023-12-25|||2023-12-26|||2023-12-10|||ADM|||NORTHSPINE|||10|||3|||Orientation for ADM|||OURIN|||KOH1|||DON84||||||true
+2|||NTU Orientation|||2023-12-26|||2023-12-27|||2023-12-10|||NTU|||SOUTHSPINE|||10|||3|||Orientation for NTU|||OURIN||||||||||||true

@@ -77,4 +77,8 @@ public class Student extends User{
     public ArrayList<Integer> getJoinedCamps() {
         return joinedCamps;
     }
+
+    public int getCampIDCommittingFor() {
+        return campIDCommittingfor;
+    }
 }

@@ -26,6 +26,30 @@ public class IDHelper {
         return campIDs;
     }
 
+    public static ArrayList<Integer> extractSuggestionIDs(int campID) {
+        ArrayList<Integer> suggestionIDs = new ArrayList<>();
+
+        for (Suggestion suggestion: MainApp.suggestions) {
+            if(suggestion.getCampID() == campID) {
+                suggestionIDs.add(suggestion.getSuggestionID());
+            }
+        }
+
+        return suggestionIDs;
+    }
+
+    public static ArrayList<Integer> extractEnquiryIDs(int campID) {
+        ArrayList<Integer> enquiryIDs = new ArrayList<>();
+
+        for (Enquiry enquiry: MainApp.enquiries) {
+            if(enquiry.getCampID() == campID) {
+                enquiryIDs.add(enquiry.getEnquiryID());
+            }
+        }
+
+        return enquiryIDs;
+    }
+
     public static Enquiry getEnquiryFromID(int ID) {
         for (Enquiry enquiry : MainApp.enquiries) {
             if (enquiry.getEnquiryID() == ID) {
@@ -48,7 +72,7 @@ public class IDHelper {
 
     public static Student getStudentFromUserID(String userID) {
         for (Student student : MainApp.students) {
-            if (student.getUserID() == userID) {
+            if (student.getUserID().equals(userID)) {
                 return student;
             }
         }
