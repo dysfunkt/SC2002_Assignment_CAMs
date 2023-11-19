@@ -244,7 +244,7 @@ public class StaffCampMenuUI extends BaseUI{
 
     private void printListOfCamps(ArrayList<Camp> list) {
         Collections.sort(list, Comparator.comparing(Camp::getCampName));
-        String formatTemplate = "%-2s| %-10s| %-11s| %-11s| %-16s| %-8s| %-12s| %-16s| %-16s| %s";
+        String formatTemplate = "%-3s| %-20s| %-11s| %-11s| %-16s| %-8s| %-12s| %-16s| %-16s| %s";
         if (list.size()==0) {
             System.out.println("No Camps to Display!");
             return;

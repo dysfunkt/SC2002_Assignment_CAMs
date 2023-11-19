@@ -1,18 +1,10 @@
 package cams.ui;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
 import java.util.Scanner;
 
 import cams.util.ScannerHelper;
-import cams.MainApp;
 import cams.object.appitem.*;
-import cams.object.person.*;
-import cams.util.CSVStringHelper;
-import cams.util.IDHelper;
 import cams.util.ReportIOHelper;
 
 public class StaffReportMenuUI extends BaseUI{
