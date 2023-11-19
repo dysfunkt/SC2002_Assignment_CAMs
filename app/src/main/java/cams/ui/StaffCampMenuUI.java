@@ -46,7 +46,7 @@ public class StaffCampMenuUI extends BaseUI{
                 viewYourCamps();
                 break;
             case 6:
-                generatePerformanceReport();
+                generateReport();
                 break;
             case 7:
                 System.out.println("Switching back to Staff Menu.");
@@ -124,6 +124,7 @@ public class StaffCampMenuUI extends BaseUI{
 
 
     private void editCamp(){
+        viewYourCamps();
         ArrayList<Camp> campList = ((Staff)MainApp.currentUser).getCampsInCharge();
         int campNo = ScannerHelper.getIntegerInput("Enter the ID of the camp to edit (Enter 0 to cancel): ", IDHelper.extractCampIDs(campList),"Enter one of the IDs!");
         if (campNo == 0) {
@@ -132,11 +133,12 @@ public class StaffCampMenuUI extends BaseUI{
         }
         Camp chosenCamp = IDHelper.getCampFromID(campNo);
         if (chosenCamp == null) return;
-        new StaffEditCampMenu(chosenCamp).startMainMenu();
+        new StaffEditCampMenuUI(chosenCamp).startMainMenu();
     }
 
 
     private void deleteCamp(){
+        viewYourCamps();
         ArrayList<Camp> campList = ((Staff)MainApp.currentUser).getCampsInCharge();
         int campNo = ScannerHelper.getIntegerInput("Enter the ID of the camp to delete (Enter 0 to cancel): ", IDHelper.extractCampIDs(campList),"Enter one of the IDs!");
         if (campNo == 0) {
@@ -209,7 +211,7 @@ public class StaffCampMenuUI extends BaseUI{
             case 0:
                 return;
             default:
-                break;
+                throw new MenuChoiceInvalidException("Staff Camps Menu");
         }
         printBreaks();
         printListOfCamps(campsToDisplay);
@@ -225,26 +227,18 @@ public class StaffCampMenuUI extends BaseUI{
     }
 
 
-    private void generatePerformanceReport(){
-        ArrayList<Camp> campsInCharge = ((Staff)MainApp.currentUser).getCampsInCharge();
-
-        if (campsInCharge == null || campsInCharge.isEmpty()) {
-            System.out.println("No camps available to generate performance report.");
+    private void generateReport(){
+        viewYourCamps();
+        ArrayList<Camp> campList = ((Staff)MainApp.currentUser).getCampsInCharge();
+        int campNo = ScannerHelper.getIntegerInput("Enter the ID of the camp to generate report (Enter 0 to cancel): ", IDHelper.extractCampIDs(campList),"Enter one of the IDs!");
+        if (campNo == 0) {
+            System.out.println("Cancelling print. Returning to Camp Menu...");
             return;
         }
+        Camp chosenCamp = IDHelper.getCampFromID(campNo);
 
-        int campNo = doMenuChoice(campsInCharge.size(), 0);
-        Camp chosenCamp = campsInCharge.get(campNo - 1);
-
-        // Using methods in the Camp class to get the list of attendees and committee members
-        //ArrayList<Student> committeeMembers = chosenCamp.getListOfCampCommittees(); //The camp function should store objects
-
-
-        // Print the performance report for camp committee members
-
-        //for (int i=0;i<committeeMembers.size();i++){
-        //    System.out.printf("Camp Committee Name: %s Points: %d", committeeMembers[i], committeeMembers[i].getPoints());
-        //}
+        new StaffReportMenuUI(chosenCamp).startMainMenu();
+        
     }
     
 

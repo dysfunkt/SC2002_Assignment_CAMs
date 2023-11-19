@@ -7,12 +7,10 @@ import java.util.Date;
 import java.util.Scanner;
 
 import cams.MainApp;
-import cams.object.appitem.Camp;
-import cams.object.appitem.Enquiry;
-import cams.object.appitem.Suggestion;
-import cams.object.appitem.eLocation;
+import cams.object.appitem.*;
 import cams.object.person.*;
 import cams.util.CSVStringHelper;
+import cams.util.IDHelper;
 import cams.util.ScannerHelper;
 
 public class CCActionsMenuUI extends BaseUI{
@@ -64,7 +62,6 @@ public class CCActionsMenuUI extends BaseUI{
         }
         return 0;
     }
-
 
     private void viewCampDetails() {
         printHeader("View Camps");
@@ -148,7 +145,6 @@ public class CCActionsMenuUI extends BaseUI{
         printListOfCamps(campsToDisplay);
     }
 
-
     private void printListOfCamps(ArrayList<Camp> list) {
         Collections.sort(list, Comparator.comparing(Camp::getCampName));
         String formatTemplate = "%-2s| %-10s| %-11s| %-11s| %-16s| %-8s| %-12s| %-16s| %-16s| %s";
@@ -161,23 +157,20 @@ public class CCActionsMenuUI extends BaseUI{
             System.out.println(String.format(formatTemplate, camp.getCampID(), camp.getCampName(), CSVStringHelper.DateToCSVString(camp.getStartDate()), CSVStringHelper.DateToCSVString(camp.getEndDate()), CSVStringHelper.DateToCSVString(camp.getRegCloseDate()), camp.getUserGroup() + "", camp.getCampLocation() + "", camp.remainingAttendeeSlots() + "", camp.remainingCommitteeSlots()+"", camp.getCampDescription()));
         }
     }
-                
-           
+
     public void viewEnquiries() {
         printHeader("View Enquiries");
         
         for (Enquiry enquiry : MainApp.enquiries) {
             
             // Display relevant information about each enquiry only for Camp Committee's camps
-            if (((Student) MainApp.currentUser).getJoinedCamps().contains(enquiry.getCampID())) {
+            if (((Student) MainApp.currentUser).getJoinedCamps().contains(enquiry.getCampID()) && !enquiry.isDeleted()) {
                 System.out.println("Enquiry ID: " + enquiry.getEnquiryID());
                 System.out.println("Camp ID: " + enquiry.getCampID());
                 System.out.println("Created By: " + enquiry.getCreatedBy());
                 System.out.println("Enquiry Message: " + enquiry.getEnquiryMessage());
                 System.out.println("Processed: " + enquiry.isProcessed());
-                System.out.println("Deleted: " + enquiry.isDeleted());
-                System.out.println("Reply Viewed: " + enquiry.isReplyViewed());
-                System.out.println("-----------------------------");
+                System.out.println("");
             }
         }
         printBreaks();
@@ -187,17 +180,10 @@ public class CCActionsMenuUI extends BaseUI{
     public void replyEnquiry() {
         printHeader("Reply to An Enquiry");
         System.out.print("Enter Enquiry ID to reply: ");
-        int enquiryIDToReply = input.nextInt();
-        input.nextLine(); // Consume the newline character
+        int enquiryIDToReply = ScannerHelper.getIntegerInput("Enter EnquiryID: ", IDHelper.extractEnquiryIDs(((Student)MainApp.currentUser).getCampIDCommittingFor()), "Enter one of the IDs!");
     
         // Find the Enquiry with the given ID
-        Enquiry selectedEnquiry = null;
-        for (Enquiry enquiry : MainApp.enquiries) {
-            if (enquiry.getEnquiryID() == enquiryIDToReply) {
-                selectedEnquiry = enquiry;
-                break;
-            }
-        }
+        Enquiry selectedEnquiry = IDHelper.getEnquiryFromID(enquiryIDToReply);
     
         // Check if the enquiry was found
         if (selectedEnquiry != null) {
@@ -207,6 +193,7 @@ public class CCActionsMenuUI extends BaseUI{
     
                 // Set the reply and mark the enquiry as processed
                 selectedEnquiry.reply(replyMessage);
+                ((Student)MainApp.currentUser).increasePoints();
                 System.out.println("Reply sent successfully!");
             } else {
                 System.out.println("Enquiry with ID " + enquiryIDToReply + " has already been processed.");
@@ -214,62 +201,40 @@ public class CCActionsMenuUI extends BaseUI{
         } else {
             System.out.println("Enquiry with ID " + enquiryIDToReply + " not found.");
         }
-    
-        printBreaks();
     }
 
 
     public void submitSuggestion() {
         printHeader("Submit a Suggestion");
 
-        System.out.println("Available Camps: ");
-        for (Camp camp : MainApp.camps) {
-            System.out.println("Camp ID: " + camp.getCampID() + ", Camp Name: " + camp.getCampName());
-        }
+        System.out.print("Enter your suggestion: ");
+        String suggestionMessage = input.nextLine();
 
-        System.out.print("Enter the Camp ID for which you want to submit a suggestion: ");
-        int campID = input.nextInt();
-        input.nextLine(); 
+        int newSuggestionID = MainApp.uniqueID.getNextSuggestionID();
+        MainApp.uniqueID.incrementSuggestionID();
+        
+        Suggestion newSuggestion = new Suggestion(newSuggestionID, ((Student)MainApp.currentUser).getCampIDCommittingFor(),
+                MainApp.currentUser.getUserID(), suggestionMessage);
 
-        // Check if the user is a Camp Committee member for the specified camp
-        if (((Student) MainApp.currentUser).isCampCommittee() &&
-            ((Student) MainApp.currentUser).getJoinedCamps().contains(campID)) {
+        MainApp.suggestions.add(newSuggestion);
 
-            System.out.print("Enter your suggestion: ");
-            String suggestionMessage = input.nextLine();
+        System.out.println("Suggestion submitted successfully!");
 
-            int newSuggestionID = MainApp.uniqueID.getNextSuggestionID();
-            
-            Suggestion newSuggestion = new Suggestion(newSuggestionID, campID,
-                    MainApp.currentUser.getUserID(), suggestionMessage);
-
-            // Add the new suggestion to the list of suggestions
-            MainApp.suggestions.add(newSuggestion);
-
-            // Inform the user about the successful submission
-            System.out.println("Suggestion submitted successfully!");
-        } else {
-            System.out.println("You are not a Camp Committee member for the specified camp.");
-        }
-
-        printBreaks();
     }
 
 
     public void viewMySuggestions() {
         printHeader("View My Suggestions");
     
-        // Assuming 'suggestions' is a list containing all Suggestion objects
         for (Suggestion suggestion : MainApp.suggestions) {
             // Display relevant information about each suggestion only for the current user
-            if (suggestion.getCreatedBy().equals(MainApp.currentUser.getUserID())) {
+            if (suggestion.getCreatedBy().equals(MainApp.currentUser.getUserID()) && !suggestion.isDeleted()) {
                 System.out.println("Suggestion ID: " + suggestion.getSuggestionID());
                 System.out.println("Camp ID: " + suggestion.getCampID());
                 System.out.println("Suggestion Message: " + suggestion.getSuggestionMessage());
                 System.out.println("Processed: " + suggestion.isProcessed());
-                System.out.println("Deleted: " + suggestion.isDeleted());
                 System.out.println("Approved: " + suggestion.isApproved());
-                System.out.println("-----------------------------");
+                System.out.println("");
             }
         }
         printBreaks();

@@ -9,16 +9,17 @@ import cams.object.appitem.eLocation;
 import cams.object.person.eFaculty;
 import cams.util.ScannerHelper;
 
-public class StaffEditCampMenu extends BaseUI{
+public class StaffEditCampMenuUI extends BaseUI{
     private Camp campToEdit;
-    public StaffEditCampMenu(Camp campToEdit){
+    protected StaffEditCampMenuUI(Camp campToEdit){
         this.campToEdit = campToEdit;
     }
 
     private Scanner input = ScannerHelper.getScannerInput();
 
     protected int generateMenuScreen() {
-        printHeader("These are the options to edit: ");
+        printHeader("Camp Edit Menu");
+        System.out.println("Choose detail to edit: ");
         System.out.println("1) Camp Name");
         System.out.println("2) Start Date");
         System.out.println("3) End Date");
