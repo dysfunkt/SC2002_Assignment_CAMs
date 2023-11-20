@@ -24,6 +24,7 @@ public class StaffReportMenuUI extends BaseUI{
         System.out.println("2) Camp Commitee Performance Report");
         System.out.println("3) Students' Enquiry Report");
         System.out.println("0) Cancel");
+        printBreaks();
         int choice = doMenuChoice(4, 0);
         input.nextLine();
         switch (choice) {
