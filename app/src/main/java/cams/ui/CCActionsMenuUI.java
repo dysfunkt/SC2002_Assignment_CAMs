@@ -62,12 +62,14 @@ public class CCActionsMenuUI extends BaseUI{
         return 0;
     }
 
+    
     private void viewCampDetails() {
         Camp camp = IDHelper.getCampFromID(((Student)MainApp.currentUser).getCampIDCommittingFor());
         ArrayList<Camp> list = new ArrayList<>();
         list.add(camp);
         printListOfCamps(list);
     }
+
 
     private void printListOfCamps(ArrayList<Camp> list) {
         Collections.sort(list, Comparator.comparing(Camp::getCampName));
@@ -81,6 +83,7 @@ public class CCActionsMenuUI extends BaseUI{
             System.out.println(String.format(formatTemplate, camp.getCampID(), camp.getCampName(), CSVStringHelper.DateToCSVString(camp.getStartDate()), CSVStringHelper.DateToCSVString(camp.getEndDate()), CSVStringHelper.DateToCSVString(camp.getRegCloseDate()), camp.getUserGroup() + "", camp.getCampLocation() + "", camp.remainingAttendeeSlots() + "", camp.remainingCommitteeSlots()+"", camp.getCampDescription()));
         }
     }
+
 
     public void viewEnquiries() {
         printHeader("View Enquiries");
@@ -131,8 +134,16 @@ public class CCActionsMenuUI extends BaseUI{
     public void submitSuggestion() {
         printHeader("Submit a Suggestion");
 
-        System.out.print("Enter your suggestion: ");
-        String suggestionMessage = input.nextLine();
+        Student currentStudent = (Student) MainApp.currentUser;
+
+        // Get the Camp ID for which the student wants to submit an suggestion
+        int selectedCampID = ScannerHelper.getIntegerInput("Enter the Camp ID for which you want to submit a suggestion: ");
+    
+        // Check if the student is registered for the specified camp
+        Camp camp = IDHelper.getCampFromID(((Student)MainApp.currentUser).getCampIDCommittingFor());
+        if (currentStudent.getJoinedCamps().contains(selectedCampID) && camp.isVisibility()) {
+            System.out.print("Enter your suggestion message: ");
+            String suggestionMessage = input.nextLine();
 
         int newSuggestionID = MainApp.uniqueID.getNextSuggestionID();
         MainApp.uniqueID.incrementSuggestionID();
@@ -143,7 +154,8 @@ public class CCActionsMenuUI extends BaseUI{
         MainApp.suggestions.add(newSuggestion);
 
         System.out.println("Suggestion submitted successfully!");
-
+        } else 
+        System.out.println("You are not registered for the specific camp.");
     }
 
 

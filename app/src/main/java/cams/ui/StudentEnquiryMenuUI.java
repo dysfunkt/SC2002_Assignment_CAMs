@@ -4,6 +4,7 @@ import cams.MainApp;
 import cams.object.appitem.Camp;
 import cams.object.appitem.Enquiry;
 import cams.object.person.Student;
+import cams.object.person.eFaculty;
 import cams.util.ScannerHelper;
 import java.util.Scanner;
 
@@ -50,22 +51,31 @@ public class StudentEnquiryMenuUI extends BaseUI{
         // Get current student
         Student currentStudent = (Student) MainApp.currentUser;
     
-        // Display only the camps that the student has registered for
-        System.out.println("Available Camps: ");
-        for (int campID : currentStudent.getJoinedCamps()) {
-            Camp camp = MainApp.camps.stream().filter(c -> c.getCampID() == campID).findFirst().orElse(null);
-            if (camp != null) {
+        // Display the list of camps that the student can view
+        System.out.println("Select the Camp ID to submit the enquiry:");
+    
+        for (Camp camp : MainApp.camps) {
+            if (camp.getUserGroup().equals(MainApp.currentUser.getFaculty()) || camp.getUserGroup().equals(Enum.valueOf(eFaculty.class, "NTU")) && camp.isVisibility()) {
                 System.out.println("Camp ID: " + camp.getCampID() + ", Camp Name: " + camp.getCampName());
             }
         }
     
-        // Get the Camp ID for which the student wants to submit an enquiry
-        int selectedCampID = ScannerHelper.getIntegerInput("Enter the Camp ID for which you want to submit an enquiry: ");
+        // Get the selected camp ID from the user
+        int selectedCampID = ScannerHelper.getIntegerInput("Enter the Camp ID: ");
     
-        // Check if the student is registered for the specified camp
-        if (currentStudent.getJoinedCamps().contains(selectedCampID)) {
+        // Check if the selected camp ID is valid
+        boolean validCampID = false;
+        for (Camp camp : MainApp.camps) {
+            if (camp.getCampID() == selectedCampID && (camp.getUserGroup().equals(MainApp.currentUser.getFaculty()) || camp.getUserGroup().equals(Enum.valueOf(eFaculty.class, "NTU"))) && camp.isVisibility()) {
+                validCampID = true;
+                break;
+            }
+        }
+    
+        if (validCampID) {
+            Scanner scanner = new Scanner(System.in);
             System.out.print("Enter your enquiry message: ");
-            String enquiryMessage = input.nextLine();
+            String enquiryMessage = scanner.nextLine();
     
             // Increment the enquiryID using UniqueID class
             int newEnquiryID = MainApp.uniqueID.getNextEnquiryID();
@@ -79,11 +89,10 @@ public class StudentEnquiryMenuUI extends BaseUI{
     
             // Print out the new enquiryID
             System.out.println("Enquiry submitted successfully. Your Enquiry ID is: " + newEnquiryID);
+            printBreaks();
         } else {
-            System.out.println("You are not registered for the specified camp.");
+            System.out.println("Invalid Camp ID. You don't have permission to submit an enquiry for the selected camp.");
         }
-    
-        printBreaks();
     }
     
 
@@ -102,6 +111,7 @@ public class StudentEnquiryMenuUI extends BaseUI{
                 System.out.println("Enquiry Message: " + enquiry.getEnquiryMessage());
                 System.out.println("Processed: " + enquiry.isProcessed());
                 System.out.println("Reply Viewed: " + enquiry.isReplyViewed());
+                System.out.println("Reply Message: " + enquiry.viewReply());
                 printBreaks();
                 index++;
             }

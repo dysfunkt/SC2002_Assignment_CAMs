@@ -215,13 +215,14 @@ public class CCCampMenuUI extends BaseUI{
         return false;
     }
 
+    
     private void withdrawFromCamp() {
         System.out.println("=== Your Registered Camps ===");
     
         // Display camps the student is registered for with numbers
         int index = 1;
         for (Camp camp : MainApp.camps) {
-            if (camp.getListOfAttendees().contains(MainApp.currentUser.getUserID())) {
+            if (camp.getListOfAttendees().contains(MainApp.currentUser.getUserID()) || camp.getListOfCampCommittees().contains(MainApp.currentUser.getUserID())) {
                 System.out.println(index + ") " + camp.getCampName());
                 index++;
             }
@@ -241,7 +242,7 @@ public class CCCampMenuUI extends BaseUI{
             Camp selectedCamp = getRegisteredCampByNumber(selectedCampNumber);
     
             // Check if the student is registered for the camp (extra check for safety)
-            if (selectedCamp != null && selectedCamp.getListOfAttendees().contains(MainApp.currentUser.getUserID())) {
+            if (selectedCamp != null && (selectedCamp.getListOfAttendees().contains(MainApp.currentUser.getUserID()) || selectedCamp.getListOfCampCommittees().contains(MainApp.currentUser.getUserID()))) {
                 // Withdraw the student from the camp
                 selectedCamp.getListOfAttendees().remove(MainApp.currentUser.getUserID());
                 System.out.println("Withdrawal successful from " + selectedCamp.getCampName() + ".");
@@ -252,11 +253,12 @@ public class CCCampMenuUI extends BaseUI{
             System.out.println("Invalid Camp Number. Please enter a valid number.");
         }
     }
+
     
     private Camp getRegisteredCampByNumber(int number) {
         int count = 0;
         for (Camp camp : MainApp.camps) {
-            if (camp.getListOfAttendees().contains(MainApp.currentUser.getUserID())) {
+            if (camp.getListOfAttendees().contains(MainApp.currentUser.getUserID()) || camp.getListOfCampCommittees().contains(MainApp.currentUser.getUserID())) {
                 count++;
                 if (count == number) {
                     return camp;
@@ -265,6 +267,7 @@ public class CCCampMenuUI extends BaseUI{
         }
         return null;
     }
+
 
     private void viewRegisteredCamps() {
         System.out.println("=== Your Registered Camps ===");
@@ -278,7 +281,7 @@ public class CCCampMenuUI extends BaseUI{
         // Loop through all camps
         for (Camp camp : MainApp.camps) {
             // Check if the current student is in the list of attendees
-            if (camp.getListOfAttendees().contains(currentStudent.getUserID())) {
+            if (camp.getListOfAttendees().contains(currentStudent.getUserID()) || camp.getListOfCampCommittees().contains(currentStudent.getUserID())) {
                 registeredCamps.add(camp);
             }
         }
