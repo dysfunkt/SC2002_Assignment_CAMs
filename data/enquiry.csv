@@ -1,3 +1,8 @@
 EnquiryID|||CampID|||CreatedBy|||Processed|||Deleted|||EnquiryMessage|||EnquiryReply|||ReplyViewed
-2|||0|||KOH1|||false|||false|||hello||||||false
-3|||1|||KOH1|||true|||false|||there|||no|||false
+2|||0|||KOH1|||false|||false|||hello||||||true
+3|||1|||KOH1|||true|||false|||there|||no|||true
+4|||0|||DON84|||false|||false|||l||||||true
+5|||0|||DON84|||false|||false|||hello||||||true
+6|||69|||DON84|||false|||false|||l||||||true
+7|||1|||KOH1|||false|||false|||hi||||||false
+8|||2|||DON84|||false|||false|||hi||||||true
