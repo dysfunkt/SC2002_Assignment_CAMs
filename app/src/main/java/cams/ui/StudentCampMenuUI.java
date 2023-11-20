@@ -17,7 +17,7 @@ public class StudentCampMenuUI extends BaseUI{
 
     private Scanner input = ScannerHelper.getScannerInput();
     protected int generateMenuScreen() {
-        printHeader("Staff Camps Menu");
+        printHeader("Student Camps Menu");
         System.out.println("1) View Camps");
         System.out.println("2) Register For Camp");
         System.out.println("3) Withdraw From Camp"); 
@@ -134,6 +134,7 @@ public class StudentCampMenuUI extends BaseUI{
         printBreaks();
         printListOfCamps(campsToDisplay);
     }
+
 
     private void printListOfCamps(ArrayList<Camp> list) {
         Collections.sort(list, Comparator.comparing(Camp::getCampName));
@@ -277,7 +278,7 @@ public class StudentCampMenuUI extends BaseUI{
         // Loop through all camps
         for (Camp camp : MainApp.camps) {
             // Check if the current student is in the list of attendees
-            if (camp.getListOfAttendees().contains(currentStudent.getUserID())) {
+            if (camp.getListOfAttendees().contains(currentStudent.getUserID()) || camp.getListOfCampCommittees().contains(currentStudent.getUserID())) {
                 registeredCamps.add(camp);
             }
         }

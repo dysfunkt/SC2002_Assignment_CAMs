@@ -278,7 +278,7 @@ public class CCCampMenuUI extends BaseUI{
         // Loop through all camps
         for (Camp camp : MainApp.camps) {
             // Check if the current student is in the list of attendees
-            if (camp.getListOfAttendees().contains(currentStudent.getUserID())) {
+            if (camp.getListOfAttendees().contains(currentStudent.getUserID()) || camp.getListOfCampCommittees().contains(currentStudent.getUserID())) {
                 registeredCamps.add(camp);
             }
         }

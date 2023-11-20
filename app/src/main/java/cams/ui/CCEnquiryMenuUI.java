@@ -48,6 +48,7 @@ public class CCEnquiryMenuUI extends BaseUI{
         // Get current student
         Student currentStudent = (Student) MainApp.currentUser;
     
+        /* 
         // Display only the camps that the student has registered for
         System.out.println("Available Camps: ");
         for (int campID : currentStudent.getJoinedCamps()) {
@@ -56,12 +57,13 @@ public class CCEnquiryMenuUI extends BaseUI{
                 System.out.println("Camp ID: " + camp.getCampID() + ", Camp Name: " + camp.getCampName());
             }
         }
+        */
     
         // Get the Camp ID for which the student wants to submit an enquiry
         int selectedCampID = ScannerHelper.getIntegerInput("Enter the Camp ID for which you want to submit an enquiry: ");
     
         // Check if the student is registered for the specified camp
-        if (currentStudent.getJoinedCamps().contains(selectedCampID)) {
+        // if (currentStudent.getJoinedCamps().contains(selectedCampID)) {
             System.out.print("Enter your enquiry message: ");
             String enquiryMessage = input.nextLine();
     
@@ -77,9 +79,9 @@ public class CCEnquiryMenuUI extends BaseUI{
     
             // Print out the new enquiryID
             System.out.println("Enquiry submitted successfully. Your Enquiry ID is: " + newEnquiryID);
-        } else {
-            System.out.println("You are not registered for the specified camp.");
-        }
+        // } else {
+        //     System.out.println("You are not registered for the specified camp.");
+        // }
     
         printBreaks();
     }
@@ -101,6 +103,7 @@ public class CCEnquiryMenuUI extends BaseUI{
                 System.out.println("Enquiry Message: " + enquiry.getEnquiryMessage());
                 System.out.println("Processed: " + enquiry.isProcessed());
                 System.out.println("Reply Viewed: " + enquiry.isReplyViewed());
+                System.out.println("Reply Message: " + enquiry.viewReply());
                 printBreaks();
                 index++;
             }
