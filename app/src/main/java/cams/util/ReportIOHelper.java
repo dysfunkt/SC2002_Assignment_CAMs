@@ -4,7 +4,9 @@ import java.io.*;
 import java.util.List;
 import java.util.ArrayList;
 
+import cams.MainApp;
 import cams.object.appitem.Camp;
+import cams.object.appitem.Enquiry;
 
 public class ReportIOHelper extends FileIOHelper{
     private static File init() {
@@ -98,6 +100,7 @@ public class ReportIOHelper extends FileIOHelper{
             toWrite.add(formatted);
         }
         writeToTxtFile(toWrite, txtFile);
+        System.out.println("Report " + fileName + " Generated Successfully.");
     }
 
     public static void generateCampCommitteeListReport(Camp camp) throws IOException {
@@ -114,6 +117,7 @@ public class ReportIOHelper extends FileIOHelper{
             toWrite.add(formatted);
         }
         writeToTxtFile(toWrite, txtFile);
+        System.out.println("Report " + fileName + " Generated Successfully.");
     }
 
     public static void generatePerformanceReport(Camp camp) throws IOException {
@@ -130,9 +134,28 @@ public class ReportIOHelper extends FileIOHelper{
             toWrite.add(formatted);
         }
         writeToTxtFile(toWrite, txtFile);
+        System.out.println("Report " + fileName + " Generated Successfully.");
     }
 
     public static void generateStudentEnquiryReport(Camp camp) throws IOException {
-
+        String fileName = "Camp" + camp.getCampID() + "StudentEnquiryReport.txt";
+        BufferedWriter txtFile = getFileBufferedWriter(fileName);
+        ArrayList<String> toWrite = new ArrayList<>();
+        toWrite.addAll(getCampDetails(camp));
+        toWrite.add("================================================");
+        toWrite.add("Student Enquiries: ");
+        toWrite.add("");
+        for (Enquiry enquiry: MainApp.enquiries) {
+            if(enquiry.getCampID() == camp.getCampID() && !enquiry.isDeleted()) {
+                toWrite.add("Enquiry ID: " + enquiry.getEnquiryID());
+                toWrite.add("Created By: " + enquiry.getCreatedBy());
+                toWrite.add("Enquiry Message: " + enquiry.getEnquiryMessage());
+                toWrite.add("Processed: " + enquiry.isProcessed());
+                toWrite.add("Enquiry Reply: " + enquiry.viewReply());
+                toWrite.add("");
+            }
+        }
+        writeToTxtFile(toWrite, txtFile);
+        System.out.println("Report " + fileName + " Generated Successfully.");
     }
 }

@@ -8,7 +8,7 @@ public class Enquiry {
     private Boolean deleted;
     private String enquiryMessage;
     private String enquiryReply;
-    private Boolean replyViewed;
+    private Boolean replyViewed; //not in use, currently use to pad the CSV so no error while reading
 
     public Enquiry(int enquiryID, int campID, String createdBy, Boolean processed, 
                     Boolean deleted, String enquiryMessage, String enquiryReply,
@@ -119,7 +119,6 @@ public class Enquiry {
      * @return String return the enquiryReply
      */
     public String viewReply() {
-        this.replyViewed = true;
         return enquiryReply;
     }
 
