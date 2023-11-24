@@ -1,12 +1,10 @@
 package cams.boundary.staff;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 import cams.boundary.BaseUI;
 import cams.controller.report.ReportFactory;
 import cams.util.exception.MenuChoiceInvalidException;
-import cams.util.ui.ScannerHelper;
 
 public class StaffReportMenuUI extends BaseUI{
 
@@ -15,8 +13,6 @@ public class StaffReportMenuUI extends BaseUI{
     protected StaffReportMenuUI(String ID){
         this.campID = ID;
     }
-
-    private Scanner input = ScannerHelper.getScannerInput();
 
     protected int generateMenuScreen() {
         printHeader("Generate Report");

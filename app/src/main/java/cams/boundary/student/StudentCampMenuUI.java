@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
-import java.util.Scanner;
 
 import cams.boundary.BaseUI;
 import cams.boundary.modeldisplayer.ModelDisplayer;
@@ -23,7 +22,6 @@ import cams.util.ui.ScannerHelper;
 
 public class StudentCampMenuUI extends BaseUI{
 
-    private Scanner input = ScannerHelper.getScannerInput();
     protected int generateMenuScreen() {
         printHeader("Student Camps Menu");
         System.out.println("1) View Camps");
@@ -163,7 +161,8 @@ public class StudentCampMenuUI extends BaseUI{
         try {
             campList = CampRepository.getInstance().getByIDList(((Student)CurrentUser.get()).getJoinedCamps());
         } catch (ModelNotFoundException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getLocalizedMessage());
+            return;
         }
         if (campList.size() == 0) {
             System.out.println("No Camps Available! Returning to Camp Menu...");
@@ -184,6 +183,7 @@ public class StudentCampMenuUI extends BaseUI{
             }
         } catch (ModelNotFoundException e) {
             System.out.println("Error in withdrawing from camp. Returning to Camp Menu...");
+            return;
         }
     }
 
@@ -193,7 +193,8 @@ public class StudentCampMenuUI extends BaseUI{
         try {
             campList = CampRepository.getInstance().getByIDList(((Student)CurrentUser.get()).getJoinedCamps());
         } catch (ModelNotFoundException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getLocalizedMessage());
+            return;
         }
         if (campList.size() == 0) {
             System.out.println("No Camps Available! Returning to Camp Menu...");

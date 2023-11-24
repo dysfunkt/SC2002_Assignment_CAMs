@@ -122,7 +122,8 @@ public class StaffCampMenuUI extends BaseUI{
         try {
             CampManager.createCamp(campName, startDate, endDate, regCloseDate, userGroup, campLocation, campTotalSlots, campCommitteeSlots, campDescription, visibility);
         } catch (ModelAlreadyExistsException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getLocalizedMessage());
+            return;
         }
         System.out.println("Camp created successfully.");
         return;
@@ -134,7 +135,8 @@ public class StaffCampMenuUI extends BaseUI{
         try{
             campList = CampRepository.getInstance().getByIDList(((Staff)CurrentUser.get()).getCampsInChargeID());      
         } catch (ModelNotFoundException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getLocalizedMessage());
+            return;
         }
         if (campList.size() == 0) {
             System.out.println("No Camps Available! Returning to Camp Menu...");
@@ -160,7 +162,8 @@ public class StaffCampMenuUI extends BaseUI{
         try{
             campList = CampRepository.getInstance().getByIDList(((Staff)CurrentUser.get()).getCampsInChargeID());
         } catch (ModelNotFoundException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getLocalizedMessage());
+            return;
         }
         if (campList.size() == 0) {
             System.out.println("No Camps Available! Returning to Camp Menu...");
@@ -183,7 +186,8 @@ public class StaffCampMenuUI extends BaseUI{
             System.out.println("You cannot delete a camp that already have registered participants.");
             System.out.println("Cancelling delete. Returning to Camp Menu...");
         } catch (ModelNotFoundException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getLocalizedMessage());
+            return;
         } catch (OperationCancelledException e) {
             System.out.println("Cancelling delete. Returning to Camp Menu...");
 
@@ -244,7 +248,8 @@ public class StaffCampMenuUI extends BaseUI{
         try{
             campList = CampRepository.getInstance().getByIDList(((Staff)CurrentUser.get()).getCampsInChargeID());
         } catch (ModelNotFoundException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getLocalizedMessage());
+            return;
         }
         if (campList.size() == 0) {
             System.out.println("No Camps Available! Returning to Camp Menu...");
@@ -262,7 +267,8 @@ public class StaffCampMenuUI extends BaseUI{
         try{
             campList = CampRepository.getInstance().getByIDList(((Staff)CurrentUser.get()).getCampsInChargeID());
         } catch (ModelNotFoundException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getLocalizedMessage());
+            return;
         }
         if (campList.size() == 0) {
             System.out.println("No Camps Available! Returning to Camp Menu...");
