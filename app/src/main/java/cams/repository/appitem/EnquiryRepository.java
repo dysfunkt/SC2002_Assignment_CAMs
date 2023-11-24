@@ -6,22 +6,23 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import cams.model.camp.Camp;
+
+import cams.model.appitem.Enquiry;
 import cams.repository.Repository;
 import cams.util.exception.ModelAlreadyExistsException;
 import cams.util.iocontrol.FileIOHelper;
 
-public class CampRepository extends Repository<Camp>{
+public class EnquiryRepository extends Repository<Enquiry>{
 
-    private static final String FILE_NAME = "camp.csv";
+    private static final String FILE_NAME = "Enquiry.csv";
 
-    private static CampRepository mInstance;
+    private static EnquiryRepository mInstance;
 
-    private CampRepository() {
+    private EnquiryRepository() {
     }
-
-    public static CampRepository getInstance() {
-        if (mInstance == null) mInstance = new CampRepository();
+    
+    public static EnquiryRepository getInstance() {
+        if (mInstance == null) mInstance = new EnquiryRepository();
         return mInstance;
     }
 
@@ -31,9 +32,9 @@ public class CampRepository extends Repository<Camp>{
         List<String[]> csvLines = readAll(csvFile, 1);
         if (csvLines.size() == 0) return;
         for (String[] str : csvLines) {
-            Camp c = new Camp(str);
+            Enquiry en = new Enquiry(str);
             try {
-                add(c);
+                add(en);
             } catch (ModelAlreadyExistsException e) {
                 System.out.println(e.getLocalizedMessage());
             }  
@@ -41,10 +42,7 @@ public class CampRepository extends Repository<Camp>{
     }
 
     public void save() throws IOException {
-        String[] header = {"CampID", "CampName" ,"StartDate", "EndDate", "RegistrationCloseDate", 
-                        "UserGroup", "CampLocation", "CampTotalSlots", "CampCommitteeSlots", 
-                        "CampDescription", "staffInCharge", "listOfAttendees", 
-                        "ListOfCampCommittees", "Leavers", "Visibility"};
+        String[] header = {"EnquiryID", "CampID", "CreatedBy", "Processed", "Deleted", "EnquiryMessage", "EnquiryReply", "ReplyViewed"};
         BufferedWriter csvFile = FileIOHelper.getFileBufferedWriter(FILE_NAME);
         ArrayList<String[]> toWrite = new ArrayList<>(); 
         toWrite.add(header);

@@ -1,6 +1,9 @@
 package cams.model.appitem;
 
-public class Suggestion {
+import cams.model.DisplayableSplitter;
+import cams.model.Model;
+
+public class Suggestion implements Model, DisplayableSplitter{
     private String suggestionID;
     private String campID;
     private String createdBy;
@@ -40,7 +43,7 @@ public class Suggestion {
         this.approved = Boolean.valueOf(csv[6]);
     }
 
-    public String[] toCsv() {
+    public String[] toSaveString() {
         String[] s = new String[7];
         s[0] = suggestionID + "";
         s[1] = campID + "";
@@ -118,8 +121,32 @@ public class Suggestion {
     /**
      * @param approved the approved to set
      */
-    public void approve(Boolean approved) {
+    public void approve() {
         this.approved = true;
+        this.processed = true;
     }
+
+    public void reject() {
+        this.approved = false;
+        this.processed = true;
+    }
+
+    private final String FORMAT_TEMPLATE = "Enquiry ID: %s\n" + 
+                                            "Camp ID: %s\n" +
+                                            "Created By: %s\n" +
+                                            "Enquiry Message: %s";
+    @Override
+    public String getDisplayableString() {
+        return getSingleEnquiryString();
+    }
+
+    public String getSingleEnquiryString() {
+        return String.format(FORMAT_TEMPLATE, suggestionID, campID, createdBy, suggestionMessage);
+    }
+
+
+    @Override
+    public String getSplitterString() {
+        return "-----------------------------";    }
 
 }

@@ -1,7 +1,8 @@
 package cams.controller.account;
 
-import cams.boundary.ChangePasswordUI;
+import cams.boundary.login.ChangePasswordUI;
 import cams.controller.account.password.PasswordManager;
+import cams.controller.account.user.CurrentUser;
 import cams.controller.account.user.UserFinder;
 import cams.model.person.Student;
 import cams.model.person.User;
@@ -14,6 +15,7 @@ public class AccountManager {
     public static User login(UserType userType, String userID, String password) throws PasswordIncorrectException, ModelNotFoundException {
         User user = UserFinder.findUser(userID, userType);
         if(PasswordManager.checkPassword(user, password)) {
+            CurrentUser.set(user);
             if (user.isFirstLogin()) new ChangePasswordUI().startMainMenu();
             return user;
         } else {

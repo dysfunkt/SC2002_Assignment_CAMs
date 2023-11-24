@@ -1,15 +1,19 @@
 package cams.util;
 import java.util.ArrayList;
+import java.util.List;
 
-import cams.MainApp;
 import cams.model.appitem.*;
+import cams.model.camp.Camp;
 import cams.model.person.*;
+import cams.repository.appitem.CampRepository;
+import cams.repository.appitem.EnquiryRepository;
+import cams.repository.appitem.SuggestionRepository;
 import cams.repository.person.StaffRepository;
 import cams.repository.person.StudentRepository;
 
 public class IDHelper {
     public static Camp getCampFromID(String ID) {
-        for (Camp camp : MainApp.camps) {
+        for (Camp camp : CampRepository.getInstance()) {
             if (camp.getID().equals(ID) ) {
                 return camp;
             }
@@ -18,8 +22,8 @@ public class IDHelper {
         return null;
     }
 
-    public static ArrayList<String> extractCampIDs(ArrayList<Camp> campList) {
-        ArrayList<String> campIDs = new ArrayList<>();
+    public static List<String> extractCampIDs(List<Camp> campList) {
+        List<String> campIDs = new ArrayList<>();
 
         for (Camp camp : campList) {
             campIDs.add(camp.getID());
@@ -28,32 +32,28 @@ public class IDHelper {
         return campIDs;
     }
 
-    public static ArrayList<String> extractSuggestionIDs(String campID) {
-        ArrayList<String> suggestionIDs = new ArrayList<>();
+    public static List<String> extractSuggestionIDs(List<Suggestion> suggestionList) {
+        List<String> suggestionIDs = new ArrayList<>();
 
-        for (Suggestion suggestion: MainApp.suggestions) {
-            if(suggestion.getCampID() == campID) {
-                suggestionIDs.add(suggestion.getID());
-            }
+        for (Suggestion suggestion: SuggestionRepository.getInstance()) {
+            suggestionIDs.add(suggestion.getID());
         }
 
         return suggestionIDs;
     }
 
-    public static ArrayList<String> extractEnquiryIDs(String campID) {
-        ArrayList<String> enquiryIDs = new ArrayList<>();
+    public static List<String> extractEnquiryIDs(List<Enquiry> enquiryList) {
+        List<String> enquiryIDs = new ArrayList<>();
 
-        for (Enquiry enquiry: MainApp.enquiries) {
-            if(enquiry.getCampID() == campID) {
-                enquiryIDs.add(enquiry.getID());
-            }
+        for (Enquiry enquiry: enquiryList) {
+            enquiryIDs.add(enquiry.getID());
         }
 
         return enquiryIDs;
     }
 
     public static Enquiry getEnquiryFromID(String ID) {
-        for (Enquiry enquiry : MainApp.enquiries) {
+        for (Enquiry enquiry : EnquiryRepository.getInstance()) {
             if (enquiry.getID() == ID) {
                 return enquiry;
             }
@@ -63,7 +63,7 @@ public class IDHelper {
     }
 
     public static Suggestion getSuggestionFromID(String ID) {
-        for (Suggestion suggestion : MainApp.suggestions) {
+        for (Suggestion suggestion : SuggestionRepository.getInstance()) {
             if (suggestion.getID() == ID) {
                 return suggestion;
             }

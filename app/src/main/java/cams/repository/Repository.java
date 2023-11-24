@@ -26,9 +26,6 @@ public abstract class Repository<ModelObject extends Model> implements Iterable<
     public Iterator<ModelObject> iterator() {
         return listOfModelObjects.iterator();
     }
-    protected List<ModelObject> getList() {
-        return listOfModelObjects;
-    }
 
     public ModelObject getByID(String modelObjectID) throws ModelNotFoundException {
         for (ModelObject modelObject : listOfModelObjects) {
@@ -37,6 +34,21 @@ public abstract class Repository<ModelObject extends Model> implements Iterable<
             }
         }
         throw new ModelNotFoundException("No model object with ID " + modelObjectID + " exists.");
+    }
+    
+    public List<ModelObject> getByIDList(List<String> modelObjectIDList) throws ModelNotFoundException {
+        List<ModelObject> list = new ArrayList<>();
+        aa:
+        for (String modelObjectID : modelObjectIDList){
+            for (ModelObject modelObject : listOfModelObjects) {
+                if (modelObject.getID().equalsIgnoreCase(modelObjectID)) {
+                    list.add(modelObject);
+                    continue aa;
+                }
+            }
+            throw new ModelNotFoundException("No model object with ID " + modelObjectID + " exists.");
+        }
+        return list;
     }
 
     public boolean contains(String modelObjectID) {
@@ -66,6 +78,14 @@ public abstract class Repository<ModelObject extends Model> implements Iterable<
 
     public int size() {
         return listOfModelObjects.size();
+    }
+
+    public List<ModelObject> getList() {
+        List<ModelObject> list = new ArrayList<>();
+        for (ModelObject o : listOfModelObjects) {
+            list.add(o);
+        }
+        return list;
     }
 
     public void update(ModelObject modelObject) throws ModelNotFoundException {

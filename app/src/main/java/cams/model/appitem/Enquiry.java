@@ -1,8 +1,9 @@
 package cams.model.appitem;
 
+import cams.model.DisplayableSplitter;
 import cams.model.Model;
 
-public class Enquiry implements Model{
+public class Enquiry implements Model, DisplayableSplitter{
     private String enquiryID;
     private String campID;
     private String createdBy;
@@ -137,5 +138,27 @@ public class Enquiry implements Model{
      */
     public Boolean isReplyViewed() {
         return replyViewed;
+    }
+
+    private final String FORMAT_TEMPLATE = "Enquiry ID: %s\n" + 
+                                            "Camp ID: %s\n" +
+                                            "Created By: %s\n" +
+                                            "Enquiry Message: %s\n" +
+                                            "Processed: %s\n"+
+                                            "Reply Message: %s";
+
+    @Override
+    public String getDisplayableString() {
+        return getSingleEnquiryString();
+    }
+
+    public String getSingleEnquiryString() {
+        return String.format(FORMAT_TEMPLATE, enquiryID, campID, createdBy, enquiryMessage, String.valueOf(isProcessed()), enquiryReply);
+    }
+
+
+    @Override
+    public String getSplitterString() {
+        return "-----------------------------";
     }
 }

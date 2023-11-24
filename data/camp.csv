@@ -1,3 +1,1 @@
-CampID|||CampName|||StartDate|||EndDate|||RegistrationCloseDate|||UserGroup|||CampLocation|||CampTotalSlots|||CampCommitteeSlots|||CampDescription|||staffInCharge|||listOfAttendees|||ListOfCampCommittees|||Leavers|||Visibility
-1|||Loke|||2023-11-11|||2023-11-15|||2023-11-08|||ADM|||HIVE|||10|||5|||i love loke|||OURIN||||||||||||true
-2|||dmitri|||2023-12-12|||2023-12-20|||2023-12-01|||ADM|||ARC|||10|||5|||fejsi|||OURIN||||||KOH1||||||true
+CampName|||StartDate|||EndDate|||RegistrationCloseDate|||UserGroup|||CampLocation|||CampTotalSlots|||CampCommitteeSlots|||CampDescription|||staffInCharge|||listOfAttendees|||listOfCampCommittees|||leavers|||visibility

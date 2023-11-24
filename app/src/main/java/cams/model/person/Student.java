@@ -1,6 +1,7 @@
 package cams.model.person;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import cams.util.iocontrol.CSVStringHelper;
 
@@ -74,8 +75,14 @@ public class Student extends User{
         else return false;
     }
 
-    public ArrayList<String> getJoinedCamps() {
+    public List<String> getJoinedCamps() {
         return joinedCamps;
+    }
+
+    public void leaveCamp(String ID) {
+        if (joinedCamps.contains(ID)) {
+            joinedCamps.remove(ID);
+        }
     }
 
     public String getCampIDCommittingFor() {

@@ -6,22 +6,22 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import cams.model.camp.Camp;
+import cams.model.appitem.Suggestion;
 import cams.repository.Repository;
 import cams.util.exception.ModelAlreadyExistsException;
 import cams.util.iocontrol.FileIOHelper;
 
-public class CampRepository extends Repository<Camp>{
+public class SuggestionRepository extends Repository<Suggestion>{
+    
+    private static final String FILE_NAME = "suggestion.csv";
 
-    private static final String FILE_NAME = "camp.csv";
+    private static SuggestionRepository mInstance;
 
-    private static CampRepository mInstance;
-
-    private CampRepository() {
+    private SuggestionRepository() {
     }
 
-    public static CampRepository getInstance() {
-        if (mInstance == null) mInstance = new CampRepository();
+    public static SuggestionRepository getInstance() {
+        if (mInstance == null) mInstance = new SuggestionRepository();
         return mInstance;
     }
 
@@ -31,9 +31,9 @@ public class CampRepository extends Repository<Camp>{
         List<String[]> csvLines = readAll(csvFile, 1);
         if (csvLines.size() == 0) return;
         for (String[] str : csvLines) {
-            Camp c = new Camp(str);
+            Suggestion s = new Suggestion(str);
             try {
-                add(c);
+                add(s);
             } catch (ModelAlreadyExistsException e) {
                 System.out.println(e.getLocalizedMessage());
             }  
@@ -41,10 +41,7 @@ public class CampRepository extends Repository<Camp>{
     }
 
     public void save() throws IOException {
-        String[] header = {"CampID", "CampName" ,"StartDate", "EndDate", "RegistrationCloseDate", 
-                        "UserGroup", "CampLocation", "CampTotalSlots", "CampCommitteeSlots", 
-                        "CampDescription", "staffInCharge", "listOfAttendees", 
-                        "ListOfCampCommittees", "Leavers", "Visibility"};
+        String[] header = {"SuggestionID", "CampID", "CreatedBy", "Processed", "Deleted", "SuggestionMessage",  "Approved"};
         BufferedWriter csvFile = FileIOHelper.getFileBufferedWriter(FILE_NAME);
         ArrayList<String[]> toWrite = new ArrayList<>(); 
         toWrite.add(header);

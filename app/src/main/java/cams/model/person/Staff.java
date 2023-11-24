@@ -2,8 +2,6 @@ package cams.model.person;
 
 import java.util.ArrayList;
 
-import cams.model.appitem.Camp;
-import cams.util.IDHelper;
 import cams.util.iocontrol.CSVStringHelper;
 
 public class Staff extends User{
@@ -31,12 +29,8 @@ public class Staff extends User{
         return s;
     }
 
-    public ArrayList<Camp> getCampsInCharge() {
-        ArrayList<Camp> c = new ArrayList<>();
-        for (String i : campsInChargeID) {
-            c.add(IDHelper.getCampFromID(i+""));
-        }
-        return c;
+    public ArrayList<String> getCampsInChargeID() {
+        return campsInChargeID;
     }
 
     public void setCampsInCharge(ArrayList<String> campsInChargeID) {

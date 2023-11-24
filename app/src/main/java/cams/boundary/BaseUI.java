@@ -1,8 +1,10 @@
 package cams.boundary;
 
-import cams.util.ScannerHelper;
-
 import java.util.stream.Stream;
+
+import cams.util.exception.MenuChoiceInvalidException;
+import cams.util.ui.ScannerHelper;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -56,12 +58,12 @@ public abstract class BaseUI {
             System.out.print("Enter menu option: ");
             try {
                 selection = input.nextInt();
+                input.nextLine();
                 if ((selection > max && selection != specialEscape) || selection < 0)
                     System.out.println("Invalid Selection. Please select an option from 1 - " + max);
             } catch (InputMismatchException e) {
                 selection = -1;
                 System.out.println("Invalid Input. Please only enter numbers");
-                input.nextLine();
             }
             System.out.println();
         } while ((selection > max && selection != specialEscape) || selection < 0);
