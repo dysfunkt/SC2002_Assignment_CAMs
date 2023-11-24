@@ -78,8 +78,10 @@ public class CCEnquiryMenuUI extends BaseUI{
             EnquiryManager.editEnquiry(enquiryID, enquiryMessage);
         } catch (AlreadyProcessedException e) {
             System.out.println("Cancelling edit. Returning to Enquiry Menu...");
+            return;
         } catch (ModelNotFoundException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getLocalizedMessage());
+            return;
         }
         System.out.println("Enquiry successfully edited.");
     }
@@ -104,7 +106,8 @@ public class CCEnquiryMenuUI extends BaseUI{
         try{
             EnquiryManager.createEnquiry(campID, enquiryMessage);
         } catch (ModelAlreadyExistsException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getLocalizedMessage());
+            return;
         }
         System.out.println("Enquiry successfully submitted.");
     }
@@ -144,7 +147,8 @@ public class CCEnquiryMenuUI extends BaseUI{
             System.out.println("Cancelling delete. Returning to Enquiry Menu...");
             return;
         } catch (ModelNotFoundException e ){
-            throw new RuntimeException(e);
+            System.out.println(e.getLocalizedMessage());
+            return;
         }
         System.out.println("Enquiry successfull deleted.");
     }
