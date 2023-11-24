@@ -5,9 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 import cams.MainApp;
-import cams.object.appitem.eLocation;
-import cams.object.person.Student;
-import cams.object.person.eFaculty;
+import cams.model.appitem.eLocation;
+import cams.model.person.Student;
+import cams.model.person.eFaculty;
 
 public class ScannerHelper {
 
@@ -208,13 +208,11 @@ public class ScannerHelper {
     public static String getNewPassword() {
         Scanner input = getScannerInput();
         String password;
-        System.out.println("Password must be at least 8 characters long.");
-        System.out.println("Password must have at least one uppercase character, one lowercase character and one digit");
         boolean hasUppercase, hasLowercase, hasDigit;
         
         do {
             hasUppercase = hasLowercase = hasDigit = false;
-            System.out.println("New Password: ");
+            System.out.print("Enter new password: ");
             password = input.nextLine();
             if (password.length() >= 8) {
                 for (char c : password.toCharArray()) {

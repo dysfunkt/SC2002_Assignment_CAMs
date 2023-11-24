@@ -1,0 +1,15 @@
+Camp ID: 2
+Camp Name: NTU Orientation
+Staff-in-charge: OURIN
+Start Date: 2023-12-26
+End Date: 2023-12-27
+Registration Close Date: 2023-12-10
+Faculty: NTU
+Location: SOUTHSPINE
+Total Slots: 10
+Camp Committee Slots: 3
+Visibility: true
+Description: Orientation for NTU
+================================================
+Student Enquiries: 
+

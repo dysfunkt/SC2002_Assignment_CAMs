@@ -5,8 +5,9 @@ import java.util.List;
 import java.util.ArrayList;
 
 import cams.MainApp;
-import cams.object.appitem.Camp;
-import cams.object.appitem.Enquiry;
+import cams.model.appitem.Camp;
+import cams.model.appitem.Enquiry;
+import cams.util.iocontrol.FileIOHelper;
 
 public class ReportIOHelper extends FileIOHelper{
     private static File init() {

@@ -2,8 +2,8 @@ package cams.util;
 import java.util.ArrayList;
 
 import cams.MainApp;
-import cams.object.appitem.*;
-import cams.object.person.*;
+import cams.model.appitem.*;
+import cams.model.person.*;
 
 public class IDHelper {
     public static Camp getCampFromID(int ID) {
@@ -72,7 +72,7 @@ public class IDHelper {
 
     public static Student getStudentFromUserID(String userID) {
         for (Student student : MainApp.students) {
-            if (student.getUserID().equals(userID)) {
+            if (student.getID().equals(userID)) {
                 return student;
             }
         }
@@ -82,7 +82,7 @@ public class IDHelper {
 
     public static Staff getStaffFromUserID(String userID) {
         for (Staff staff : MainApp.staffs) {
-            if (staff.getUserID() == userID) {
+            if (staff.getID() == userID) {
                 return staff;
             }
         }

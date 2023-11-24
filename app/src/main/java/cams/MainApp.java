@@ -1,8 +1,17 @@
 package cams;
 import cams.util.*;
-import cams.object.appitem.*;
-import cams.object.person.*;
-import cams.ui.LoginMenuUI;
+import cams.util.iocontrol.CampCSVHelper;
+import cams.util.iocontrol.EnquiryCSVHelper;
+import cams.util.iocontrol.FileIOHelper;
+import cams.util.iocontrol.StaffCSVHelper;
+import cams.util.iocontrol.StudentCSVHelper;
+import cams.util.iocontrol.SuggestionCSVHelper;
+import cams.util.iocontrol.UniqueIDCSVHelper;
+import cams.boundary.LoginMenuUI;
+import cams.controller.account.user.CurrentUser;
+import cams.controller.repository.RepositoryManager;
+import cams.model.appitem.*;
+import cams.model.person.*;
 
 import java.io.IOException;
 import java.io.BufferedReader;
@@ -32,25 +41,29 @@ public class MainApp {
 
     public static void init() {
         UniqueIDCSVHelper uniqueIDCsv = UniqueIDCSVHelper.getInstance();
-        StudentCSVHelper studentCsv = StudentCSVHelper.getInstance();
-        StaffCSVHelper staffCsv = StaffCSVHelper.getInstance();
+        //StudentCSVHelper studentCsv = StudentCSVHelper.getInstance();
+        //StaffCSVHelper staffCsv = StaffCSVHelper.getInstance();
         CampCSVHelper campCsv = CampCSVHelper.getInstance();
         EnquiryCSVHelper enquiryCsv = EnquiryCSVHelper.getInstance();
         SuggestionCSVHelper suggestionCsv = SuggestionCSVHelper.getInstance();
 
+        RepositoryManager.init();
+        CurrentUser.init();
         try {
             System.out.println("Loading UniqueID infomation from file...");
             uniqueID = uniqueIDCsv.readFromCsv();
             System.out.println("UniqueID loaded successfully");
 
+            /* 
             System.out.println("Loading Student infomation from file...");
             students = studentCsv.readFromCsv();
             System.out.println(students.size() + " students loaded successfully");
-
+            */
+            /* 
             System.out.println("Loading Staff infomation from file...");
             staffs = staffCsv.readFromCsv();
             System.out.println(staffs.size() + " staffs loaded successfully");
-
+            */
             System.out.println("Loading Camp infomation from file...");
             camps = campCsv.readFromCsv();
             System.out.println(camps.size() + " camps loaded successfully");
@@ -77,25 +90,28 @@ public class MainApp {
 
     public static boolean saveAll() {
         UniqueIDCSVHelper uniqueIDCSVHelper = UniqueIDCSVHelper.getInstance();
-        StudentCSVHelper studentCSVHelper = StudentCSVHelper.getInstance();
-        StaffCSVHelper staffCSVHelper = StaffCSVHelper.getInstance();
+        //StudentCSVHelper studentCSVHelper = StudentCSVHelper.getInstance();
+        //StaffCSVHelper staffCSVHelper = StaffCSVHelper.getInstance();
         CampCSVHelper campCSVHelper = CampCSVHelper.getInstance();
         EnquiryCSVHelper enquiryCSVHelper = EnquiryCSVHelper.getInstance();
         SuggestionCSVHelper suggestionCSVHelper = SuggestionCSVHelper.getInstance();
 
+        RepositoryManager.saveAll();
         try {
             System.out.println("Saving current UniqueID infomation to file...");
             uniqueIDCSVHelper.writeToCsv(uniqueID);
             System.out.println("UniqueID Saved!");
 
+            /* 
             System.out.println("Saving current Student infomation to file...");
             studentCSVHelper.writeToCsv(students);
             System.out.println("Student List Saved!");
-
+            */
+            /* 
             System.out.println("Saving current Staff infomation to file...");
             staffCSVHelper.writeToCsv(staffs);
             System.out.println("Staff List Saved!");
-
+            */
             System.out.println("Saving current Camp infomation to file...");
             campCSVHelper.writeToCsv(camps);
             System.out.println("Camp List Saved!");
