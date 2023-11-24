@@ -145,7 +145,7 @@ public class StudentCampMenuUI extends BaseUI{
         }
         System.out.println(String.format(formatTemplate, "ID", "Camp Name", "Start Date", "End Date", "Reg. Close Date", "Faculty", "Location", "Att. slots left", "Com. slots left", "Description"));
         for (Camp camp : list) {
-            System.out.println(String.format(formatTemplate, camp.getCampID(), camp.getCampName(), CSVStringHelper.DateToCSVString(camp.getStartDate()), CSVStringHelper.DateToCSVString(camp.getEndDate()), CSVStringHelper.DateToCSVString(camp.getRegCloseDate()), camp.getUserGroup() + "", camp.getCampLocation() + "", camp.remainingAttendeeSlots() + "", camp.remainingCommitteeSlots()+"", camp.getCampDescription()));
+            System.out.println(String.format(formatTemplate, camp.getID(), camp.getCampName(), CSVStringHelper.DateToCSVString(camp.getStartDate()), CSVStringHelper.DateToCSVString(camp.getEndDate()), CSVStringHelper.DateToCSVString(camp.getRegCloseDate()), camp.getUserGroup() + "", camp.getCampLocation() + "", camp.remainingAttendeeSlots() + "", camp.remainingCommitteeSlots()+"", camp.getCampDescription()));
         }
     }
 
@@ -165,8 +165,8 @@ public class StudentCampMenuUI extends BaseUI{
         }
         printListOfCamps(campsToDisplay);
 
-        int campChoice = ScannerHelper.getIntegerInput("Enter ID of camp to register (Enter 0 to cancel): ", IDHelper.extractCampIDs(campsToDisplay), "Enter one of the IDs!");
-        if (campChoice == 0) {
+        String campChoice = ScannerHelper.getIDInput("Enter ID of camp to register (Enter 0 to cancel): ", IDHelper.extractCampIDs(campsToDisplay), "Enter one of the IDs!");
+        if (campChoice.equals("0") ) {
             System.out.println("Registration cancelled. Returning to Camp Menu...");
             return false;
         }
@@ -183,8 +183,8 @@ public class StudentCampMenuUI extends BaseUI{
             System.out.println("You withdrew from this camp before. Registering again is not allowed. Returning to Camp Menu...");
             return false;
         }
-        for (Integer i : ((Student)MainApp.currentUser).getJoinedCamps()) {
-            if(IDHelper.getCampFromID(i).isClash(IDHelper.getCampFromID(campChoice).getStartDate(), IDHelper.getCampFromID(campChoice).getEndDate())) {
+        for (String i : ((Student)MainApp.currentUser).getJoinedCamps()) {
+            if(IDHelper.getCampFromID(i).isClash(IDHelper.getCampFromID(campChoice).getStartDate(), IDHelper.getCampFromID(campChoice+"").getEndDate())) {
                 System.out.println("The dates of this camp clashes with your joined camps. Returning to Camp Menu...");
                 return false;
             }

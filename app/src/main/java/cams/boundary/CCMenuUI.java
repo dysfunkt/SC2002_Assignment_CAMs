@@ -1,7 +1,6 @@
 package cams.boundary;
 
-import cams.MainApp;
-import cams.util.ScannerHelper;
+
 
 public class CCMenuUI extends BaseUI {
 

@@ -1,15 +1,15 @@
 package cams.model.appitem;
 
 public class Suggestion {
-    private int suggestionID;
-    private int campID;
+    private String suggestionID;
+    private String campID;
     private String createdBy;
     private Boolean processed;
     private Boolean deleted;
     private String suggestionMessage;
     private Boolean approved;
 
-    public Suggestion(int suggestionID, int campID, String createdBy, Boolean processed,
+    public Suggestion(String suggestionID, String campID, String createdBy, Boolean processed,
                         Boolean deleted, String suggestionMessage, Boolean approved) {
         this.suggestionID = suggestionID;
         this.campID = campID;
@@ -20,7 +20,7 @@ public class Suggestion {
         this.approved = approved;
     }
 
-    public Suggestion(int suggestionID, int campID, String createdBy, String suggestionMessage) {
+    public Suggestion(String suggestionID, String campID, String createdBy, String suggestionMessage) {
         this.suggestionID = suggestionID;
         this.campID = campID;
         this.createdBy = createdBy;
@@ -31,8 +31,8 @@ public class Suggestion {
     }
     
     public Suggestion(String csv[]) {
-        this.suggestionID = Integer.valueOf(csv[0]);
-        this.campID = Integer.valueOf(csv[1]);
+        this.suggestionID = csv[0];
+        this.campID = csv[1];
         this.createdBy = csv[2];
         this.processed = Boolean.valueOf(csv[3]);
         this.deleted = Boolean.valueOf(csv[4]);
@@ -53,16 +53,16 @@ public class Suggestion {
     }
 
     /**
-     * @return int return the suggestionID
+     * @return String return the suggestionID
      */
-    public int getSuggestionID() {
+    public String getID() {
         return suggestionID;
     }
 
     /**
      * @return int return the campID
      */
-    public int getCampID() {
+    public String getCampID() {
         return campID;
     }
 

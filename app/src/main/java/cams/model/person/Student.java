@@ -7,15 +7,15 @@ import cams.util.iocontrol.CSVStringHelper;
 
 public class Student extends User{
 
-    private ArrayList<Integer> joinedCamps;
+    private ArrayList<String> joinedCamps;
     private Boolean campCommittee;
     private int points;
-    private int campIDCommittingfor;
+    private String campIDCommittingfor;
     
     
 
     public Student(String name, String email, String facultyString, String userID, String password, Boolean firstLogin, 
-                    Boolean campCommittee, int points, int campIDCommittingfor, ArrayList<Integer> joinedCamps) {
+                    Boolean campCommittee, int points, String campIDCommittingfor, ArrayList<String> joinedCamps) {
 
         super(name, email, facultyString, userID, password, firstLogin);
         this.campCommittee = campCommittee;
@@ -25,10 +25,10 @@ public class Student extends User{
     }
     public Student(String[] csv) {
         super(csv);
-        this.joinedCamps = CSVStringHelper.CSVStringtoArraylistInteger(csv[6]);
+        this.joinedCamps = CSVStringHelper.CSVStringtoArraylistString(csv[6]);
         this.campCommittee = Boolean.valueOf(csv[7]);
         this.points = Integer.valueOf(csv[8]);
-        this.campIDCommittingfor = Integer.valueOf(csv[9]);
+        this.campIDCommittingfor = csv[9];
         ;
     }
 
@@ -39,7 +39,7 @@ public class Student extends User{
         for (int i = 0; i < 6; i++) {
             s[i] = u[i];
         }
-        s[6] = CSVStringHelper.arraylistIntegertoCSVString(this.joinedCamps);
+        s[6] = CSVStringHelper.arraylistStringtoCSVString(this.joinedCamps);
         s[7] = this.campCommittee + "";
         s[8] = this.points + "";
         s[9] = this.campIDCommittingfor + "";
@@ -59,26 +59,26 @@ public class Student extends User{
         this.points++;
     }
 
-    public void joinCamp(int campID) {
+    public void joinCamp(String campID) {
         this.joinedCamps.add(campID);
     }
 
-    public void joinCommittee(int campID) {
+    public void joinCommittee(String campID) {
         this.joinedCamps.add(campID);
         this.campIDCommittingfor = campID;
         campCommittee = true;
     }
 
-    public Boolean checkJoined(int campID) {
+    public Boolean checkJoined(String campID) {
         if (this.joinedCamps.contains(campID)) return true;
         else return false;
     }
 
-    public ArrayList<Integer> getJoinedCamps() {
+    public ArrayList<String> getJoinedCamps() {
         return joinedCamps;
     }
 
-    public int getCampIDCommittingFor() {
+    public String getCampIDCommittingFor() {
         return campIDCommittingfor;
     }
 }

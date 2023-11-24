@@ -1,8 +1,10 @@
 package cams.model.appitem;
 
-public class Enquiry {
-    private int enquiryID;
-    private int campID;
+import cams.model.Model;
+
+public class Enquiry implements Model{
+    private String enquiryID;
+    private String campID;
     private String createdBy;
     private Boolean processed;
     private Boolean deleted;
@@ -10,7 +12,7 @@ public class Enquiry {
     private String enquiryReply;
     private Boolean replyViewed; //not in use, currently use to pad the CSV so no error while reading
 
-    public Enquiry(int enquiryID, int campID, String createdBy, Boolean processed, 
+    public Enquiry(String enquiryID, String campID, String createdBy, Boolean processed, 
                     Boolean deleted, String enquiryMessage, String enquiryReply,
                     Boolean replyViewed) {
         this.enquiryID = enquiryID;
@@ -23,7 +25,7 @@ public class Enquiry {
         this.replyViewed = replyViewed;
     }
 
-    public Enquiry(int enquiryID, int campID, String createdBy, String enquiryMessage) {
+    public Enquiry(String enquiryID, String campID, String createdBy, String enquiryMessage) {
         this.enquiryID = enquiryID;
         this.campID = campID;
         this.createdBy = createdBy;
@@ -35,8 +37,8 @@ public class Enquiry {
     }
 
     public Enquiry(String csv[]) {
-        this.enquiryID = Integer.valueOf(csv[0]);
-        this.campID = Integer.valueOf(csv[1]);
+        this.enquiryID = csv[0];
+        this.campID = csv[1];
         this.createdBy = csv[2];
         this.processed = Boolean.valueOf(csv[3]);
         this.deleted = Boolean.valueOf(csv[4]);
@@ -45,7 +47,7 @@ public class Enquiry {
         this.replyViewed = Boolean.valueOf(csv[7]);
     }
 
-    public String[] toCsv() {
+    public String[] toSaveString() {
         String[] e = new String[8];
         e[0] = enquiryID + "";
         e[1] = campID + "";
@@ -60,16 +62,16 @@ public class Enquiry {
     
 
     /**
-     * @return int return the enquiryID
+     * @return String return the enquiryID
      */
-    public int getEnquiryID() {
+    public String getID() {
         return enquiryID;
     }
 
     /**
-     * @return int return the campID
+     * @return String return the campID
      */
-    public int getCampID() {
+    public String getCampID() {
         return campID;
     }
 

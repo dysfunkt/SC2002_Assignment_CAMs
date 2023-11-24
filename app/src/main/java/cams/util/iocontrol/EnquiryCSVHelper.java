@@ -39,7 +39,7 @@ public class EnquiryCSVHelper extends CSVBaseHelper{
         BufferedWriter csvFile = FileIOHelper.getFileBufferedWriter(this.enquiryCsv);
         ArrayList<String[]> toWrite = new ArrayList<>();
         toWrite.add(header);
-        enquiries.forEach((e) -> toWrite.add(e.toCsv()));
+        enquiries.forEach((e) -> toWrite.add(e.toSaveString()));
         writeToCsvFile(toWrite, csvFile);
     }
 }

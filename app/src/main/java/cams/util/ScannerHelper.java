@@ -4,9 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import cams.MainApp;
+
 import cams.model.appitem.eLocation;
-import cams.model.person.Student;
 import cams.model.person.eFaculty;
 
 public class ScannerHelper {
@@ -51,11 +50,11 @@ public class ScannerHelper {
         }
     }
 
-    public static int getIntegerInput(String prompt, ArrayList<Integer> acceptedValues, String errorMsg) {
-        Set<Integer> unique = new HashSet<>(acceptedValues);
+    public static String getIDInput(String prompt, ArrayList<String> acceptedValues, String errorMsg) {
+        Set<String> unique = new HashSet<>(acceptedValues);
         while (true) {
             int val = getIntegerInput(prompt);
-            if (unique.contains(val)||val == 0) return val;
+            if (unique.contains(val+"")||val == 0) return val+"";
             System.out.println(errorMsg);
         }
     }
@@ -99,39 +98,7 @@ public class ScannerHelper {
         return date;
     }
 
-    public static ArrayList<Student> getStudentsInput(String prompt){
-        Scanner input = getScannerInput();
-        ArrayList<Student> students = new ArrayList<Student>();
-        ArrayList<Student> chosenStudents = new ArrayList<Student>();
-        Student chosenStudent = null;
-        String name;
-
-        students = MainApp.students;
-
-        while(true){
-            System.out.print(prompt);
-            name = input.nextLine();
-            if(name.equals("0")){
-                break;
-            }
-            for(Student student: students){
-                if(student.getName().equalsIgnoreCase(name)){
-                    chosenStudent = student;
-                    break;
-                }
-            }
-
-            if(chosenStudent == null){
-                System.out.println("Enter a valid student name");
-                continue;
-            }
-
-            chosenStudents.add(chosenStudent);
-            System.out.println("You added the student: " + chosenStudent.getName());
-        }
-        return chosenStudents;
-    }
-
+    
     public static ArrayList<Date> getDatesInput(String prompt){
         Scanner input = getScannerInput();
         String dateString;

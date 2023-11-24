@@ -1,8 +1,5 @@
 package cams.boundary;
 
-import cams.MainApp;
-import cams.util.ScannerHelper;
-
 public class StaffMenuUI extends BaseUI {
 
     protected int generateMenuScreen() {

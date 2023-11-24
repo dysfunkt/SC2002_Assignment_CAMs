@@ -3,12 +3,13 @@ package cams.model.appitem;
 import java.util.ArrayList;
 import java.util.Date;
 
+import cams.model.Model;
 import cams.model.person.*;
 import cams.util.iocontrol.CSVStringHelper;
 
-public class Camp { 
+public class Camp implements Model{ 
 
-    private int campID;
+    private String campID;
     private String campName;
     private Date startDate;
     private Date endDate;
@@ -24,7 +25,7 @@ public class Camp {
     private ArrayList<String> leavers;
     private boolean visibility;
 
-    public Camp(int campID, String campName, Date startDate, Date endDate, Date regCloseDate, 
+    public Camp(String campID, String campName, Date startDate, Date endDate, Date regCloseDate, 
                 eFaculty userGroup, eLocation campLocation, int campTotalSlots, 
                 int campCommitteeSlots, String campDescription, String staffInCharge, 
                 ArrayList<String> listOfAttendees, ArrayList<String> listOfCampCommittees, 
@@ -47,7 +48,7 @@ public class Camp {
         this.visibility = visibility;
     }
 
-    public Camp(int campID, String campName, Date startDate, Date endDate, Date regCloseDate, 
+    public Camp(String campID, String campName, Date startDate, Date endDate, Date regCloseDate, 
                 eFaculty userGroup, eLocation campLocation, int campTotalSlots, 
                 int campCommitteeSlots, String campDescription, String staffInCharge, 
                 Boolean visibility) {
@@ -69,7 +70,7 @@ public class Camp {
     }
 
     public Camp(String[] csv) {
-        this.campID = Integer.valueOf(csv[0]);
+        this.campID = csv[0];
         this.campName = csv[1];
         this.startDate = CSVStringHelper.CSVStringtoDate(csv[2]);
         this.endDate = CSVStringHelper.CSVStringtoDate(csv[3]);
@@ -86,9 +87,9 @@ public class Camp {
         this.visibility = Boolean.valueOf(csv[14]);
     }
 
-    public String[] toCsv() {
+    public String[] toSaveString() {
         String[] c = new String[15];
-        c[0] = this.campID + "";
+        c[0] = this.campID;
         c[1] = this.campName;
         c[2] = CSVStringHelper.DateToCSVString(this.startDate);
         c[3] = CSVStringHelper.DateToCSVString(this.endDate);
@@ -246,7 +247,7 @@ public class Camp {
     /**
      * @return int return the campID
      */
-    public int getCampID() {
+    public String getID() {
         return campID;
     }
 

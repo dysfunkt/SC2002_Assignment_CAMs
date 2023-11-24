@@ -29,31 +29,31 @@ public class UniqueID {
         return u;
     }
 
-    public int getNextCampID() {
-        return campID + 1;
+    public String getNextCampID() {
+        return campID + 1 + "";
     }
     public void incrementCampID() {
         this.campID++;
     }
 
-    public int getNextEnquiryID() {
-        return enquiryID + 1;
+    public String getNextEnquiryID() {
+        return enquiryID + 1 + "";
     }
 
     public void incrementEnquiryID() {
         this.enquiryID++;
     }
 
-    public int getNextSuggestionID() {
-        return suggestionID + 1;
+    public String getNextSuggestionID() {
+        return suggestionID + 1+ "";
     }
 
     public void incrementSuggestionID() {
         this.suggestionID++;
     }
     
-    public int getSuggestionId() {
+    public String getSuggestionId() {
         lastAssignedSuggestionId++;
-        return lastAssignedSuggestionId;
+        return lastAssignedSuggestionId+"";
     }
 }

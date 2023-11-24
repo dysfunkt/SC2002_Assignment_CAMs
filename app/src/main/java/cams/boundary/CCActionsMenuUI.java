@@ -80,7 +80,7 @@ public class CCActionsMenuUI extends BaseUI{
         }
         System.out.println(String.format(formatTemplate, "ID", "Camp Name", "Start Date", "End Date", "Reg. Close Date", "Faculty", "Location", "Att. slots left", "Com. slots left", "Description"));
         for (Camp camp : list) {
-            System.out.println(String.format(formatTemplate, camp.getCampID(), camp.getCampName(), CSVStringHelper.DateToCSVString(camp.getStartDate()), CSVStringHelper.DateToCSVString(camp.getEndDate()), CSVStringHelper.DateToCSVString(camp.getRegCloseDate()), camp.getUserGroup() + "", camp.getCampLocation() + "", camp.remainingAttendeeSlots() + "", camp.remainingCommitteeSlots()+"", camp.getCampDescription()));
+            System.out.println(String.format(formatTemplate, camp.getID(), camp.getCampName(), CSVStringHelper.DateToCSVString(camp.getStartDate()), CSVStringHelper.DateToCSVString(camp.getEndDate()), CSVStringHelper.DateToCSVString(camp.getRegCloseDate()), camp.getUserGroup() + "", camp.getCampLocation() + "", camp.remainingAttendeeSlots() + "", camp.remainingCommitteeSlots()+"", camp.getCampDescription()));
         }
     }
 
@@ -92,7 +92,7 @@ public class CCActionsMenuUI extends BaseUI{
             
             // Display relevant information about each enquiry only for Camp Committee's camps
             if (((Student) MainApp.currentUser).getJoinedCamps().contains(enquiry.getCampID()) && !enquiry.isDeleted()) {
-                System.out.println("Enquiry ID: " + enquiry.getEnquiryID());
+                System.out.println("Enquiry ID: " + enquiry.getID());
                 System.out.println("Camp ID: " + enquiry.getCampID());
                 System.out.println("Created By: " + enquiry.getCreatedBy());
                 System.out.println("Enquiry Message: " + enquiry.getEnquiryMessage());
@@ -107,7 +107,7 @@ public class CCActionsMenuUI extends BaseUI{
     public void replyEnquiry() {
         printHeader("Reply to An Enquiry");
         System.out.print("Enter Enquiry ID to reply: ");
-        int enquiryIDToReply = ScannerHelper.getIntegerInput("Enter EnquiryID: ", IDHelper.extractEnquiryIDs(((Student)MainApp.currentUser).getCampIDCommittingFor()), "Enter one of the IDs!");
+        String enquiryIDToReply = ScannerHelper.getIDInput("Enter EnquiryID: ", IDHelper.extractEnquiryIDs(((Student)MainApp.currentUser).getCampIDCommittingFor()), "Enter one of the IDs!");
     
         // Find the Enquiry with the given ID
         Enquiry selectedEnquiry = IDHelper.getEnquiryFromID(enquiryIDToReply);
@@ -137,7 +137,7 @@ public class CCActionsMenuUI extends BaseUI{
         Student currentStudent = (Student) MainApp.currentUser;
 
         // Get the Camp ID for which the student wants to submit an suggestion
-        int selectedCampID = ScannerHelper.getIntegerInput("Enter the Camp ID for which you want to submit a suggestion: ");
+        String selectedCampID = ScannerHelper.getIntegerInput("Enter the Camp ID for which you want to submit a suggestion: ")+"";
     
         // Check if the student is registered for the specified camp
         Camp camp = IDHelper.getCampFromID(((Student)MainApp.currentUser).getCampIDCommittingFor());
@@ -145,15 +145,15 @@ public class CCActionsMenuUI extends BaseUI{
             System.out.print("Enter your suggestion message: ");
             String suggestionMessage = input.nextLine();
 
-        int newSuggestionID = MainApp.uniqueID.getNextSuggestionID();
-        MainApp.uniqueID.incrementSuggestionID();
+            String newSuggestionID = MainApp.uniqueID.getNextSuggestionID();
+            MainApp.uniqueID.incrementSuggestionID();
         
-        Suggestion newSuggestion = new Suggestion(newSuggestionID, ((Student)MainApp.currentUser).getCampIDCommittingFor(),
+            Suggestion newSuggestion = new Suggestion(newSuggestionID, ((Student)MainApp.currentUser).getCampIDCommittingFor(),
                 MainApp.currentUser.getID(), suggestionMessage);
 
-        MainApp.suggestions.add(newSuggestion);
+            MainApp.suggestions.add(newSuggestion);
 
-        System.out.println("Suggestion submitted successfully!");
+            System.out.println("Suggestion submitted successfully!");
         } else 
         System.out.println("You are not registered for the specific camp.");
     }
@@ -165,7 +165,7 @@ public class CCActionsMenuUI extends BaseUI{
         for (Suggestion suggestion : MainApp.suggestions) {
             // Display relevant information about each suggestion only for the current user
             if (suggestion.getCreatedBy().equals(MainApp.currentUser.getID()) && !suggestion.isDeleted()) {
-                System.out.println("Suggestion ID: " + suggestion.getSuggestionID());
+                System.out.println("Suggestion ID: " + suggestion.getID());
                 System.out.println("Camp ID: " + suggestion.getCampID());
                 System.out.println("Suggestion Message: " + suggestion.getSuggestionMessage());
                 System.out.println("Processed: " + suggestion.isProcessed());
@@ -180,7 +180,7 @@ public class CCActionsMenuUI extends BaseUI{
     public void editSuggestion() {
         printHeader("Edit a Suggestion");
         System.out.print("Enter Suggestion ID to edit: ");
-        int suggestionIDToEdit = input.nextInt();
+        String suggestionIDToEdit = input.nextInt()+"";
         input.nextLine(); 
     
         // Find the Suggestion with the given ID
@@ -209,7 +209,7 @@ public class CCActionsMenuUI extends BaseUI{
     public void deleteSuggestion() {
         printHeader("Delete a Suggestion");
         System.out.print("Enter Suggestion ID to delete: ");
-        int suggestionIDToDelete = input.nextInt();
+        String suggestionIDToDelete = input.nextInt()+"";
         input.nextLine(); 
     
         // Find the Suggestion with the given ID
@@ -228,9 +228,9 @@ public class CCActionsMenuUI extends BaseUI{
     }
     
 
-    private Suggestion findSuggestionByID(int suggestionID) { // Another Helper method
+    private Suggestion findSuggestionByID(String suggestionID) { // Another Helper method
         for (Suggestion suggestion : MainApp.suggestions) {
-            if (suggestion.getSuggestionID() == suggestionID) {
+            if (suggestion.getID() == suggestionID) {
                 return suggestion;
             }
         }

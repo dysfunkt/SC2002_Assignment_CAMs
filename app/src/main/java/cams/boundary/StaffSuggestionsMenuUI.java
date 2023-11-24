@@ -44,7 +44,7 @@ public class StaffSuggestionsMenuUI extends BaseUI{
         // Assuming 'suggestions' is a list containing all Suggestion objects
         for (Suggestion suggestion : MainApp.suggestions) {
             // Display relevant information about each suggestion
-            System.out.println("Suggestion ID: " + suggestion.getSuggestionID());
+            System.out.println("Suggestion ID: " + suggestion.getID());
             System.out.println("Camp ID: " + suggestion.getCampID());
             System.out.println("Created By: " + suggestion.getCreatedBy());
             System.out.println("Suggestion Message: " + suggestion.getSuggestionMessage());
@@ -60,13 +60,13 @@ public class StaffSuggestionsMenuUI extends BaseUI{
     public void approveSuggestion() {
     printHeader("Approve Suggestion");
     System.out.print("Enter Suggestion ID to approve: ");
-    int suggestionIDToApprove = input.nextInt();
+    String suggestionIDToApprove = input.nextInt()+"";
     input.nextLine(); // Consume the newline character
 
     // Find the Suggestion with the given ID
     Suggestion selectedSuggestion = null;
     for (Suggestion suggestion : MainApp.suggestions) {
-        if (suggestion.getSuggestionID() == suggestionIDToApprove) {
+        if (suggestion.getID().equals(suggestionIDToApprove) ) {
             selectedSuggestion = suggestion;
             break;
         }

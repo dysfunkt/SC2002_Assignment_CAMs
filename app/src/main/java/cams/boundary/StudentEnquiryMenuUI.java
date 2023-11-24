@@ -56,29 +56,28 @@ public class StudentEnquiryMenuUI extends BaseUI{
     
         for (Camp camp : MainApp.camps) {
             if (camp.getUserGroup().equals(MainApp.currentUser.getFaculty()) || camp.getUserGroup().equals(Enum.valueOf(eFaculty.class, "NTU")) && camp.isVisibility()) {
-                System.out.println("Camp ID: " + camp.getCampID() + ", Camp Name: " + camp.getCampName());
+                System.out.println("Camp ID: " + camp.getID() + ", Camp Name: " + camp.getCampName());
             }
         }
     
         // Get the selected camp ID from the user
-        int selectedCampID = ScannerHelper.getIntegerInput("Enter the Camp ID: ");
+        String selectedCampID = ScannerHelper.getIntegerInput("Enter the Camp ID: ") + "";
     
         // Check if the selected camp ID is valid
         boolean validCampID = false;
         for (Camp camp : MainApp.camps) {
-            if (camp.getCampID() == selectedCampID && (camp.getUserGroup().equals(MainApp.currentUser.getFaculty()) || camp.getUserGroup().equals(Enum.valueOf(eFaculty.class, "NTU"))) && camp.isVisibility()) {
+            if (camp.getID().equals(selectedCampID)  && (camp.getUserGroup().equals(MainApp.currentUser.getFaculty()) || camp.getUserGroup().equals(Enum.valueOf(eFaculty.class, "NTU"))) && camp.isVisibility()) {
                 validCampID = true;
                 break;
             }
         }
     
         if (validCampID) {
-            Scanner scanner = new Scanner(System.in);
             System.out.print("Enter your enquiry message: ");
-            String enquiryMessage = scanner.nextLine();
+            String enquiryMessage = input.nextLine();
     
             // Increment the enquiryID using UniqueID class
-            int newEnquiryID = MainApp.uniqueID.getNextEnquiryID();
+            String newEnquiryID = MainApp.uniqueID.getNextEnquiryID();
             MainApp.uniqueID.incrementEnquiryID();
     
             // Create a new Enquiry object
@@ -106,7 +105,7 @@ public class StudentEnquiryMenuUI extends BaseUI{
         int index = 1;
         for (Enquiry enquiry : MainApp.enquiries) {
             if (enquiry.getCreatedBy().equals(currentStudent.getID())) {
-                System.out.println("Enquiry ID: " + enquiry.getEnquiryID());
+                System.out.println("Enquiry ID: " + enquiry.getID());
                 System.out.println("Camp ID: " + enquiry.getCampID());
                 System.out.println("Enquiry Message: " + enquiry.getEnquiryMessage());
                 System.out.println("Processed: " + enquiry.isProcessed());
@@ -134,7 +133,7 @@ public class StudentEnquiryMenuUI extends BaseUI{
         int index = 1;
         for (Enquiry enquiry : MainApp.enquiries) {
             if (enquiry.getCreatedBy().equals(currentStudent.getID())) {
-                System.out.println("Enquiry ID: " + enquiry.getEnquiryID());
+                System.out.println("Enquiry ID: " + enquiry.getID());
                 System.out.println("Camp ID: " + enquiry.getCampID());
                 System.out.println("Enquiry Message: " + enquiry.getEnquiryMessage());
                 System.out.println("Processed: " + enquiry.isProcessed());
@@ -161,7 +160,7 @@ public class StudentEnquiryMenuUI extends BaseUI{
         // Find the Enquiry using the ID
         Enquiry enquiryToDeleteObject = null;
         for (Enquiry enquiry : MainApp.enquiries) {
-            if (enquiry.getEnquiryID() == enquiryToDelete && enquiry.getCreatedBy().equals(currentStudent.getID())) {
+            if (enquiry.getID().equals(enquiryToDelete+"")  && enquiry.getCreatedBy().equals(currentStudent.getID())) {
                 enquiryToDeleteObject = enquiry;
                 break;
             }

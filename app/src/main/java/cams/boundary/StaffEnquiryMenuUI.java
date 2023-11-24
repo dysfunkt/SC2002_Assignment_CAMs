@@ -40,11 +40,10 @@ public class StaffEnquiryMenuUI extends BaseUI{
 
     public void viewAllEnquiries() {
         printHeader("View All Enquiries");
-   
         for (Enquiry enquiry : MainApp.enquiries) {
             // Display relevant information about each enquiry
-            if (((Staff)MainApp.currentUser).getCampsInCharge().stream().anyMatch(camp -> camp.getCampID() == enquiry.getCampID())){
-                System.out.println("Enquiry ID: " + enquiry.getEnquiryID());
+            if (((Staff)MainApp.currentUser).getCampsInCharge().stream().anyMatch(camp -> camp.getID() == enquiry.getCampID())){
+                System.out.println("Enquiry ID: " + enquiry.getID());
                 System.out.println("Camp ID: " + enquiry.getCampID());
                 System.out.println("Created By: " + enquiry.getCreatedBy());
                 System.out.println("Enquiry Message: " + enquiry.getEnquiryMessage());
@@ -61,13 +60,13 @@ public class StaffEnquiryMenuUI extends BaseUI{
     public void replyEnquiry() {
         printHeader("Reply to Enquiry");
         System.out.print("Enter Enquiry ID to reply: ");
-        int enquiryIDToReply = input.nextInt();
+        String enquiryIDToReply = input.nextLine();
         input.nextLine(); 
     
         // Find the Enquiry with the given ID
         Enquiry selectedEnquiry = null;
         for (Enquiry enquiry : MainApp.enquiries) {
-            if (enquiry.getEnquiryID() == enquiryIDToReply) {
+            if (enquiry.getID().equals(enquiryIDToReply)) {
                 selectedEnquiry = enquiry;
                 break;
             }

@@ -43,7 +43,7 @@ public class CampCSVHelper extends CSVBaseHelper{
         BufferedWriter csvFile = FileIOHelper.getFileBufferedWriter(this.campCsv);
         ArrayList<String[]> toWrite = new ArrayList<>(); 
         toWrite.add(header);
-        camps.forEach((c) -> toWrite.add(c.toCsv()));
+        camps.forEach((c) -> toWrite.add(c.toSaveString()));
         writeToCsvFile(toWrite, csvFile);
     }
 

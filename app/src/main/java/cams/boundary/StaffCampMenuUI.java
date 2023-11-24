@@ -62,7 +62,7 @@ public class StaffCampMenuUI extends BaseUI{
 
 
     private void createCamp() {
-        int campID;
+        String campID;
         String campName;
         Date startDate;
         Date endDate;
@@ -118,7 +118,7 @@ public class StaffCampMenuUI extends BaseUI{
         visibility = ScannerHelper.getYesNoInput("Make camp visible?");
         Camp newCamp = new Camp(campID, campName, startDate, endDate, regCloseDate, userGroup, campLocation, campTotalSlots, campCommitteeSlots, campDescription, staffInCharge, visibility);
         MainApp.camps.add(newCamp);
-        ((Staff)MainApp.currentUser).createCamp(newCamp.getCampID());
+        ((Staff)MainApp.currentUser).createCamp(newCamp.getID());
         System.out.println("Camp created successfully.");
     }
 
@@ -126,8 +126,8 @@ public class StaffCampMenuUI extends BaseUI{
     private void editCamp(){
         viewYourCamps();
         ArrayList<Camp> campList = ((Staff)MainApp.currentUser).getCampsInCharge();
-        int campNo = ScannerHelper.getIntegerInput("Enter the ID of the camp to edit (Enter 0 to cancel): ", IDHelper.extractCampIDs(campList),"Enter one of the IDs!");
-        if (campNo == 0) {
+        String campNo = ScannerHelper.getIDInput("Enter the ID of the camp to edit (Enter 0 to cancel): ", IDHelper.extractCampIDs(campList),"Enter one of the IDs!");
+        if (campNo.equals("0")) {
             System.out.println("Cancelling edit. Returning to Camp Menu...");
             return;
         }
@@ -140,8 +140,8 @@ public class StaffCampMenuUI extends BaseUI{
     private void deleteCamp(){
         viewYourCamps();
         ArrayList<Camp> campList = ((Staff)MainApp.currentUser).getCampsInCharge();
-        int campNo = ScannerHelper.getIntegerInput("Enter the ID of the camp to delete (Enter 0 to cancel): ", IDHelper.extractCampIDs(campList),"Enter one of the IDs!");
-        if (campNo == 0) {
+        String campNo = ScannerHelper.getIDInput("Enter the ID of the camp to delete (Enter 0 to cancel): ", IDHelper.extractCampIDs(campList),"Enter one of the IDs!");
+        if (campNo.equals("0")) {
             System.out.println("Cancelling delete. Returning to Camp Menu...");
             return;
         }
@@ -156,7 +156,7 @@ public class StaffCampMenuUI extends BaseUI{
             System.out.println("Cancelling delete. Returning to Camp Menu...");
             return;
         }
-        ((Staff)MainApp.currentUser).deleteCamp(chosenCamp.getCampID());
+        ((Staff)MainApp.currentUser).deleteCamp(chosenCamp.getID());
         MainApp.camps.remove(chosenCamp);
         System.out.println("Camp deleted.");
     }
@@ -230,8 +230,8 @@ public class StaffCampMenuUI extends BaseUI{
     private void generateReport(){
         viewYourCamps();
         ArrayList<Camp> campList = ((Staff)MainApp.currentUser).getCampsInCharge();
-        int campNo = ScannerHelper.getIntegerInput("Enter the ID of the camp to generate report (Enter 0 to cancel): ", IDHelper.extractCampIDs(campList),"Enter one of the IDs!");
-        if (campNo == 0) {
+        String campNo = ScannerHelper.getIDInput("Enter the ID of the camp to generate report (Enter 0 to cancel): ", IDHelper.extractCampIDs(campList),"Enter one of the IDs!");
+        if (campNo.equals("0")) {
             System.out.println("Cancelling print. Returning to Camp Menu...");
             return;
         }
@@ -251,7 +251,7 @@ public class StaffCampMenuUI extends BaseUI{
         }
         System.out.println(String.format(formatTemplate, "ID", "Camp Name", "Start Date", "End Date", "Reg. Close Date", "Faculty", "Location", "Att. slots left", "Com. slots left", "Description"));
         for (Camp camp : list) {
-            System.out.println(String.format(formatTemplate, camp.getCampID(), camp.getCampName(), CSVStringHelper.DateToCSVString(camp.getStartDate()), CSVStringHelper.DateToCSVString(camp.getEndDate()), CSVStringHelper.DateToCSVString(camp.getRegCloseDate()), camp.getUserGroup() + "", camp.getCampLocation() + "", camp.remainingAttendeeSlots() + "", camp.remainingCommitteeSlots()+"", camp.getCampDescription()));
+            System.out.println(String.format(formatTemplate, camp.getID(), camp.getCampName(), CSVStringHelper.DateToCSVString(camp.getStartDate()), CSVStringHelper.DateToCSVString(camp.getEndDate()), CSVStringHelper.DateToCSVString(camp.getRegCloseDate()), camp.getUserGroup() + "", camp.getCampLocation() + "", camp.remainingAttendeeSlots() + "", camp.remainingCommitteeSlots()+"", camp.getCampDescription()));
         }
     }
 }

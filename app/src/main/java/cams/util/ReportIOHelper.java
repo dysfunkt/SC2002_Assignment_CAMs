@@ -50,7 +50,7 @@ public class ReportIOHelper extends FileIOHelper{
     }
 
     private static ArrayList<String> getCampDetails(Camp camp) {
-        String[] c = camp.toCsv();
+        String[] c = camp.toSaveString();
         ArrayList<String> toWrite = new ArrayList<>();
         toWrite.add("Camp ID: " + c[0]);
         toWrite.add("Camp Name: " + c[1]);
@@ -68,7 +68,7 @@ public class ReportIOHelper extends FileIOHelper{
     }
 
     public static void generateParticipantListReport(Camp camp) throws IOException {
-        String fileName = "Camp" + camp.getCampID() + "ParticipantListReport.txt";
+        String fileName = "Camp" + camp.getID() + "ParticipantListReport.txt";
         BufferedWriter txtFile = getFileBufferedWriter(fileName);
         ArrayList<String> toWrite = new ArrayList<>();
         toWrite.addAll(getCampDetails(camp));
@@ -88,7 +88,7 @@ public class ReportIOHelper extends FileIOHelper{
     }
 
     public static void generateAttendeeListReport(Camp camp) throws IOException {
-        String fileName = "Camp" + camp.getCampID() + "AttendeeListReport.txt";
+        String fileName = "Camp" + camp.getID() + "AttendeeListReport.txt";
         BufferedWriter txtFile = getFileBufferedWriter(fileName);
         ArrayList<String> toWrite = new ArrayList<>();
         toWrite.addAll(getCampDetails(camp));
@@ -105,7 +105,7 @@ public class ReportIOHelper extends FileIOHelper{
     }
 
     public static void generateCampCommitteeListReport(Camp camp) throws IOException {
-        String fileName = "Camp" + camp.getCampID() + "CampCommitteeListReport.txt";
+        String fileName = "Camp" + camp.getID() + "CampCommitteeListReport.txt";
         BufferedWriter txtFile = getFileBufferedWriter(fileName);
         ArrayList<String> toWrite = new ArrayList<>();
         toWrite.addAll(getCampDetails(camp));
@@ -122,7 +122,7 @@ public class ReportIOHelper extends FileIOHelper{
     }
 
     public static void generatePerformanceReport(Camp camp) throws IOException {
-        String fileName = "Camp" + camp.getCampID() + "PerformanceReport.txt";
+        String fileName = "Camp" + camp.getID() + "PerformanceReport.txt";
         BufferedWriter txtFile = getFileBufferedWriter(fileName);
         ArrayList<String> toWrite = new ArrayList<>();
         toWrite.addAll(getCampDetails(camp));
@@ -139,7 +139,7 @@ public class ReportIOHelper extends FileIOHelper{
     }
 
     public static void generateStudentEnquiryReport(Camp camp) throws IOException {
-        String fileName = "Camp" + camp.getCampID() + "StudentEnquiryReport.txt";
+        String fileName = "Camp" + camp.getID() + "StudentEnquiryReport.txt";
         BufferedWriter txtFile = getFileBufferedWriter(fileName);
         ArrayList<String> toWrite = new ArrayList<>();
         toWrite.addAll(getCampDetails(camp));
@@ -147,8 +147,8 @@ public class ReportIOHelper extends FileIOHelper{
         toWrite.add("Student Enquiries: ");
         toWrite.add("");
         for (Enquiry enquiry: MainApp.enquiries) {
-            if(enquiry.getCampID() == camp.getCampID() && !enquiry.isDeleted()) {
-                toWrite.add("Enquiry ID: " + enquiry.getEnquiryID());
+            if(enquiry.getCampID() == camp.getID() && !enquiry.isDeleted()) {
+                toWrite.add("Enquiry ID: " + enquiry.getID());
                 toWrite.add("Created By: " + enquiry.getCreatedBy());
                 toWrite.add("Enquiry Message: " + enquiry.getEnquiryMessage());
                 toWrite.add("Processed: " + enquiry.isProcessed());

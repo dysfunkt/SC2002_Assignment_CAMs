@@ -1,10 +1,7 @@
 package cams.boundary;
 
-import cams.MainApp;
 import cams.controller.account.AccountManager;
 import cams.controller.account.user.CurrentUser;
-import cams.model.person.*;
-import cams.util.ScannerHelper;
 
 public class StudentMenuUI extends BaseUI{
     protected int generateMenuScreen() {
