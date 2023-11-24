@@ -5,7 +5,6 @@ import cams.boundary.campcommittee.CCMenuUI;
 import cams.boundary.staff.StaffMenuUI;
 import cams.boundary.student.StudentMenuUI;
 import cams.controller.account.AccountManager;
-import cams.controller.account.user.CurrentUser;
 import cams.model.person.*;
 import cams.util.exception.MenuChoiceInvalidException;
 import cams.util.exception.ModelNotFoundException;
