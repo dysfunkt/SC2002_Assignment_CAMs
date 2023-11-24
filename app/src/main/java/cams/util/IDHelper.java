@@ -1,14 +1,20 @@
 package cams.util;
 import java.util.ArrayList;
+import java.util.List;
 
-import cams.MainApp;
-import cams.object.appitem.*;
-import cams.object.person.*;
+import cams.model.appitem.*;
+import cams.model.camp.Camp;
+import cams.model.person.*;
+import cams.repository.appitem.CampRepository;
+import cams.repository.appitem.EnquiryRepository;
+import cams.repository.appitem.SuggestionRepository;
+import cams.repository.person.StaffRepository;
+import cams.repository.person.StudentRepository;
 
 public class IDHelper {
-    public static Camp getCampFromID(int ID) {
-        for (Camp camp : MainApp.camps) {
-            if (camp.getCampID() == ID) {
+    public static Camp getCampFromID(String ID) {
+        for (Camp camp : CampRepository.getInstance()) {
+            if (camp.getID().equals(ID) ) {
                 return camp;
             }
         }
@@ -16,43 +22,39 @@ public class IDHelper {
         return null;
     }
 
-    public static ArrayList<Integer> extractCampIDs(ArrayList<Camp> campList) {
-        ArrayList<Integer> campIDs = new ArrayList<>();
+    public static List<String> extractCampIDs(List<Camp> campList) {
+        List<String> campIDs = new ArrayList<>();
 
         for (Camp camp : campList) {
-            campIDs.add(camp.getCampID());
+            campIDs.add(camp.getID());
         }
 
         return campIDs;
     }
 
-    public static ArrayList<Integer> extractSuggestionIDs(int campID) {
-        ArrayList<Integer> suggestionIDs = new ArrayList<>();
+    public static List<String> extractSuggestionIDs(List<Suggestion> suggestionList) {
+        List<String> suggestionIDs = new ArrayList<>();
 
-        for (Suggestion suggestion: MainApp.suggestions) {
-            if(suggestion.getCampID() == campID) {
-                suggestionIDs.add(suggestion.getSuggestionID());
-            }
+        for (Suggestion suggestion: SuggestionRepository.getInstance()) {
+            suggestionIDs.add(suggestion.getID());
         }
 
         return suggestionIDs;
     }
 
-    public static ArrayList<Integer> extractEnquiryIDs(int campID) {
-        ArrayList<Integer> enquiryIDs = new ArrayList<>();
+    public static List<String> extractEnquiryIDs(List<Enquiry> enquiryList) {
+        List<String> enquiryIDs = new ArrayList<>();
 
-        for (Enquiry enquiry: MainApp.enquiries) {
-            if(enquiry.getCampID() == campID) {
-                enquiryIDs.add(enquiry.getEnquiryID());
-            }
+        for (Enquiry enquiry: enquiryList) {
+            enquiryIDs.add(enquiry.getID());
         }
 
         return enquiryIDs;
     }
 
-    public static Enquiry getEnquiryFromID(int ID) {
-        for (Enquiry enquiry : MainApp.enquiries) {
-            if (enquiry.getEnquiryID() == ID) {
+    public static Enquiry getEnquiryFromID(String ID) {
+        for (Enquiry enquiry : EnquiryRepository.getInstance()) {
+            if (enquiry.getID() == ID) {
                 return enquiry;
             }
         }
@@ -60,9 +62,9 @@ public class IDHelper {
         return null;
     }
 
-    public static Suggestion getSuggestionFromID(int ID) {
-        for (Suggestion suggestion : MainApp.suggestions) {
-            if (suggestion.getSuggestionID() == ID) {
+    public static Suggestion getSuggestionFromID(String ID) {
+        for (Suggestion suggestion : SuggestionRepository.getInstance()) {
+            if (suggestion.getID() == ID) {
                 return suggestion;
             }
         }
@@ -71,8 +73,8 @@ public class IDHelper {
     }
 
     public static Student getStudentFromUserID(String userID) {
-        for (Student student : MainApp.students) {
-            if (student.getUserID().equals(userID)) {
+        for (Student student : StudentRepository.getInstance()) {
+            if (student.getID().equals(userID)) {
                 return student;
             }
         }
@@ -81,8 +83,8 @@ public class IDHelper {
     }
 
     public static Staff getStaffFromUserID(String userID) {
-        for (Staff staff : MainApp.staffs) {
-            if (staff.getUserID() == userID) {
+        for (Staff staff : StaffRepository.getInstance()) {
+            if (staff.getID() == userID) {
                 return staff;
             }
         }
