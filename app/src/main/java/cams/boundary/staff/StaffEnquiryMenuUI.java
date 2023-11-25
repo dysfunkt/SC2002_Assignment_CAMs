@@ -11,9 +11,9 @@ import cams.controller.account.user.CurrentUser;
 import cams.controller.enquiry.EnquiryManager;
 import cams.model.appitem.*;
 import cams.model.person.*;
-import cams.util.IDHelper;
 import cams.util.exception.MenuChoiceInvalidException;
 import cams.util.exception.ModelNotFoundException;
+import cams.util.id.IDHelper;
 import cams.util.ui.ScannerHelper;
 
 public class StaffEnquiryMenuUI extends BaseUI{

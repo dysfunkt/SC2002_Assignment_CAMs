@@ -11,24 +11,41 @@ import cams.repository.Repository;
 import cams.util.exception.ModelAlreadyExistsException;
 import cams.util.iocontrol.FileIOHelper;
 
+/** 
+ * This class is a repository that manages the persistence of Camp objects across different runtime instances through file I/O operations.
+ * It extends the Repository class, which provides the basic CRUD operations for the repository.
+ */
 public class CampRepository extends Repository<Camp>{
 
+    /** 
+     * The file name of the camp data file
+     */
     private static final String FILE_NAME = "camp.csv";
 
+    /** 
+     * Holds the instance of the CampRepository object
+     */
     private static CampRepository mInstance;
 
+    /** 
+     * Default constructor of the CampRepository class
+     */
     private CampRepository() {
     }
 
     
     /** 
-     * @return CampRepository
+     * Returns object instance, creates a new object if not yet created.
+     * @return the CampRepository object instance
      */
     public static CampRepository getInstance() {
         if (mInstance == null) mInstance = new CampRepository();
         return mInstance;
     }
 
+    /** 
+     * Load list of Camp from repository file.
+     */
     public void load() throws IOException {
         if (!FileIOHelper.exists(FILE_NAME)) return; //Empty ArrayList
         BufferedReader csvFile = FileIOHelper.getFileBufferedReader(FILE_NAME);
@@ -44,6 +61,9 @@ public class CampRepository extends Repository<Camp>{
         }
     }
 
+    /** 
+     * Save list of Camp from repository file.
+     */
     public void save() throws IOException {
         String[] header = {"CampID", "CampName" ,"StartDate", "EndDate", "RegistrationCloseDate", 
                         "UserGroup", "CampLocation", "CampTotalSlots", "CampCommitteeSlots", 

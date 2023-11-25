@@ -15,9 +15,9 @@ import cams.model.camp.Camp;
 import cams.model.camp.eLocation;
 import cams.model.person.*;
 import cams.repository.appitem.CampRepository;
-import cams.util.IDHelper;
 import cams.util.exception.MenuChoiceInvalidException;
 import cams.util.exception.ModelNotFoundException;
+import cams.util.id.IDHelper;
 import cams.util.ui.ScannerHelper;
 
 
@@ -75,16 +75,16 @@ public class CCCampMenuUI extends BaseUI{
         ArrayList<Camp> campsToDisplay = new ArrayList<>();
         switch (choice) {
             case 1:
-                CampManager.getListByFilter();
+            campsToDisplay.addAll(CampManager.getListByFilter());
                 break;
             case 2:
                 int facultyFilter = ScannerHelper.getIntegerInput("Your faculty (1) or NTU (2)", 0, 3);
                 switch (facultyFilter) {
                     case 1:
-                        CampManager.getListByFilter(CurrentUser.get().getFaculty());
+                    campsToDisplay.addAll(CampManager.getListByFilter(CurrentUser.get().getFaculty()));
                         break;
                     case 2:
-                        CampManager.getListByFilter(Enum.valueOf(eFaculty.class, "NTU"));
+                    campsToDisplay.addAll(CampManager.getListByFilter(Enum.valueOf(eFaculty.class, "NTU")));
                         break;
                     default:
                         break;
@@ -92,25 +92,25 @@ public class CCCampMenuUI extends BaseUI{
                 break;
             case 3:
                 eLocation locationFilter = ScannerHelper.getLocationInput();
-                CampManager.getListByFilter(locationFilter);
+                campsToDisplay.addAll(CampManager.getListByFilter(locationFilter));
                 break;
             case 4:
                 Date startDate = ScannerHelper.getDateInput("From (yyyy-MM-dd): ");
                 Date endDate = ScannerHelper.getDateInput("To (yyyy-MM-dd): ");
-                CampManager.getListByFilter(startDate, endDate);
+                campsToDisplay.addAll(CampManager.getListByFilter(startDate, endDate));
                 break;
             case 5: 
                 Date closingDate = ScannerHelper.getDateInput("Registration closing date by (yyyy-MM-dd): ");
-                CampManager.getListByFilter(closingDate);
+                campsToDisplay.addAll(CampManager.getListByFilter(closingDate));
                 break;
             case 0:
                 return;
             default:
                 break;
         }
+        printBreaks();
         Collections.sort(campsToDisplay, Comparator.comparing(Camp::getCampName));
         System.out.println("List of camps: ");
-        System.out.println();
         ModelDisplayer.displayListOfDisplayable(campsToDisplay);
     }    
 

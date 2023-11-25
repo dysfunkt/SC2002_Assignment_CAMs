@@ -8,7 +8,14 @@ import java.util.stream.Collectors;
 import cams.util.date.DateHandler;
 import cams.util.iocontrol.FileIOHelper;
 
+/**
+ * This helper class provides methods used on startup for aesthetic purpurses.
+ */
 public class Welcome {
+
+    /**
+     * Displays welcome art.
+     */
     public static void printWelcomeAscii() {
         try {
             BufferedReader reader = FileIOHelper.getFileBufferedReader("welcome_ascii.txt");
@@ -18,7 +25,10 @@ public class Welcome {
             System.out.println("[ERROR] Failed to load ASCII Welcome Art!");
         }
     }
-
+    
+    /**
+     * Displays greeting and date.
+     */
     public static void getGreeting() {
         System.out.println("Welcome to Camp Management System!");
         System.out.println("Today's date: " + DateHandler.getTodayDate());

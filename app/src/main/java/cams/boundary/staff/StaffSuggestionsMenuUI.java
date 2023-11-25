@@ -10,9 +10,9 @@ import cams.controller.account.user.CurrentUser;
 import cams.controller.suggestion.SuggestionManager;
 import cams.model.appitem.*;
 import cams.model.person.Staff;
-import cams.util.IDHelper;
 import cams.util.exception.MenuChoiceInvalidException;
 import cams.util.exception.ModelNotFoundException;
+import cams.util.id.IDHelper;
 import cams.util.ui.ScannerHelper;
 
 public class StaffSuggestionsMenuUI extends BaseUI{

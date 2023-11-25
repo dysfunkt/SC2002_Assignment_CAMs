@@ -11,24 +11,40 @@ import cams.repository.Repository;
 import cams.util.exception.ModelAlreadyExistsException;
 import cams.util.iocontrol.FileIOHelper;
 
+/** 
+ * This class is a repository that manages the persistence of Staff objects across different runtime instances through file I/O operations.
+ * It extends the Repository class, which provides the basic CRUD operations for the repository.
+ */
 public class StaffRepository extends Repository<Staff> {
     
+    /** 
+     * The file name of the staff data file
+     */
     private static final String FILE_NAME = "staff.csv";
 
+    /** 
+     * Holds the instance of the StaffRepository object
+     */
     private static StaffRepository mInstance;
 
+    /** 
+     * Default constructor of StaffRepository class
+     */
     private StaffRepository() {
     }
 
-    
     /** 
-     * @return StaffRepository
+     * Returns object instance, creates a new object not yet created.
+     * @return the StaffRepository object instance
      */
     public static StaffRepository getInstance() {
         if (mInstance == null) mInstance = new StaffRepository();
         return mInstance;
     }
 
+    /** 
+     * Load list of Staff from repository file.
+     */
     public void load() throws IOException {
         if (!FileIOHelper.exists(FILE_NAME)) return; //Empty ArrayList
         BufferedReader csvFile = FileIOHelper.getFileBufferedReader(FILE_NAME);
@@ -44,6 +60,9 @@ public class StaffRepository extends Repository<Staff> {
         }
     }
 
+    /** 
+     * Save list of Staff from repository file.
+     */
     public void save() throws IOException {
         String[] header = {"Name" ,"Email", "Faculty", "UserID", "Password", "FirstLogin", "CampInChargeID", "CSVPad"};
         BufferedWriter csvFile = FileIOHelper.getFileBufferedWriter(FILE_NAME);

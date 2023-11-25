@@ -6,12 +6,12 @@ import cams.controller.camp.CampManager;
 import cams.controller.enquiry.EnquiryManager;
 import cams.model.appitem.Enquiry;
 import cams.model.camp.Camp;
-import cams.util.IDHelper;
 import cams.util.exception.AlreadyProcessedException;
 import cams.util.exception.MenuChoiceInvalidException;
 import cams.util.exception.ModelAlreadyExistsException;
 import cams.util.exception.ModelNotFoundException;
 import cams.util.exception.OperationCancelledException;
+import cams.util.id.IDHelper;
 import cams.util.ui.ScannerHelper;
 
 import java.util.Collections;

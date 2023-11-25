@@ -25,7 +25,6 @@ public class ModelDisplayer {
             System.out.println(displayable.getDisplayableString());
             System.out.println(((DisplayableSplitter)displayable).getSplitterString());
         }
-
     }
 
     public static void displayListOfDisplayable(List<? extends Displayable> displayableList) {
@@ -44,6 +43,5 @@ public class ModelDisplayer {
                 System.out.println(((DisplayableSplitter)displayable).getSplitterString());
             }
         }
-        
     }
 }

@@ -16,12 +16,12 @@ import cams.model.camp.Camp;
 import cams.model.camp.eLocation;
 import cams.model.person.*;
 import cams.repository.appitem.CampRepository;
-import cams.util.IDHelper;
 import cams.util.exception.MenuChoiceInvalidException;
 import cams.util.exception.ModelAlreadyExistsException;
 import cams.util.exception.ModelNotFoundException;
 import cams.util.exception.OperationCancelledException;
 import cams.util.exception.ParticipantAlreadyRegisteredException;
+import cams.util.id.IDHelper;
 import cams.util.ui.ScannerHelper;
 
 public class StaffCampMenuUI extends BaseUI{
@@ -215,33 +215,32 @@ public class StaffCampMenuUI extends BaseUI{
         ArrayList<Camp> campsToDisplay = new ArrayList<>();
         switch (choice) {
             case 1:
-                CampManager.getListByFilter();
+                campsToDisplay.addAll(CampManager.getListByFilter());
                 break;
             case 2:
                 eFaculty facultyFilter = ScannerHelper.getFacultyInput();
-                CampManager.getListByFilter(facultyFilter);
+                campsToDisplay.addAll(CampManager.getListByFilter(facultyFilter));
                 break;
             case 3:
                 eLocation locationFilter = ScannerHelper.getLocationInput();
-                CampManager.getListByFilter(locationFilter);
+                campsToDisplay.addAll(CampManager.getListByFilter(locationFilter));
                 break;
             case 4:
                 Date startDate = ScannerHelper.getDateInput("From (yyyy-MM-dd): ");
                 Date endDate = ScannerHelper.getDateInput("To (yyyy-MM-dd): ");
-                CampManager.getListByFilter(startDate, endDate);
+                campsToDisplay.addAll(CampManager.getListByFilter(startDate, endDate));
                 break;
             case 5: 
                 Date closingDate = ScannerHelper.getDateInput("Registration closing date by (yyyy-MM-dd): ");
-                CampManager.getListByFilter(closingDate);
+                campsToDisplay.addAll(CampManager.getListByFilter(closingDate));
                 break;
             case 0:
                 return;
             default:
                 throw new MenuChoiceInvalidException("Staff Camps Menu");
         }
-
+        printBreaks();
         System.out.println("List of camps: ");
-        System.out.println();
         Collections.sort(campsToDisplay, Comparator.comparing(Camp::getCampName));
         ModelDisplayer.displayListOfDisplayable(campsToDisplay);
     }

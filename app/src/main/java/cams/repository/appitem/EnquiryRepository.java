@@ -12,24 +12,40 @@ import cams.repository.Repository;
 import cams.util.exception.ModelAlreadyExistsException;
 import cams.util.iocontrol.FileIOHelper;
 
+/** 
+ * This class is a repository that manages the persistence of Enquiry objects across different runtime instances through file I/O operations.
+ * It extends the Repository class, which provides the basic CRUD operations for the repository.
+ */
 public class EnquiryRepository extends Repository<Enquiry>{
 
+    /** 
+     * The file name of the enquiry data file
+     */
     private static final String FILE_NAME = "Enquiry.csv";
 
+    /** 
+     * Holds the instance of the EnquiryRepository object
+     */
     private static EnquiryRepository mInstance;
 
+    /** 
+     * Default constructor of EnquiryRepository class
+     */
     private EnquiryRepository() {
     }
     
-    
     /** 
-     * @return EnquiryRepository
+     * Returns object instance, creates a new object not yet created.
+     * @return the EnquiryRepository object instance
      */
     public static EnquiryRepository getInstance() {
         if (mInstance == null) mInstance = new EnquiryRepository();
         return mInstance;
     }
 
+    /** 
+     * Load list of Enquiry from repository file.
+     */
     public void load() throws IOException {
         if (!FileIOHelper.exists(FILE_NAME)) return; //Empty ArrayList
         BufferedReader csvFile = FileIOHelper.getFileBufferedReader(FILE_NAME);
@@ -45,6 +61,9 @@ public class EnquiryRepository extends Repository<Enquiry>{
         }
     }
 
+    /** 
+     * Save list of Enquiry from repository file.
+     */
     public void save() throws IOException {
         String[] header = {"EnquiryID", "CampID", "CreatedBy", "Processed", "Deleted", "EnquiryMessage", "EnquiryReply", "ReplyViewed"};
         BufferedWriter csvFile = FileIOHelper.getFileBufferedWriter(FILE_NAME);

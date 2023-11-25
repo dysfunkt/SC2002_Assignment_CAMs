@@ -11,24 +11,40 @@ import cams.repository.Repository;
 import cams.util.exception.ModelAlreadyExistsException;
 import cams.util.iocontrol.FileIOHelper;
 
+/** 
+ * This class is a repository that manages the persistence of Suggestion objects across different runtime instances through file I/O operations.
+ * It extends the Repository class, which provides the basic CRUD operations for the repository.
+ */
 public class SuggestionRepository extends Repository<Suggestion>{
     
+    /** 
+     * The file name of the Suggestion data file
+     */
     private static final String FILE_NAME = "suggestion.csv";
 
+    /** 
+     * Holds the instance of the SuggestionRepository object
+     */
     private static SuggestionRepository mInstance;
 
+    /** 
+     * Default constructor of SuggestionRepository class
+     */
     private SuggestionRepository() {
     }
 
-    
     /** 
-     * @return SuggestionRepository
+     * Returns object instance, creates a new object not yet created.
+     * @return the SuggestionRepository object instance
      */
     public static SuggestionRepository getInstance() {
         if (mInstance == null) mInstance = new SuggestionRepository();
         return mInstance;
     }
 
+    /** 
+     * Load list of Suggestion from repository file.
+     */
     public void load() throws IOException {
         if (!FileIOHelper.exists(FILE_NAME)) return; //Empty ArrayList
         BufferedReader csvFile = FileIOHelper.getFileBufferedReader(FILE_NAME);
@@ -44,6 +60,9 @@ public class SuggestionRepository extends Repository<Suggestion>{
         }
     }
 
+    /** 
+     * Save list of Suggestion from repository file.
+     */
     public void save() throws IOException {
         String[] header = {"SuggestionID", "CampID", "CreatedBy", "Processed", "Deleted", "SuggestionMessage",  "Approved"};
         BufferedWriter csvFile = FileIOHelper.getFileBufferedWriter(FILE_NAME);
