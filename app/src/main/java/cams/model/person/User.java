@@ -29,6 +29,10 @@ public class User implements Model{
         this.firstLogin = Boolean.valueOf(csv[5]);
     }
 
+    
+    /** 
+     * @return String[]
+     */
     public String[] toSaveString() {
         String[] s = new String[6];
         s[0] = this.name;

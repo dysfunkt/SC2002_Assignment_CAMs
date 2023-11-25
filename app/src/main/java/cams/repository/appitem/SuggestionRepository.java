@@ -20,6 +20,10 @@ public class SuggestionRepository extends Repository<Suggestion>{
     private SuggestionRepository() {
     }
 
+    
+    /** 
+     * @return SuggestionRepository
+     */
     public static SuggestionRepository getInstance() {
         if (mInstance == null) mInstance = new SuggestionRepository();
         return mInstance;

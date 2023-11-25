@@ -43,6 +43,10 @@ public class Suggestion implements Model, DisplayableSplitter{
         this.approved = Boolean.valueOf(csv[6]);
     }
 
+    
+    /** 
+     * @return String[]
+     */
     public String[] toSaveString() {
         String[] s = new String[7];
         s[0] = suggestionID + "";

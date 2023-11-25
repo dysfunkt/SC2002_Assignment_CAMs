@@ -4,6 +4,12 @@ import cams.model.person.User;
 import cams.util.exception.PasswordIncorrectException;
 
 public class PasswordManager {
+    
+    /** 
+     * @param user
+     * @param password
+     * @return boolean
+     */
     public static boolean checkPassword(User user, String password) {
         return user.checkPassword(password);
     }

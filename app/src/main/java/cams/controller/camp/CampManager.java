@@ -19,6 +19,20 @@ import cams.util.ui.ScannerHelper;
 
 public class CampManager {
 
+    
+    /** 
+     * @param campName
+     * @param startDate
+     * @param endDate
+     * @param regCloseDate
+     * @param userGroup
+     * @param location
+     * @param totalSlots
+     * @param CCSlots
+     * @param description
+     * @param visibility
+     * @throws ModelAlreadyExistsException
+     */
     public static void createCamp(String campName, Date startDate, Date endDate, Date regCloseDate, eFaculty userGroup, eLocation location, int totalSlots, int CCSlots, String description, Boolean visibility) throws ModelAlreadyExistsException{
         Camp c1 = new Camp(UniqueIDHandler.getInstance().getNextCampID(), campName, startDate, endDate, regCloseDate, userGroup, location, totalSlots, CCSlots, description, CurrentUser.get().getID(), visibility);
         CampRepository.getInstance().add(c1);

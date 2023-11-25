@@ -14,6 +14,11 @@ import cams.util.exception.ModelNotFoundException;
 
 
 public class ReportFactory {
+    
+    /** 
+     * @param camp
+     * @return ArrayList<String>
+     */
     private static ArrayList<String> getCampDetails(Camp camp) {
         String[] c = camp.toSaveString();
         ArrayList<String> toWrite = new ArrayList<>();

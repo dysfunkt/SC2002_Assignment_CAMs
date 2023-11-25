@@ -28,6 +28,10 @@ public class StaffCampMenuUI extends BaseUI{
 
     private Scanner input = ScannerHelper.getScannerInput();
 
+    
+    /** 
+     * @return int
+     */
     protected int generateMenuScreen() {
         printHeader("Staff Camps Menu");
         System.out.println("1) Create Camp");

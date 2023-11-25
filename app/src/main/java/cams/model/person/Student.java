@@ -33,6 +33,10 @@ public class Student extends User{
         ;
     }
 
+    
+    /** 
+     * @return String[]
+     */
     @Override
     public String[] toSaveString() {
         String[] s = new String[10];

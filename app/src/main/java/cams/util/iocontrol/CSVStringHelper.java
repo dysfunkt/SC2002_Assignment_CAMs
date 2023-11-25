@@ -9,6 +9,11 @@ import java.util.List;
 import java.util.StringJoiner;
 
 public class CSVStringHelper {
+    
+    /** 
+     * @param list
+     * @return String
+     */
     public static String arraylistStringtoCSVString(ArrayList<String> list) {
         if (list.isEmpty()) {
             return ""; 

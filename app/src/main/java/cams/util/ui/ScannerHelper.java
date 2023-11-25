@@ -11,6 +11,10 @@ public class ScannerHelper {
 
     public static Scanner instance;
 
+    
+    /** 
+     * @return Scanner
+     */
     public static Scanner getScannerInput() {
         if (instance == null) instance = new Scanner(System.in);
         return instance;

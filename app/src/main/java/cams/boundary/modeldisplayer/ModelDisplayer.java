@@ -9,6 +9,10 @@ import cams.model.DisplayableSplitter;
 import cams.model.camp.Camp;
 
 public class ModelDisplayer {
+    
+    /** 
+     * @param displayable
+     */
     public static void displaySingleDisplayable(Displayable displayable) {
         if (displayable == null) {
             System.out.println("Nothing found.");

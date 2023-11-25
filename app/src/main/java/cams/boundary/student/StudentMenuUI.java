@@ -7,6 +7,10 @@ import cams.controller.account.user.CurrentUser;
 import cams.util.exception.MenuChoiceInvalidException;
 
 public class StudentMenuUI extends BaseUI{
+    
+    /** 
+     * @return int
+     */
     protected int generateMenuScreen() {
         if (AccountManager.checkCC(CurrentUser.get())) return -1;
         printHeader("Student Main Menu");

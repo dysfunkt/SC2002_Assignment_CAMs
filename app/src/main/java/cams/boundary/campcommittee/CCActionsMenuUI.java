@@ -25,6 +25,10 @@ import cams.util.ui.ScannerHelper;
 public class CCActionsMenuUI extends BaseUI{
     private Scanner input = ScannerHelper.getScannerInput();
 
+    
+    /** 
+     * @return int
+     */
     protected int generateMenuScreen() {
         printHeader("Camp Committee Actions Menu");
         System.out.println("1) View Registered Camp Details"); //Details of the camp they have registered for

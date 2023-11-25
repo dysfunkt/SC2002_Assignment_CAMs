@@ -6,6 +6,10 @@ import cams.util.exception.MenuChoiceInvalidException;
 
 public class CCMenuUI extends BaseUI {
 
+    
+    /** 
+     * @return int
+     */
     protected int generateMenuScreen() {
         printHeader("Camp Committee Main Menu");
         System.out.println("1) Go To Camp Menu");

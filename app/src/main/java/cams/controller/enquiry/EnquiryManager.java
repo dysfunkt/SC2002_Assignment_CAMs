@@ -16,6 +16,12 @@ import cams.util.ui.ScannerHelper;
 
 public class EnquiryManager {
 
+    
+    /** 
+     * @param campID
+     * @param message
+     * @throws ModelAlreadyExistsException
+     */
     public static void createEnquiry(String campID, String message) throws ModelAlreadyExistsException {
         Enquiry e1 = new Enquiry(UniqueIDHandler.getInstance().getNextEnquiryID(), campID, CurrentUser.get().getID(), message);
         EnquiryRepository.getInstance().add(e1);

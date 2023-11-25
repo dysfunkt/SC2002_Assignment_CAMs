@@ -12,6 +12,11 @@ import cams.repository.person.StaffRepository;
 import cams.repository.person.StudentRepository;
 
 public class IDHelper {
+    
+    /** 
+     * @param ID
+     * @return Camp
+     */
     public static Camp getCampFromID(String ID) {
         for (Camp camp : CampRepository.getInstance()) {
             if (camp.getID().equals(ID) ) {

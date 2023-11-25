@@ -13,6 +13,10 @@ public abstract class BaseUI {
 
     protected abstract int generateMenuScreen();
 
+    
+    /** 
+     * @return boolean
+     */
     public boolean startMainMenu() {
         while (true) {
             try {

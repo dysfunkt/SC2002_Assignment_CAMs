@@ -5,6 +5,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DateHandler {
+    
+    /** 
+     * @return Date
+     */
     public static Date getTodayDate() {
         java.time.LocalDate today = java.time.LocalDate.now();
 
