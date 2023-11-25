@@ -24,6 +24,9 @@ import cams.util.exception.ParticipantAlreadyRegisteredException;
 import cams.util.id.IDHelper;
 import cams.util.ui.ScannerHelper;
 
+/**
+ * This Class provides a UI for Staff to manage camps
+ */
 public class StaffCampMenuUI extends BaseUI{
 
     private Scanner input = ScannerHelper.getScannerInput();
@@ -75,6 +78,9 @@ public class StaffCampMenuUI extends BaseUI{
         return 0;
     }
 
+    /**
+     * This method allows staff to create a camp.
+     */
     private void createCamp() {
         printHeader("Create Camp");
         String campName;
@@ -134,6 +140,9 @@ public class StaffCampMenuUI extends BaseUI{
     }
 
 
+    /**
+     * Allows the staff to choose a camp they are in charge of and want to edit details for.
+     */
     private void editCamp(){
         List<Camp> campList;
         try{
@@ -161,6 +170,9 @@ public class StaffCampMenuUI extends BaseUI{
     }
 
 
+    /**
+     * Allows staff to delete a camp that they are in charge of.
+     */
     private void deleteCamp(){
         List<Camp> campList;
         try{
@@ -201,6 +213,9 @@ public class StaffCampMenuUI extends BaseUI{
     }
 
 
+    /**
+     * Allows staff to view all camps based on different filters applied.
+     */
     private void viewAllCamps() {
         printHeader("View Camps");
         System.out.println("Filter by: ");
@@ -246,6 +261,9 @@ public class StaffCampMenuUI extends BaseUI{
     }
 
 
+    /**
+     * Allows staff to view camps they are in charge of.
+     */
     private void viewYourCamps() {
         List<Camp> campList;
         try{
@@ -265,6 +283,9 @@ public class StaffCampMenuUI extends BaseUI{
     }
 
 
+    /**
+     * Allows staff to generate a report for a camp they are in charge of.
+     */
     private void generateReport(){
         List<Camp> campList;
         try{

@@ -19,6 +19,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * This class provides a UI for student to manage enquiries.
+ */
 public class StudentEnquiryMenuUI extends BaseUI{
     private Scanner input = ScannerHelper.getScannerInput();
     
@@ -62,6 +65,9 @@ public class StudentEnquiryMenuUI extends BaseUI{
     }
 
 
+    /**
+     * Allows student to perform edits on an existing enquiry they created.
+     */
     private void editEnquiry() {
         printHeader("Edit Enquiries");
         List<Enquiry> enquiryList = EnquiryManager.getUserCreatedList();
@@ -92,6 +98,9 @@ public class StudentEnquiryMenuUI extends BaseUI{
     }
 
 
+    /**
+     * Submits an enquiry by prompting the student to select a camp and enter an enquiry message.
+     */
     private void submitEnquiry() {
         printHeader("Submit Enquiry");
         List<Camp> campList = CampManager.getListByFilter();
@@ -117,7 +126,10 @@ public class StudentEnquiryMenuUI extends BaseUI{
         }
         System.out.println("Enquiry successfully submitted.");
     }
-    
+
+    /**
+     * Allow student to view enquiries they created.
+     */
     private void viewEnquiries() {
         printHeader("View Enquiries");
         List<Enquiry> enquiryList = EnquiryManager.getUserCreatedList();
@@ -128,7 +140,10 @@ public class StudentEnquiryMenuUI extends BaseUI{
         Collections.sort(enquiryList, Comparator.comparing(Enquiry::getID));
         ModelDisplayer.displayListOfDisplayable(enquiryList);
     }
-        
+
+    /**
+     * Deletes an enquiry created by the student.
+     */
     private void deleteEnquiry() {
         printHeader("Delete Enquiries");
         List<Enquiry> enquiryList = EnquiryManager.getUserCreatedList();

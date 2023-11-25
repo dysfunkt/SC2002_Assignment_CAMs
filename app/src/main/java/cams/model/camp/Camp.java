@@ -10,7 +10,12 @@ import cams.model.person.*;
 import cams.util.date.DateHandler;
 import cams.util.iocontrol.CSVStringHelper;
 
-public class Camp implements Model, DisplayableHeader{ 
+/**
+ * This class represents a camp. It contains information such as the camp name,
+ * start and end dates, registration close date, group who can sign up, location, total slots, committee slots,
+ * description staff, and the list of attendees, leavers and camp committee members.
+ */
+public class Camp implements Model, DisplayableHeader{
 
     private String campID;
     private String campName;
@@ -28,7 +33,24 @@ public class Camp implements Model, DisplayableHeader{
     private ArrayList<String> leavers;
     private boolean visibility;
 
-    public Camp(String campID, String campName, Date startDate, Date endDate, Date regCloseDate, 
+    /**
+     * @param campID Id of the camp.
+     * @param campName Name of the camp.
+     * @param startDate Start date of the camp.
+     * @param endDate End date of the camp.
+     * @param regCloseDate Registration close date for the camp.
+     * @param userGroup Faculty associated with the camp.
+     * @param campLocation Location of the camp.
+     * @param campTotalSlots Total available slots for attendees.
+     * @param campCommitteeSlots Total available slots for camp committee members.
+     * @param campDescription Description of the camp.
+     * @param staffInCharge Staff member in charge of the camp.
+     * @param listOfAttendees List of attendees user IDs.
+     * @param listOfCampCommittees List of camp committee members' user IDs.
+     * @param leavers List of user IDs of leavers of a camp.
+     * @param visibility Visibility status of the camp.
+     */
+    public Camp(String campID, String campName, Date startDate, Date endDate, Date regCloseDate,
                 eFaculty userGroup, eLocation campLocation, int campTotalSlots, 
                 int campCommitteeSlots, String campDescription, String staffInCharge, 
                 ArrayList<String> listOfAttendees, ArrayList<String> listOfCampCommittees, 
@@ -51,7 +73,21 @@ public class Camp implements Model, DisplayableHeader{
         this.visibility = visibility;
     }
 
-    public Camp(String campID, String campName, Date startDate, Date endDate, Date regCloseDate, 
+    /**
+     * @param campID Id of the camp.
+     * @param campName Name of the camp.
+     * @param startDate Start date of the camp.
+     * @param endDate End date of the camp.
+     * @param regCloseDate Registration close date for the camp.
+     * @param userGroup Faculty associated with the camp.
+     * @param campLocation Location of the camp.
+     * @param campTotalSlots Total available slots for attendees.
+     * @param campCommitteeSlots Total available slots for camp committee members.
+     * @param campDescription Description of the camp.
+     * @param staffInCharge Staff member in charge of the camp.
+     * @param visibility Visibility status of the camp.
+     */
+    public Camp(String campID, String campName, Date startDate, Date endDate, Date regCloseDate,
                 eFaculty userGroup, eLocation campLocation, int campTotalSlots, 
                 int campCommitteeSlots, String campDescription, String staffInCharge, 
                 Boolean visibility) {
@@ -72,6 +108,9 @@ public class Camp implements Model, DisplayableHeader{
         this.visibility = visibility;
     }
 
+    /**
+     * @param csv
+     */
     public Camp(String[] csv) {
         this.campID = csv[0];
         this.campName = csv[1];
@@ -117,6 +156,11 @@ public class Camp implements Model, DisplayableHeader{
     private final String staffFormatTemplate = "%-3s| %-20s| %-11s| %-11s| %-11s| %-16s| %-8s| %-12s| %-16s| %-16s| %s";
     private final String studentFormatTemplate = "%-3s| %-20s| %-11s| %-11s| %-16s| %-8s| %-12s| %-16s| %-16s| %s";
 
+    /**
+     * Retrieves the staff or student header string for displaying camp information depending on the user's domain.
+     * Displays additional information such as visibility and remaining slots for staff only.
+     * @return the formatted header string.
+     */
     @Override
     public String getHeaderString(){
         if (CurrentUser.get() instanceof Staff) {
@@ -128,11 +172,21 @@ public class Camp implements Model, DisplayableHeader{
     }
 
 
+    /**
+     * Retrieves the staff or student string representation of the camp to display depending on the user's domain.
+     * Displays additional information such as visibility and remaining slots for staff only.
+     * @return the formatted string representation of the camp.
+     */
     @Override
     public String getDisplayableString() {
         return getSingleCampString();
     }
 
+    /**
+     * Retrieves the staff or student string representation of a camp to display depending on the user's domain.
+     * Displays additional information such as visibility and remaining slots for staff only.
+     * @return the formatted string representation of a single camp.
+     */
     public String getSingleCampString(){
         if (CurrentUser.get() instanceof Staff) {
             return String.format(staffFormatTemplate, campID, campName, visibility, DateHandler.dateToString(startDate), DateHandler.dateToString(endDate), DateHandler.dateToString(regCloseDate), String.valueOf(userGroup), String.valueOf(campLocation), String.valueOf(remainingAttendeeSlots()), String.valueOf(remainingCommitteeSlots()), campDescription);
@@ -142,83 +196,154 @@ public class Camp implements Model, DisplayableHeader{
     }
 
 
-
+    /**
+     * Gets the location of the camp.
+     *
+     * @return The location of the camp.
+     */
     public eLocation getCampLocation() {
         return campLocation;
     }
 
+    /**
+     * Sets the location of the camp.
+     *
+     * @param campLocation The new location of the camp.
+     */
     public void setCampLocation(eLocation campLocation) {
         this.campLocation = campLocation;
     }
 
+    /**
+     * @return String return camp name.
+     */
     public String getCampName() {
         return campName;
     }
 
+    /**
+     * @param campName set camp name.
+     */
     public void setCampName(String campName) {
         this.campName = campName;
     }
 
+    /**
+     * @return Date return the registration close date.
+     */
     public Date getRegCloseDate() {
         return regCloseDate;
     }
 
+    /**
+     * @param regCloseDate set registration close date.
+     */
     public void setRegCloseDate(Date regCloseDate) {
         this.regCloseDate = regCloseDate;
     }
 
+    /**
+     * Retrieves the user's faculty
+     * @return user's faculty
+     */
     public eFaculty getUserGroup() {
         return userGroup;
     }
 
+    /**
+     * @param userGroup set the faculties eligible to participate in this camp.
+     */
     public void setUserGroup(eFaculty userGroup) {
         this.userGroup = userGroup;
     }
 
+    /**
+     * Retrieves the total slots available for attendees in the camp.
+     * @return Int returns the number of available slots for attendees.
+     */
     public int getCampTotalSlots() {
         return campTotalSlots;
     }
 
+    /**
+     * @param campTotalSlots set the total number of slots available for attendees.
+     */
     public void setCampTotalSlots(int campTotalSlots) {
         this.campTotalSlots = campTotalSlots;
     }
 
+    /**
+     * Retrieves the total camp committee slots available for the camp.
+     * @return Int returns the number of available camp committee slots for the camp.
+     */
     public int getCampCommitteeSlots() {
         return campCommitteeSlots;
     }
 
+    /**
+     * @param campCommitteeSlots set the total number of slots available for camp committee members.
+     */
     public void setCampCommitteeSlots(int campCommitteeSlots) {
         this.campCommitteeSlots = campCommitteeSlots;
     }
 
+    /**
+     * Retrieves the description of the camp.
+     * @return String return the description of the camp.
+     */
     public String getCampDescription() {
         return campDescription;
     }
 
+    /**
+     * @param campDescription set the description of the camp.
+     */
     public void setCampDescription(String campDescription) {
         this.campDescription = campDescription;
     }
 
+    /**
+     * Retrieves the staff in charge of the camp.
+     * @return String returns the staff in charge of the camp.
+     */
     public String getStaffInCharge() {
         return staffInCharge;
     }
 
+    /**
+     * @param staffInCharge set which staff is in charge of the camp.
+     */
     public void setStaffInCharge(String staffInCharge) {
         this.staffInCharge = staffInCharge;
     }
 
+    /**
+     * Retrieves the list of attendees in the camp.
+     * @return ArrayList<Student> return the list of attendees in the camp.
+     */
     public ArrayList<String> getListOfAttendees() {
         return listOfAttendees;
     }
 
+    /**
+     * @param listOfAttendees set the list of attendees of the camp.
+     */
     public void setListOfAttendees(ArrayList<String> listOfAttendees) {
         this.listOfAttendees = listOfAttendees;
     }
 
+    /**
+     * Checks if the camp is visible
+     * @return True if the camp is visible, false otherwise.
+     */
     public boolean isVisibility() {
         return visibility;
     }
 
+    /**
+     * Set if the camp is visible to students.
+     * @param visibility set the visibility of the camp.
+     */
     public void setVisibility(boolean visibility) {
         this.visibility = visibility;
     }
@@ -287,27 +412,53 @@ public class Camp implements Model, DisplayableHeader{
         return campID;
     }
 
+    /**
+     * Calculates the remaining attendee slots available for the camp.
+     * @return int return the remaining slots available for the camp.
+     */
     public int remainingAttendeeSlots() {
         return campTotalSlots - listOfAttendees.size() - campCommitteeSlots;
     }
 
+    /**
+     * Calculates the remaining camp committee slots available for the camp.
+     * @return int return the remaining camp committee slots available for the camp.
+     */
     public int remainingCommitteeSlots() {
         return campCommitteeSlots - listOfCampCommittees.size();
     }
 
+    /**
+     * Checks if there is a schedule clash for the camp and another camp the user has already registered for.
+     * @param start The start date to check for clashes.
+     * @param end The end date to check for clashes.
+     * @return True if there is a clash, false otherwise.
+     */
     public Boolean isClash(Date start, Date end) {
         return !end.before(startDate) && !start.after(endDate);
         
     }
 
+    /**
+     * Adds an attendee to the camp.
+     * @param userID Id of the user to be added to camp.
+     */
     public void addAttendee(String userID) {
         listOfAttendees.add(userID);
     }
 
+    /**
+     * Adds a committee member to the camp.
+     * @param userID Id of the user to be added as a camp committee member.
+     */
     public void addCommittee(String userID) {
         listOfCampCommittees.add(userID);
     }
 
+    /**
+     * Removes an attendee from the camp and adds them to the leavers list.
+     * @param userID Id of the user to be removed from the camp and added to the leaver list.
+     */
     public void removeAttendee(String userID) {
         if (listOfAttendees.contains(userID)) {
             listOfAttendees.remove(userID);

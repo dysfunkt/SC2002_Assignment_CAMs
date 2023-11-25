@@ -4,6 +4,9 @@ import cams.boundary.BaseUI;
 import cams.boundary.login.ChangePasswordUI;
 import cams.util.exception.MenuChoiceInvalidException;
 
+/**
+ * This class provides a main menu UI for staff
+ */
 public class StaffMenuUI extends BaseUI {
 
     

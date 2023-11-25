@@ -16,6 +16,9 @@ import cams.util.exception.ModelNotFoundException;
 import cams.util.id.IDHelper;
 import cams.util.ui.ScannerHelper;
 
+/**
+ * This CLass provides a UI for staff to manage camp enquires
+ */
 public class StaffEnquiryMenuUI extends BaseUI{
     private Scanner input = ScannerHelper.getScannerInput();
 
@@ -51,6 +54,9 @@ public class StaffEnquiryMenuUI extends BaseUI{
     }
 
 
+    /**
+     * This method allows staff to view all enquiries for camps they are in charge of.
+     */
     public void viewAllEnquiries() {
         printHeader("View All Enquiries");
         List<Enquiry> list = EnquiryManager.getUnprocessedListByCampIDList(((Staff)CurrentUser.get()).getCampsInChargeID());
@@ -59,6 +65,9 @@ public class StaffEnquiryMenuUI extends BaseUI{
     }
 
 
+    /**
+     * This method allows staff to choose and reply to specific enquiries of camps they are in charge of.
+     */
     public void replyEnquiry() {
         printHeader("Reply to Enquiry");
         List<Enquiry> enquiryList = EnquiryManager.getUnprocessedListByCampIDList(((Staff)CurrentUser.get()).getCampsInChargeID());

@@ -6,6 +6,9 @@ import cams.controller.account.AccountManager;
 import cams.controller.account.user.CurrentUser;
 import cams.util.exception.MenuChoiceInvalidException;
 
+/**
+ * This class provides a main menu UI for students.
+ */
 public class StudentMenuUI extends BaseUI{
     
     /** 

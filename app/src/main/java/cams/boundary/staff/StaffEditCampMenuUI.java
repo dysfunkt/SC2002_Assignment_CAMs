@@ -14,6 +14,9 @@ import cams.util.exception.ModelNotFoundException;
 import cams.util.exception.ParticipantAlreadyRegisteredException;
 import cams.util.ui.ScannerHelper;
 
+/**
+ * This class provides a UI for staff to edit camp details.
+ */
 public class StaffEditCampMenuUI extends BaseUI{
     private String campID;
     protected StaffEditCampMenuUI(String ID){

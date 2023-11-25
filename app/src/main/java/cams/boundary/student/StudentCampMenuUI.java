@@ -20,6 +20,9 @@ import cams.util.exception.ModelNotFoundException;
 import cams.util.id.IDHelper;
 import cams.util.ui.ScannerHelper;
 
+/**
+ * This class allows students to manage all camp related actions.
+ */
 public class StudentCampMenuUI extends BaseUI{
 
     
@@ -61,6 +64,10 @@ public class StudentCampMenuUI extends BaseUI{
         return 0;
     }
 
+    /**
+     * Displays all available camps based on user specific filters.
+     * The resulting list of camps is sorted alphabetically and displayed using ModelDisplayer.
+     */
     private void viewAllCamps() {
         printHeader("View Camps");
         System.out.println("Filter by: ");
@@ -114,6 +121,11 @@ public class StudentCampMenuUI extends BaseUI{
         ModelDisplayer.displayListOfDisplayable(campsToDisplay);
     }
 
+    /**
+     * Allows students to register for a camp by choosing from the list of available camps.
+     * Check if the user has registered and withdrew from the same camp in the past and restrict registration
+     * @return true if the student registers as Camp Committee and needs to re-login for privileges; false otherwise.
+     */
     private Boolean registerForCamp() {
         printHeader("Register for Camp");
         List<Camp> campList = CampManager.getListByFilter();
@@ -158,7 +170,10 @@ public class StudentCampMenuUI extends BaseUI{
         }
         return false;
     }
-    
+
+    /**
+     * Allows student to withdraw from a camp by choosing from the list of their registered camps.
+     */
     private void withdrawFromCamp() {
         printHeader("Withdraw from Camp");
         List<Camp> campList;
@@ -191,6 +206,9 @@ public class StudentCampMenuUI extends BaseUI{
         }
     }
 
+    /**
+     * Displays the list of camps that the student is currently registered for.
+     */
     private void viewRegisteredCamps() {
         printHeader("Registered Camps");
         List<Camp> campList;
