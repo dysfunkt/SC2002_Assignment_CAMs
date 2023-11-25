@@ -11,8 +11,7 @@ import java.io.IOException;
 /**
  * Main Application Class
  * Entry point of the CAMs application
- * This class will handle initialisation upon startup and saving app data upon shutdown
- * @author Willy Tang
+ * This class will handle initialisation upon startup and saving app data upon shutdown.
  */
 
 public class MainApp {

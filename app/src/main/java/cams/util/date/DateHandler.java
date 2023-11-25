@@ -4,10 +4,14 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/** 
+ * Utility class to handle operations with Date objects.
+ */
 public class DateHandler {
     
     /** 
-     * @return Date
+     * Gets todays date.
+     * @return todays date.
      */
     public static Date getTodayDate() {
         java.time.LocalDate today = java.time.LocalDate.now();
@@ -21,6 +25,11 @@ public class DateHandler {
         }
     }
 
+    /** 
+     * Converts a string to Date object.
+     * @param s String to convert.
+     * @return Date
+     */
     public static Date stringtoDate(String s) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         try {
@@ -31,6 +40,11 @@ public class DateHandler {
         }
     }
 
+    /** 
+     * Converts Date to string.
+     * @param d Date to convert.
+     * @return String
+     */
     public static String dateToString(Date d) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return dateFormat.format(d);

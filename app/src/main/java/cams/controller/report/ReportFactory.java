@@ -6,11 +6,12 @@ import java.util.ArrayList;
 
 import cams.model.appitem.Enquiry;
 import cams.model.camp.Camp;
+import cams.model.person.Student;
 import cams.repository.appitem.CampRepository;
 import cams.repository.appitem.EnquiryRepository;
-import cams.util.IDHelper;
-import cams.util.ReportIOHelper;
+import cams.repository.person.StudentRepository;
 import cams.util.exception.ModelNotFoundException;
+import cams.util.iocontrol.ReportIOHelper;
 
 
 public class ReportFactory {
@@ -55,12 +56,22 @@ public class ReportFactory {
         String format = "%-10s %-12s %s";
         toWrite.add(String.format(format, "UserID", "Name", "Role"));
         for (String str : camp.getListOfAttendees()) {
-            String formatted = String.format(format, str, IDHelper.getStudentFromUserID(str).getName(), "Attendee");
-            toWrite.add(formatted);
+            try {
+                Student s = StudentRepository.getInstance().getByID(str);
+                String formatted = String.format(format, s.getID(), s.getName(), "Attendee");
+                toWrite.add(formatted);
+            } catch (ModelNotFoundException e) {
+                System.out.println(e.getLocalizedMessage());
+            }
         }
         for (String str : camp.getListOfCampCommittees()) {
-            String formatted = String.format(format, str, IDHelper.getStudentFromUserID(str).getName(), "Camp Committee");
-            toWrite.add(formatted);
+            try {
+                Student s = StudentRepository.getInstance().getByID(str);
+                String formatted = String.format(format, s.getID(), s.getName(), "Camp Committee");
+                toWrite.add(formatted);
+            } catch (ModelNotFoundException e) {
+                System.out.println(e.getLocalizedMessage());
+            }
         }
         ReportIOHelper.writeToTxtFile(toWrite, txtFile);
     }
@@ -83,8 +94,13 @@ public class ReportFactory {
         String format = "%-10s %-12s %s";
         toWrite.add(String.format(format, "UserID", "Name", "Role"));
         for (String str : camp.getListOfAttendees()) {
-            String formatted = String.format(format, str, IDHelper.getStudentFromUserID(str).getName(), "Attendee");
-            toWrite.add(formatted);
+            try {
+                Student s = StudentRepository.getInstance().getByID(str);
+                String formatted = String.format(format, s.getID(), s.getName(), "Attendee");
+                toWrite.add(formatted);
+            } catch (ModelNotFoundException e) {
+                System.out.println(e.getLocalizedMessage());
+            }
         }
         ReportIOHelper.writeToTxtFile(toWrite, txtFile);
         System.out.println("Report " + fileName + " Generated Successfully.");
@@ -108,8 +124,13 @@ public class ReportFactory {
         String format = "%-10s %-12s %s";
         toWrite.add(String.format(format, "UserID", "Name", "Role"));
         for (String str : camp.getListOfCampCommittees()) {
-            String formatted = String.format(format, str, IDHelper.getStudentFromUserID(str).getName(), "Camp Committee");
-            toWrite.add(formatted);
+            try {
+                Student s = StudentRepository.getInstance().getByID(str);
+                String formatted = String.format(format, s.getID(), s.getName(), "Camp Committee");
+                toWrite.add(formatted);
+            } catch (ModelNotFoundException e) {
+                System.out.println(e.getLocalizedMessage());
+            }
         }
         ReportIOHelper.writeToTxtFile(toWrite, txtFile);
         System.out.println("Report " + fileName + " Generated Successfully.");
@@ -133,8 +154,13 @@ public class ReportFactory {
         String format = "%-10s %-12s %s";
         toWrite.add(String.format(format, "UserID", "Name", "Points"));
         for (String str : camp.getListOfCampCommittees()) {
-            String formatted = String.format(format, str, IDHelper.getStudentFromUserID(str).getName(), IDHelper.getStudentFromUserID(str).getPoints()+"");
-            toWrite.add(formatted);
+            try {
+                Student s = StudentRepository.getInstance().getByID(str);
+                String formatted = String.format(format, s.getID(), s.getName(), s.getPoints());
+                toWrite.add(formatted);
+            } catch (ModelNotFoundException e) {
+                System.out.println(e.getLocalizedMessage());
+            }
         }
         ReportIOHelper.writeToTxtFile(toWrite, txtFile);
         System.out.println("Report " + fileName + " Generated Successfully.");

@@ -7,19 +7,32 @@ import java.util.*;
 import cams.model.camp.eLocation;
 import cams.model.person.eFaculty;
 
+/**
+ * Helper class for Scanner inputs with exception handling and input validation.
+ */
 public class ScannerHelper {
 
+    /**
+     * Instance of Scanner object
+     */
     public static Scanner instance;
 
     
     /** 
-     * @return Scanner
+     * Returns instance of Scanner object if it exists; otherwise create one.
+     * @return Scanner object.
      */
     public static Scanner getScannerInput() {
         if (instance == null) instance = new Scanner(System.in);
         return instance;
     }
 
+    /**
+     * Integer input with validation of invalid characters entered.
+     *
+     * @param prompt Text to prompt for the input, pass in empty string for no prompt.
+     * @return Integer input value.
+     */
     public static int getIntegerInput(String prompt) {
         Scanner input = getScannerInput();
         int val;
@@ -37,6 +50,13 @@ public class ScannerHelper {
         return val;
     }
 
+    /**
+     * Integer input with a minimum limit.
+     *
+     * @param prompt Text to prompt for the input, pass in empty string for no prompt.
+     * @param min    Minimum input (exclusive).
+     * @return Validated input.
+     */
     public static int getIntegerInput(String prompt, int min) {
         while (true) {
             int val = getIntegerInput(prompt);
@@ -45,6 +65,14 @@ public class ScannerHelper {
         }
     }
 
+    /**
+     * Integer input with a minimum and maximum limit.
+     *
+     * @param prompt Text to prompt for the input, pass in empty string for no prompt.
+     * @param min    Minimum input (exclusive).
+     * @param max    Maximum input (exclusive).
+     * @return Validated input.
+     */
     public static int getIntegerInput(String prompt, int min, int max) {
         while (true) {
             int val = getIntegerInput(prompt, min);
@@ -53,6 +81,15 @@ public class ScannerHelper {
         }
     }
 
+    
+    /** 
+     * Integer input with a list of accepted values. 
+     * Used to get ID input.
+     * @param prompt Text to prompt for the input, pass in empty string for no prompt.
+     * @param acceptedValues List of accepted values.
+     * @param errorMsg Error Message to provide to the user.
+     * @return ID String.
+     */
     public static String getIDInput(String prompt, List<String> acceptedValues, String errorMsg) {
         Set<String> unique = new HashSet<>(acceptedValues);
         while (true) {
@@ -62,6 +99,12 @@ public class ScannerHelper {
         }
     }
 
+    /**
+     * Yes/No input for boolean values.
+     *
+     * @param prompt Text to prompt for the input, pass in empty string for no prompt.
+     * @return true if yes, false if no.
+     */
     public static boolean getYesNoInput(String prompt) {
         Scanner input = getScannerInput();
         String ans;
@@ -78,6 +121,12 @@ public class ScannerHelper {
         }
     }
 
+    
+    /** 
+     * Date input with validation.
+     * @param prompt Text to prompt for the input, pass in empty string for no prompt.
+     * @return Date object.
+     */
     public static Date getDateInput(String prompt){
         Scanner input = getScannerInput();
         String dateString;
@@ -99,32 +148,11 @@ public class ScannerHelper {
         return date;
     }
 
-    
-    public static ArrayList<Date> getDatesInput(String prompt){
-        Scanner input = getScannerInput();
-        String dateString;
-        ArrayList<Date> datesArray = new ArrayList<Date>();
-        // Use SimpleDateFormat library to format the input date
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        while(true){
-            System.out.print(prompt);
-            dateString = input.nextLine();
-
-            if(dateString.equals("0")){
-                break;
-            }
-            try{
-                Date date = dateFormat.parse(dateString);
-                datesArray.add(date);
-                // You now have a Date object that you can work with
-                System.out.println("You added the date: " + date);
-            } catch (ParseException e){
-                System.out.println("Enter the date");
-            }
-        }
-        return datesArray;
-    }
-
+    /** 
+     * Prints a list of faculties and get user input.
+     * @param prompt Text to prompt for the input, pass in empty string for no prompt.
+     * @return Faculty.
+     */
     public static eFaculty getFacultyInput() {
         Scanner input = getScannerInput();
 
@@ -149,6 +177,11 @@ public class ScannerHelper {
         }
     }
 
+    /** 
+     * Prints a list of faculties and get user input.
+     * @param prompt Text to prompt for the input, pass in empty string for no prompt.
+     * @return Faculty.
+     */
     public static eLocation getLocationInput() {
         Scanner input = getScannerInput();
 
@@ -173,6 +206,10 @@ public class ScannerHelper {
         }
     }
 
+    /** 
+     * Get new password from user. Must have uppercase, lowercase, number, and at least 8 characters long.
+     * @return Password string.
+     */
     public static String getNewPassword() {
         Scanner input = getScannerInput();
         String password;
