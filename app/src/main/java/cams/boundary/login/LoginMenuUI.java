@@ -37,7 +37,7 @@ public class LoginMenuUI extends BaseUI{
     }
 
     private boolean login() {
-        printBreaks();
+        printHeader("Domain");
         System.out.println("1) Staff");
         System.out.println("2) Student");
         printBreaks();

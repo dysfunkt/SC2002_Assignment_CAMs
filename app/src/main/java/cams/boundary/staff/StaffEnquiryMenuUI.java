@@ -58,6 +58,10 @@ public class StaffEnquiryMenuUI extends BaseUI{
     public void replyEnquiry() {
         printHeader("Reply to Enquiry");
         List<Enquiry> enquiryList = EnquiryManager.getUnprocessedListByCampIDList(((Staff)CurrentUser.get()).getCampsInChargeID());
+        if (enquiryList.size() == 0) {
+            System.out.println("No Enquiry Available! Returning to Enquiry Menu...");
+            return;
+        }
         Collections.sort(enquiryList, Comparator.comparing(Enquiry::getID));
         ModelDisplayer.displayListOfDisplayable(enquiryList);
     

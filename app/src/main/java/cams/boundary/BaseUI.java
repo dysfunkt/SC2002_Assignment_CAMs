@@ -58,14 +58,15 @@ public abstract class BaseUI {
             System.out.print("Enter menu option: ");
             try {
                 selection = input.nextInt();
-                input.nextLine();
                 if ((selection > max && selection != specialEscape) || selection < 0)
                     System.out.println("Invalid Selection. Please select an option from 1 - " + max);
             } catch (InputMismatchException e) {
                 selection = -1;
                 System.out.println("Invalid Input. Please only enter numbers");
+                System.out.println();
+            } finally {
+                input.nextLine();
             }
-            System.out.println();
         } while ((selection > max && selection != specialEscape) || selection < 0);
         return selection;
     }
