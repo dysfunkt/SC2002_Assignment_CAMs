@@ -27,7 +27,8 @@ import cams.util.ui.ScannerHelper;
 public class CCCampMenuUI extends BaseUI{
     
     /**
-     * @return int
+     * Displays the UI for camp committee members to manage camps.
+     * @return int -1 to return to the previous menu, 1 to exit the application,otherwise 0
      */
     protected int generateMenuScreen() {
         printHeader("Camp Committee Camps Menu");

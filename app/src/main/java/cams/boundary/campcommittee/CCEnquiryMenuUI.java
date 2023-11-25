@@ -26,7 +26,8 @@ public class CCEnquiryMenuUI extends BaseUI{
     private Scanner input = ScannerHelper.getScannerInput();
 
     
-    /** 
+    /**
+     * Display the UI for camp committee member to manage enquires
      * @return int
      */
     protected int generateMenuScreen() {
