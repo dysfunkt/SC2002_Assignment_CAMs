@@ -10,16 +10,19 @@ import cams.model.person.UserType;
 import cams.util.exception.ModelNotFoundException;
 import cams.util.exception.PasswordIncorrectException;
 
+/**
+ * This class handles the logic and processing related to accounts.
+ */
 public class AccountManager {
     
-    
     /** 
-     * @param userType
-     * @param userID
-     * @param password
-     * @return User
-     * @throws PasswordIncorrectException
-     * @throws ModelNotFoundException
+     * Handles login functionality.
+     * @param userType Domain of user.
+     * @param userID User ID entered by user.
+     * @param password Password entered by user.
+     * @return The user that matches the login credentials.
+     * @throws PasswordIncorrectException if password entered is incorrect.
+     * @throws ModelNotFoundException if user with user id is not found in the repository.
      */
     public static User login(UserType userType, String userID, String password) throws PasswordIncorrectException, ModelNotFoundException {
         User user = UserFinder.findUser(userID, userType);
@@ -32,13 +35,11 @@ public class AccountManager {
         }
     }
 
-    public static void changePassword(UserType userType, String userID, String oldPassword, String newPassword)
-            throws PasswordIncorrectException, ModelNotFoundException {
-        User user = UserFinder.findUser(userID, userType);
-        PasswordManager.changePassword(user, oldPassword, newPassword);
-
-    }
-
+    /** 
+     * Check if user is a camp committee member.
+     * @param user User to check.
+     * @return true if user is a camp committee member, false if user is not a camp committee member.
+     */
     public static boolean checkCC(User user) {
         if (user instanceof Student) {
             if (((Student)user).isCampCommittee()) return true;

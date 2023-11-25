@@ -13,6 +13,7 @@ import cams.repository.person.StudentRepository;
 * @author Willy Tang
 */
 public class RepositoryManager {
+
     /** 
      * Invokes the load method of all repositories.
      */
@@ -43,7 +44,6 @@ public class RepositoryManager {
         }
     }
 
-    
     /** 
      * Invokes save method of all repositories
      * @return true if successful, false if otherwise
