@@ -8,6 +8,9 @@ import cams.controller.account.user.CurrentUser;
 import cams.util.exception.PasswordIncorrectException;
 import cams.util.ui.ScannerHelper;
 
+/**
+ * This CLass displays a UI for the user to change their password.
+ */
 public class ChangePasswordUI extends BaseUI{
     private Scanner input = ScannerHelper.getScannerInput();
 
@@ -21,6 +24,9 @@ public class ChangePasswordUI extends BaseUI{
         return -1; 
     }
 
+    /**
+     * This method retrieves the current password of the user.
+     */
     private void getPassword(){
         System.out.println("Password must be at least 8 characters long.");
         System.out.println("Password must have at least one uppercase character, one lowercase character and one digit.");

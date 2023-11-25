@@ -13,6 +13,9 @@ import cams.util.ui.ScannerHelper;
 
 import java.util.Scanner;
 
+/**
+ * This class provides a user interface (UI) for the user to login.
+ */
 public class LoginMenuUI extends BaseUI{
 
     private Scanner input = ScannerHelper.getScannerInput();
@@ -40,6 +43,9 @@ public class LoginMenuUI extends BaseUI{
         return 0;
     }
 
+    /**
+     * This method lets the user choose which domain to log into
+     */
     private boolean login() {
         printHeader("Domain");
         System.out.println("1) Staff");
