@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import cams.util.iocontrol.CSVStringHelper;
 
 /**
- * This class represents a staff member in the system
+ * This class represents a staff member in the system. It extends the User class.
  */
 public class Staff extends User{
 
@@ -74,10 +74,18 @@ public class Staff extends User{
         this.campsInChargeID = campsInChargeID;
     }
 
+    /**
+     * Adds a camp to the list of camps that the staff member is in charge of.
+     * @param campID the id of the camp to be added.
+     */
     public void createCamp(String campID) {
         this.campsInChargeID.add(campID);
     }
 
+    /**
+     * Deletes a camp from the list of camps that the staff member is in charge of.
+     * @param campID the id of the camp to be deleted.
+     */
     public void deleteCamp(String campID) {
         this.campsInChargeID.remove(campID);
     }
