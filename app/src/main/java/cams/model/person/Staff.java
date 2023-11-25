@@ -68,7 +68,7 @@ public class Staff extends User{
 
     /**
      * Sets the list of camp IDs that the staff member is in charge of.
-     * @param campsInChargeID set the list of camp IDs the staff memeber is in charge of.
+     * @param campsInChargeID set the list of camp IDs the staff member is in charge of.
      */
     public void setCampsInCharge(ArrayList<String> campsInChargeID) {
         this.campsInChargeID = campsInChargeID;
