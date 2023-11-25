@@ -3,6 +3,11 @@ package cams.model.appitem;
 import cams.model.DisplayableSplitter;
 import cams.model.Model;
 
+/**
+ * This class represents a suggestion made by a user for a camp.
+ * An suggestion can be created, viewed, edited, approved and deleted.
+ * The class also provides methods to access and manipulate attributes of the enquiries.
+ */
 public class Suggestion implements Model, DisplayableSplitter{
     private String suggestionID;
     private String campID;
@@ -12,6 +17,15 @@ public class Suggestion implements Model, DisplayableSplitter{
     private String suggestionMessage;
     private Boolean approved;
 
+    /**
+     * @param suggestionID Id of the suggestion.
+     * @param campID Id of the camp associated with the suggestion.
+     * @param createdBy Id of the user the suggestion is associated with.
+     * @param processed True if the suggestion has been processed, false otherwise.
+     * @param deleted True if the suggestion has been deleted, false otherwise.
+     * @param suggestionMessage The content of the suggestion message.
+     * @param approved True if the suggestion has been approved, false otherwise.
+     */
     public Suggestion(String suggestionID, String campID, String createdBy, Boolean processed,
                         Boolean deleted, String suggestionMessage, Boolean approved) {
         this.suggestionID = suggestionID;
@@ -23,6 +37,12 @@ public class Suggestion implements Model, DisplayableSplitter{
         this.approved = approved;
     }
 
+    /**
+     * @param suggestionID Id of the suggestion.
+     * @param campID Id of the camp associated with the suggestion.
+     * @param createdBy Id of the user the suggestion is associated with.
+     * @param suggestionMessage The content of the suggestion message.
+     */
     public Suggestion(String suggestionID, String campID, String createdBy, String suggestionMessage) {
         this.suggestionID = suggestionID;
         this.campID = campID;
@@ -32,7 +52,10 @@ public class Suggestion implements Model, DisplayableSplitter{
         this.suggestionMessage = suggestionMessage;
         this.approved = false;
     }
-    
+
+    /**
+     * @param csv
+     */
     public Suggestion(String csv[]) {
         this.suggestionID = csv[0];
         this.campID = csv[1];
@@ -122,14 +145,18 @@ public class Suggestion implements Model, DisplayableSplitter{
         return approved;
     }
 
+
     /**
-     * @param approved the approved to set
+     * Approves the suggestion and sets the 'processed' and 'approved' flags to true.
      */
     public void approve() {
         this.approved = true;
         this.processed = true;
     }
 
+    /**
+     * Rejects the suggestion and sets the 'processed' flag to true while 'approved' is set to false.
+     */
     public void reject() {
         this.approved = false;
         this.processed = true;
@@ -139,16 +166,29 @@ public class Suggestion implements Model, DisplayableSplitter{
                                             "Camp ID: %s\n" +
                                             "Created By: %s\n" +
                                             "Enquiry Message: %s";
+
+    /**
+     * Retrieves a formatted string representation of the suggestion.
+     * @return String return formatted suggestion.
+     */
     @Override
     public String getDisplayableString() {
         return getSingleEnquiryString();
     }
 
+    /**
+     * Retrieves a formatted string representation of a single suggestion.
+     * @return String return a single formatted suggestion
+     */
     public String getSingleEnquiryString() {
         return String.format(FORMAT_TEMPLATE, suggestionID, campID, createdBy, suggestionMessage);
     }
 
 
+    /**
+     * Retrieves a string used as a splitter between displayable items.
+     * @return String return the string splitter
+     */
     @Override
     public String getSplitterString() {
         return "-----------------------------";    }
