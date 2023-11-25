@@ -171,22 +171,42 @@ public class Suggestion implements Model, DisplayableSplitter{
                                             "Camp ID: %s\n" +
                                             "Created By: %s\n" +
                                             "Suggestion Message: %s";
-    
+
     /**
      * Retrieves a formatted string representation of the suggestion.
      * @return String return formatted suggestion.
      */
     @Override
     public String getDisplayableString() {
-        return getSingleEnquiryString();
+        return getSingleSuggestionString();
     }
 
     /**
      * Retrieves a formatted string representation of a single suggestion.
      * @return String return a single formatted suggestion
      */
-    public String getSingleEnquiryString() {
-        return String.format(FORMAT_TEMPLATE, suggestionID, campID, createdBy, suggestionMessage);
+    public String getSingleSuggestionString() {
+        if (isProcessed()) {
+            return String.format(
+                    FORMAT_TEMPLATE,
+                    suggestionID,
+                    campID,
+                    createdBy,
+                    suggestionMessage,
+                    String.valueOf(isProcessed()),
+                    String.valueOf(isApproved())
+            );
+        } else {
+            return String.format(
+                    FORMAT_TEMPLATE,
+                    suggestionID,
+                    campID,
+                    createdBy,
+                    suggestionMessage,
+                    String.valueOf(isProcessed()),
+                    "Not yet processed"
+            );
+        }
     }
 
 
