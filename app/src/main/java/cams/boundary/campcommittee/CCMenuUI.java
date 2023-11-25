@@ -4,6 +4,9 @@ import cams.boundary.BaseUI;
 import cams.boundary.login.ChangePasswordUI;
 import cams.util.exception.MenuChoiceInvalidException;
 
+/**
+ * This class provides the main menu UI for camp committee members
+ */
 public class CCMenuUI extends BaseUI {
 
     

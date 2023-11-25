@@ -25,7 +25,7 @@ public class ChangePasswordUI extends BaseUI{
     }
 
     /**
-     * This method retrieves the current password of the user.
+     * Retrieves the current password of the user.
      */
     private void getPassword(){
         System.out.println("Password must be at least 8 characters long.");

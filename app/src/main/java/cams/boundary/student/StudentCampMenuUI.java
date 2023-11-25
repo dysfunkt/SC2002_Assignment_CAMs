@@ -21,7 +21,7 @@ import cams.util.exception.ModelNotFoundException;
 import cams.util.ui.ScannerHelper;
 
 /**
- * This class allows students to manage all camp related actions
+ * This class allows students to manage all camp related actions.
  */
 public class StudentCampMenuUI extends BaseUI{
 
@@ -65,7 +65,8 @@ public class StudentCampMenuUI extends BaseUI{
     }
 
     /**
-     * This method displays all available camps
+     * Displays all available camps based on user specific filters.
+     * The resulting list of camps is sorted alphabetically and displayed using ModelDisplayer.
      */
     private void viewAllCamps() {
         printHeader("View Camps");
@@ -121,8 +122,8 @@ public class StudentCampMenuUI extends BaseUI{
     }
 
     /**
-     * This method allows students to register for a camp by choosing from the list of available camps.
-     *
+     * Allows students to register for a camp by choosing from the list of available camps.
+     * Check if the user has registered and withdrew from the same camp in the past and restrict registration
      * @return true if the student registers as Camp Committee and needs to re-login for privileges; false otherwise.
      */
     private Boolean registerForCamp() {
@@ -171,7 +172,7 @@ public class StudentCampMenuUI extends BaseUI{
     }
 
     /**
-     * This method allows student to withdraw from a camp by choosing from the list of registered camps.
+     * Allows student to withdraw from a camp by choosing from the list of their registered camps.
      */
     private void withdrawFromCamp() {
         printHeader("Withdraw from Camp");
@@ -206,7 +207,7 @@ public class StudentCampMenuUI extends BaseUI{
     }
 
     /**
-     * This method displays the list of camps that the student is currently registered for.
+     * Displays the list of camps that the student is currently registered for.
      */
     private void viewRegisteredCamps() {
         printHeader("Registered Camps");

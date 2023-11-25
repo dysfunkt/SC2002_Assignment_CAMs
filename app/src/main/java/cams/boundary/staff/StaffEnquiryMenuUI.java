@@ -55,7 +55,7 @@ public class StaffEnquiryMenuUI extends BaseUI{
 
 
     /**
-     * This method allows staff to view all enquiries
+     * This method allows staff to view all enquiries for camps they are in charge of.
      */
     public void viewAllEnquiries() {
         printHeader("View All Enquiries");
@@ -66,7 +66,7 @@ public class StaffEnquiryMenuUI extends BaseUI{
 
 
     /**
-     * This method allows staff to choose and reply to specific enquiries
+     * This method allows staff to choose and reply to specific enquiries of camps they are in charge of.
      */
     public void replyEnquiry() {
         printHeader("Reply to Enquiry");

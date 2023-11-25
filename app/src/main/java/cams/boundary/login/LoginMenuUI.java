@@ -44,7 +44,7 @@ public class LoginMenuUI extends BaseUI{
     }
 
     /**
-     * This method lets the user choose which domain to log into
+     * Let the user choose which domain to log into
      */
     private boolean login() {
         printHeader("Domain");

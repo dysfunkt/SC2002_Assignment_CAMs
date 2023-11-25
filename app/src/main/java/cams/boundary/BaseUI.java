@@ -8,9 +8,18 @@ import cams.util.ui.ScannerHelper;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Abstract class where all menu UIs inherits from.
+ */
 public abstract class BaseUI {
+    /**
+     * Constant for defining maximum window size for console printing.
+     */
     private static final int PRINT_MAX_WINDOW_SIZE = 40;
 
+    /**
+     * An abstract class that subclasses must override and implement this method to create the menu content.
+     */
     protected abstract int generateMenuScreen();
 
     
@@ -30,10 +39,20 @@ public abstract class BaseUI {
         }
     }
 
+    /**
+     * Helper method to print the header of a menu.
+     *
+     * @param headerName The name of the menu
+     */
     protected static void printHeader(String headerName) {
         printHeader(headerName, PRINT_MAX_WINDOW_SIZE);
     }
 
+    /**
+     * Helper method to print the header of a menu.
+     * @param headerName Name of the menu
+     * @param length Length of the memu
+     */
     protected static void printHeader(String headerName, int length) {
         printBreaks(length);
         int numOfSpaces;
@@ -46,11 +65,18 @@ public abstract class BaseUI {
         }
     }
 
+    /**
+     * Helper method to create a menu separator.
+     * @param length How many dashes to append
+     */
     protected static void printBreaks(int length) {
         Stream.generate(() -> "-").limit(length).forEach((System.out::print));
         System.out.println();
     }
 
+    /**
+     * Helper method to create a menu separator.
+     */
     protected static void printBreaks() {
         printBreaks(PRINT_MAX_WINDOW_SIZE);
     }

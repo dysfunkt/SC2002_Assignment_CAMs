@@ -8,6 +8,9 @@ import cams.model.DisplayableHeader;
 import cams.model.DisplayableSplitter;
 import cams.model.camp.Camp;
 
+/**
+ * This class provides utility mthods for displaying objects and lists of displayable objects
+ */
 public class ModelDisplayer {
     
     /** 
@@ -28,6 +31,9 @@ public class ModelDisplayer {
 
     }
 
+    /**
+     * @param displayableList
+     */
     public static void displayListOfDisplayable(List<? extends Displayable> displayableList) {
         if (Objects.isNull(displayableList) || displayableList.isEmpty()) {
             System.out.println("Nothing found.");

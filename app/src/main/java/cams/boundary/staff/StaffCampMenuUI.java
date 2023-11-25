@@ -141,7 +141,7 @@ public class StaffCampMenuUI extends BaseUI{
 
 
     /**
-     * This method allows the staff to choose the camp that they want to edit.
+     * Allows the staff to choose a camp they are in charge of and want to edit details for.
      */
     private void editCamp(){
         List<Camp> campList;
@@ -171,7 +171,7 @@ public class StaffCampMenuUI extends BaseUI{
 
 
     /**
-     * This method allows staff to delete a camp that they are in charge of.
+     * Allows staff to delete a camp that they are in charge of.
      */
     private void deleteCamp(){
         List<Camp> campList;
@@ -214,7 +214,7 @@ public class StaffCampMenuUI extends BaseUI{
 
 
     /**
-     * This method allows staff to view all camps based on different filters applied.
+     * Allows staff to view all camps based on different filters applied.
      */
     private void viewAllCamps() {
         printHeader("View Camps");
@@ -263,7 +263,7 @@ public class StaffCampMenuUI extends BaseUI{
 
 
     /**
-     * This method allows staff to view camps they are in charge of.
+     * Allows staff to view camps they are in charge of.
      */
     private void viewYourCamps() {
         List<Camp> campList;
@@ -285,7 +285,7 @@ public class StaffCampMenuUI extends BaseUI{
 
 
     /**
-     * This method allows staff to choose a camp they want to generate a report for.
+     * Allows staff to generate a report for a camp they are in charge of.
      */
     private void generateReport(){
         List<Camp> campList;

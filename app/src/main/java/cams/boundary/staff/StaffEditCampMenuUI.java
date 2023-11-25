@@ -15,7 +15,7 @@ import cams.util.exception.ParticipantAlreadyRegisteredException;
 import cams.util.ui.ScannerHelper;
 
 /**
- * This class provides a UI for staff to edit camp details
+ * This class provides a UI for staff to edit camp details.
  */
 public class StaffEditCampMenuUI extends BaseUI{
     private String campID;

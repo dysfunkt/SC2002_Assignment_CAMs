@@ -23,7 +23,7 @@ import cams.util.exception.OperationCancelledException;
 import cams.util.ui.ScannerHelper;
 
 /**
- * This class allows
+ * This class provides a UI for camp committee members to manage enquiries and suggestions for camps they are committeeing for
  */
 public class CCActionsMenuUI extends BaseUI{
     private Scanner input = ScannerHelper.getScannerInput();
@@ -81,7 +81,7 @@ public class CCActionsMenuUI extends BaseUI{
 
 
     /**
-     *
+     * Displays details of the camp for which the camp committee member is registered.
      */
     private void viewCampDetails() {
         printHeader("Camp Details");
@@ -94,6 +94,9 @@ public class CCActionsMenuUI extends BaseUI{
         ModelDisplayer.displaySingleDisplayable(camp);
     }
 
+    /**
+     * Displays enquiries related to the camp for which the Camp Committee member is registered.
+     */
     public void viewEnquiries() {
         printHeader("View Enquiries");
         List<Enquiry> enquiryList = EnquiryManager.getListByCampID(((Student)CurrentUser.get()).getCampIDCommittingFor());
@@ -101,6 +104,9 @@ public class CCActionsMenuUI extends BaseUI{
         ModelDisplayer.displayListOfDisplayable(enquiryList);
     }
 
+    /**
+     * Allows the Camp Committee member to reply to a specific enquiry related to the camp.
+     */
     public void replyEnquiry() {
         printHeader("Reply to An Enquiry");
         List<Enquiry> enquiryList = EnquiryManager.getListByCampIDToReply(((Student)CurrentUser.get()).getCampIDCommittingFor());
@@ -125,6 +131,9 @@ public class CCActionsMenuUI extends BaseUI{
         
     }
 
+    /**
+     * Allows the Camp Committee member to submit a suggestion to staff in charge of camp.
+     */
     public void submitSuggestion() {
         printHeader("Submit Suggestion");
         System.out.print("Enter your Suggestion: ");
@@ -137,6 +146,9 @@ public class CCActionsMenuUI extends BaseUI{
         System.out.println("Suggestion submitted successfully!");
     }
 
+    /**
+     * Displays suggestions submitted by the Camp Committee member.
+     */
     public void viewMySuggestions() {
         printHeader("View My Suggestions");
         List<Suggestion> suggestionList = SuggestionManager.getListByUserID(CurrentUser.get().getID());
@@ -148,6 +160,9 @@ public class CCActionsMenuUI extends BaseUI{
         ModelDisplayer.displayListOfDisplayable(suggestionList);
     }
 
+    /**
+     * Allows the Camp Committee member to edit a specific suggestion.
+     */
     public void editSuggestion() {
         printHeader("Edit Suggestion");
         List<Suggestion> suggestionList = SuggestionManager.getListByUserID(CurrentUser.get().getID());
@@ -177,7 +192,10 @@ public class CCActionsMenuUI extends BaseUI{
         System.out.println("Suggestion edited successfully.");
     
     }
-    
+
+    /**
+     * Allows the Camp Committee member to delete a specific suggestion.
+     */
     public void deleteSuggestion() {
         printHeader("Delete a Suggestion");
         List<Suggestion> suggestionList = SuggestionManager.getListByUserID(CurrentUser.get().getID());

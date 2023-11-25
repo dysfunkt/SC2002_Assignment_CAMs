@@ -19,6 +19,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ *  This class provides a UI for camp committee members to manage enquiries.
+ */
 public class CCEnquiryMenuUI extends BaseUI{
     private Scanner input = ScannerHelper.getScannerInput();
 
@@ -61,6 +64,9 @@ public class CCEnquiryMenuUI extends BaseUI{
         return 0;
     }
 
+    /**
+     * Allows camp committee member to perform edits on an existing enquiry they created.
+     */
     private void editEnquiry() {
         printHeader("Edit Enquiries");
         List<Enquiry> enquiryList = EnquiryManager.getUserCreatedList();
@@ -90,6 +96,9 @@ public class CCEnquiryMenuUI extends BaseUI{
         System.out.println("Enquiry successfully edited.");
     }
 
+    /**
+     *Submits an enquiry by prompting the camp committee member to select a camp and enter an enquiry message.
+     */
     private void submitEnquiry() {
         printHeader("Submit Enquiry");
         List<Camp> campList = CampManager.getListByFilter();
@@ -116,6 +125,9 @@ public class CCEnquiryMenuUI extends BaseUI{
         System.out.println("Enquiry successfully submitted.");
     }
 
+    /**
+     * Allow camp committee member to view enquiries they created.
+     */
     private void viewEnquiries() {
         printHeader("View Enquiries");
         List<Enquiry> enquiryList = EnquiryManager.getUserCreatedList();
@@ -125,8 +137,11 @@ public class CCEnquiryMenuUI extends BaseUI{
         }
         Collections.sort(enquiryList, Comparator.comparing(Enquiry::getID));
         ModelDisplayer.displayListOfDisplayable(enquiryList);
-    } 
+    }
 
+    /**
+     * Allow camp committee member to delete an enquiry they submitted
+     */
     private void deleteEnquiry() {
         printHeader("Delete Enquiries");
         List<Enquiry> enquiryList = EnquiryManager.getUserCreatedList();
