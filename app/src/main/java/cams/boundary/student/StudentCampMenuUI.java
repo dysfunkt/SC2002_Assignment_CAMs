@@ -20,6 +20,9 @@ import cams.util.exception.MenuChoiceInvalidException;
 import cams.util.exception.ModelNotFoundException;
 import cams.util.ui.ScannerHelper;
 
+/**
+ * This class allows students to manage all camp related actions
+ */
 public class StudentCampMenuUI extends BaseUI{
 
     
@@ -61,6 +64,9 @@ public class StudentCampMenuUI extends BaseUI{
         return 0;
     }
 
+    /**
+     * This method displays all available camps
+     */
     private void viewAllCamps() {
         printHeader("View Camps");
         System.out.println("Filter by: ");
@@ -114,6 +120,11 @@ public class StudentCampMenuUI extends BaseUI{
         ModelDisplayer.displayListOfDisplayable(campsToDisplay);
     }
 
+    /**
+     * This method allows students to register for a camp by choosing from the list of available camps.
+     *
+     * @return true if the student registers as Camp Committee and needs to re-login for privileges; false otherwise.
+     */
     private Boolean registerForCamp() {
         printHeader("Register for Camp");
         List<Camp> campList = CampManager.getListByFilter();
@@ -158,7 +169,10 @@ public class StudentCampMenuUI extends BaseUI{
         }
         return false;
     }
-    
+
+    /**
+     * This method allows student to withdraw from a camp by choosing from the list of registered camps.
+     */
     private void withdrawFromCamp() {
         printHeader("Withdraw from Camp");
         List<Camp> campList;
@@ -191,6 +205,9 @@ public class StudentCampMenuUI extends BaseUI{
         }
     }
 
+    /**
+     * This method displays the list of camps that the student is currently registered for.
+     */
     private void viewRegisteredCamps() {
         printHeader("Registered Camps");
         List<Camp> campList;

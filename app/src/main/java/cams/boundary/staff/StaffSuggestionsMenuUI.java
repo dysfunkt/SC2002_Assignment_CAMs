@@ -15,6 +15,9 @@ import cams.util.exception.MenuChoiceInvalidException;
 import cams.util.exception.ModelNotFoundException;
 import cams.util.ui.ScannerHelper;
 
+/**
+ * This class provides a UI for staff to manage camp suggestions
+ */
 public class StaffSuggestionsMenuUI extends BaseUI{
     
     /** 
@@ -52,6 +55,9 @@ public class StaffSuggestionsMenuUI extends BaseUI{
     }
 
 
+    /**
+     * This method displays all unprocessed suggestions for the camps the staff member is in charge of.
+     */
     public void viewAllSuggestions() {
         printHeader("View All Suggestions");
         List<Suggestion> list = SuggestionManager.getUnprocessedListByCampIDList(((Staff)CurrentUser.get()).getCampsInChargeID());
@@ -59,6 +65,9 @@ public class StaffSuggestionsMenuUI extends BaseUI{
         ModelDisplayer.displayListOfDisplayable(list);
     }
 
+    /**
+     * This method allows the staff to approve a suggestion by providing the suggestion ID.
+     */
     public void approveSuggestion() {
         printHeader("Approve Suggestion");
         List<Suggestion> suggestionList = SuggestionManager.getUnprocessedListByCampIDList(((Staff)CurrentUser.get()).getCampsInChargeID());
@@ -79,6 +88,9 @@ public class StaffSuggestionsMenuUI extends BaseUI{
         System.out.println("Suggestion approved successfully!");
     }
 
+    /**
+     * This method allows staff to reject a suggestion by providing the suggestion ID.
+     */
     public void rejectSuggestion() {
         printHeader("Reject Suggestion");
         List<Suggestion> suggestionList = SuggestionManager.getUnprocessedListByCampIDList(((Staff)CurrentUser.get()).getCampsInChargeID());
