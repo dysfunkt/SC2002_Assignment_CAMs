@@ -13,12 +13,15 @@ import cams.repository.person.StudentRepository;
 import cams.util.exception.ModelNotFoundException;
 import cams.util.iocontrol.ReportIOHelper;
 
-
+/**
+ * This class handles the generation of reports.
+ */
 public class ReportFactory {
     
     /** 
-     * @param camp
-     * @return ArrayList<String>
+     * Generate a formatted ArrayList of camp details to be appended at the top of every report.
+     * @param camp The camp the report is about.
+     * @return The formatted ArrayList of camp details.
      */
     private static ArrayList<String> getCampDetails(Camp camp) {
         String[] c = camp.toSaveString();
@@ -38,6 +41,11 @@ public class ReportFactory {
         return toWrite;
     }
 
+    /** 
+     * Generate a participant list report of a camp.
+     * @param ID ID of the camp.
+     * @throws IOException when file failed to be created.
+     */
     public static void generateParticipantListReport(String ID) throws IOException {
         Camp camp;
         try{
@@ -76,6 +84,11 @@ public class ReportFactory {
         ReportIOHelper.writeToTxtFile(toWrite, txtFile);
     }
 
+    /** 
+     * Generate an attendee list report of a camp.
+     * @param ID ID of the camp.
+     * @throws IOException when file failed to be created.
+     */
     public static void generateAttendeeListReport(String ID) throws IOException {
         Camp camp;
         try{
@@ -106,6 +119,11 @@ public class ReportFactory {
         System.out.println("Report " + fileName + " Generated Successfully.");
     }
 
+    /** 
+     * Generate a camp committee list report of a camp.
+     * @param ID ID of the camp.
+     * @throws IOException when file failed to be created.
+     */
     public static void generateCampCommitteeListReport(String ID) throws IOException {
         Camp camp;
         try{
@@ -136,6 +154,11 @@ public class ReportFactory {
         System.out.println("Report " + fileName + " Generated Successfully.");
     }
 
+    /** 
+     * Generate a performance report of the camp committees of a camp.
+     * @param ID ID of the camp.
+     * @throws IOException when file failed to be created.
+     */
     public static void generatePerformanceReport(String ID) throws IOException {
         Camp camp;
         try{
@@ -166,6 +189,11 @@ public class ReportFactory {
         System.out.println("Report " + fileName + " Generated Successfully.");
     }
 
+    /** 
+     * Generate an enquiry report of a camp.
+     * @param ID ID of the camp.
+     * @throws IOException when file failed to be created.
+     */
     public static void generateStudentEnquiryReport(String ID) throws IOException {
         Camp camp;
         try{

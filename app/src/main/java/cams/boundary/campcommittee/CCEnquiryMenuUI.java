@@ -92,7 +92,7 @@ public class CCEnquiryMenuUI extends BaseUI{
 
     private void submitEnquiry() {
         printHeader("Submit Enquiry");
-        List<Camp> campList = CampManager.getListByFilter();
+        List<Camp> campList = CampManager.getListByFilterExcludeSelf();
         if (campList.size() == 0) {
             System.out.println("No Camps Available! Returning to Enquiry Menu...");
             return;

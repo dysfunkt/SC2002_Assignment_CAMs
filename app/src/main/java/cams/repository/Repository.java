@@ -13,7 +13,6 @@ import java.util.stream.IntStream;
 import cams.model.Model;
 import cams.util.exception.ModelAlreadyExistsException;
 import cams.util.exception.ModelNotFoundException;
-import cams.util.iocontrol.FileIOHelper;
 
 /**
  * The Repository abstract class provides the basic functionality for storing, retrieving, and managing a list of Model objects.
@@ -156,7 +155,7 @@ public abstract class Repository<ModelObject extends Model> implements Iterable<
      * Note: This will overwrite the file
      *
      * @param writeStrings List of String arrays to write to
-     * @param writer       The BufferedWriter object instance to the CSV file. Retrieve with {@link FileIOHelper#getFileBufferedWriter(String)}
+     * @param writer The BufferedWriter object instance to the CSV file.
      */
     protected void writeToCsvFile(List<String[]> writeStrings, BufferedWriter writer) {
         PrintWriter w = new PrintWriter(writer);
@@ -168,8 +167,8 @@ public abstract class Repository<ModelObject extends Model> implements Iterable<
     /**
      * Reads CSV file to a String[] list
      *
-     * @param reader The BufferedReader object instance to the CSV File. Retrieve with {@link FileIOHelper#getFileBufferedReader(String)}
-     * @param skip   How many lines in the file to skip (set 1 for header)
+     * @param reader The BufferedReader object instance to the CSV File. 
+     * @param skip How many lines in the file to skip (set 1 for header)
      * @return A list of string arrays containing all the CSV values
      */
     protected List<String[]> readAll(BufferedReader reader, int skip) {
