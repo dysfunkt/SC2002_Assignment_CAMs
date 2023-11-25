@@ -171,7 +171,7 @@ public class StaffCampMenuUI extends BaseUI{
 
 
     /**
-     * This method allows staff to delete a camp.
+     * This method allows staff to delete a camp that they are in charge of.
      */
     private void deleteCamp(){
         List<Camp> campList;
@@ -214,7 +214,7 @@ public class StaffCampMenuUI extends BaseUI{
 
 
     /**
-     * This method allows staff to view all camps.
+     * This method allows staff to view all camps based on different filters applied.
      */
     private void viewAllCamps() {
         printHeader("View Camps");
