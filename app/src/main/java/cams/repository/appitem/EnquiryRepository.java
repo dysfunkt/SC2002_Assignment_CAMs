@@ -21,6 +21,10 @@ public class EnquiryRepository extends Repository<Enquiry>{
     private EnquiryRepository() {
     }
     
+    
+    /** 
+     * @return EnquiryRepository
+     */
     public static EnquiryRepository getInstance() {
         if (mInstance == null) mInstance = new EnquiryRepository();
         return mInstance;

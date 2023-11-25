@@ -6,6 +6,10 @@ import java.util.List;
 import cams.util.iocontrol.FileIOHelper;
 
 public class ReportIOHelper extends FileIOHelper{
+    
+    /** 
+     * @return File
+     */
     private static File init() {
         File folder = new File("./data/reports");
         if (!folder.exists()) folder.mkdir();

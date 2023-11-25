@@ -17,6 +17,11 @@ import cams.util.ui.ScannerHelper;
 
 public class SuggestionManager {
 
+    
+    /** 
+     * @param message
+     * @throws ModelAlreadyExistsException
+     */
     public static void createSuggestion(String message) throws ModelAlreadyExistsException {
         Suggestion s1 = new Suggestion(UniqueIDHandler.getInstance().getNextSuggestionID(), ((Student)CurrentUser.get()).getCampIDCommittingFor(), CurrentUser.get().getID(), message);
         SuggestionRepository.getInstance().add(s1);

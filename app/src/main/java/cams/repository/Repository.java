@@ -22,6 +22,10 @@ public abstract class Repository<ModelObject extends Model> implements Iterable<
         listOfModelObjects = new ArrayList<>();
     }
 
+    
+    /** 
+     * @return Iterator<ModelObject>
+     */
     @Override
     public Iterator<ModelObject> iterator() {
         return listOfModelObjects.iterator();

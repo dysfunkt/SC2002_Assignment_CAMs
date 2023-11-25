@@ -48,6 +48,10 @@ public class Enquiry implements Model, DisplayableSplitter{
         this.replyViewed = Boolean.valueOf(csv[7]);
     }
 
+    
+    /** 
+     * @return String[]
+     */
     public String[] toSaveString() {
         String[] e = new String[8];
         e[0] = enquiryID + "";

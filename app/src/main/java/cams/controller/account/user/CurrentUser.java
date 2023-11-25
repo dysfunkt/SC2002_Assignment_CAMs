@@ -15,6 +15,10 @@ public class CurrentUser {
         if (mInstance == null) mInstance = new CurrentUser(); 
     }
 
+    
+    /** 
+     * @return User
+     */
     public static User get() {
         return currentUser;
     }

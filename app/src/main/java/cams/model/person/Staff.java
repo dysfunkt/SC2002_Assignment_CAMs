@@ -17,6 +17,10 @@ public class Staff extends User{
         this.csvpad = csv[7];
     }
     
+    
+    /** 
+     * @return String[]
+     */
     @Override
     public String[] toSaveString() {
         String[] s = new String[8];

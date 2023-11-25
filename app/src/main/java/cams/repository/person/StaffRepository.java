@@ -20,6 +20,10 @@ public class StaffRepository extends Repository<Staff> {
     private StaffRepository() {
     }
 
+    
+    /** 
+     * @return StaffRepository
+     */
     public static StaffRepository getInstance() {
         if (mInstance == null) mInstance = new StaffRepository();
         return mInstance;

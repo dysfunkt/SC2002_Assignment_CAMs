@@ -11,20 +11,43 @@ import cams.repository.Repository;
 import cams.util.exception.ModelAlreadyExistsException;
 import cams.util.iocontrol.FileIOHelper;
 
-
+/** 
+* This class is a repository that manages the persistence of Student objects between different runtime instances through file I/O operations.
+* It extends the Repositoy class, which provides the basic CRUD operations for the repository.
+* 
+* @author Willy Tang
+*/
 public class StudentRepository extends Repository<Student> {
+
+    /** 
+     * The file name of the student data file
+     */
     private static final String FILE_NAME = "student.csv";
 
+    /** 
+     * Holds the instance of the StudentRepository object
+     */
     private static StudentRepository mInstance;
 
+    /** 
+     * Default constructor of StudentRepository class
+     */
     private StudentRepository() {
     }
 
+    
+    /** 
+     * Returns object instance, creates a new object not yet created.
+     * @return StudentRepository
+     */
     public static StudentRepository getInstance() {
         if (mInstance == null) mInstance = new StudentRepository();
         return mInstance;
     }
 
+    /** 
+     * Loads list of Students from repository file.
+     */
     public void load() throws IOException {
         if (!FileIOHelper.exists(FILE_NAME)) return; //Empty ArrayList
         BufferedReader csvFile = FileIOHelper.getFileBufferedReader(FILE_NAME);
@@ -40,6 +63,9 @@ public class StudentRepository extends Repository<Student> {
         }
     }
 
+    /** 
+     * Save list of Students from repository file.
+     */
     public void save() throws IOException {
         String[] header = {"Name" ,"Email", "Faculty", "UserID", "Password", 
                             "FirstLogin", "JoinedCamps", "CampCommittee", "Points", 

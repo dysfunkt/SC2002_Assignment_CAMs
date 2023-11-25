@@ -3,6 +3,10 @@ package cams.util.iocontrol;
 import java.io.*;
 
 public class FileIOHelper {
+    
+    /** 
+     * @return File
+     */
     private static File init() {
         File folder = new File("./data");
         if (!folder.exists()) folder.mkdir();

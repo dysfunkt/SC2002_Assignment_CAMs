@@ -20,6 +20,10 @@ public class CampRepository extends Repository<Camp>{
     private CampRepository() {
     }
 
+    
+    /** 
+     * @return CampRepository
+     */
     public static CampRepository getInstance() {
         if (mInstance == null) mInstance = new CampRepository();
         return mInstance;

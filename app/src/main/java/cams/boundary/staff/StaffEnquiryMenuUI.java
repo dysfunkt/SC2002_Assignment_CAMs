@@ -19,6 +19,10 @@ import cams.util.ui.ScannerHelper;
 public class StaffEnquiryMenuUI extends BaseUI{
     private Scanner input = ScannerHelper.getScannerInput();
 
+    
+    /** 
+     * @return int
+     */
     protected int generateMenuScreen() {
         printHeader("Staff Enquiry Menu");
         System.out.println("1) View All Enquiries");

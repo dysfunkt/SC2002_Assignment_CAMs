@@ -22,6 +22,10 @@ import cams.util.ui.ScannerHelper;
 
 
 public class CCCampMenuUI extends BaseUI{
+    
+    /** 
+     * @return int
+     */
     protected int generateMenuScreen() {
         printHeader("Camp Committee Camps Menu");
         System.out.println("1) View Camps");

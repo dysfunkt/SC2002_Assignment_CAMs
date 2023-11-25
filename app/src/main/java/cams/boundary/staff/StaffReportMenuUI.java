@@ -14,6 +14,10 @@ public class StaffReportMenuUI extends BaseUI{
         this.campID = ID;
     }
 
+    
+    /** 
+     * @return int
+     */
     protected int generateMenuScreen() {
         printHeader("Generate Report");
         System.out.println("Choose Report Type: ");

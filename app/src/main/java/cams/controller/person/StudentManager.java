@@ -12,6 +12,11 @@ import cams.util.date.DateHandler;
 import cams.util.exception.ModelNotFoundException;
 
 public class StudentManager {
+    
+    /** 
+     * @param ID
+     * @throws ModelNotFoundException
+     */
     public static void addPoint(String ID) throws ModelNotFoundException{
         Student s1 = StudentRepository.getInstance().getByID(ID);
         s1.increasePoints();

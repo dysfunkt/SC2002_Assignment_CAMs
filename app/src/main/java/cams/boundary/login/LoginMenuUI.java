@@ -17,6 +17,10 @@ public class LoginMenuUI extends BaseUI{
 
     private Scanner input = ScannerHelper.getScannerInput();
 
+    
+    /** 
+     * @return int
+     */
     protected int generateMenuScreen() {
         printHeader("Login Menu");
         System.out.println("1) Login");

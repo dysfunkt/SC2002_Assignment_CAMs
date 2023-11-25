@@ -7,6 +7,12 @@ import cams.repository.person.StudentRepository;
 import cams.util.exception.ModelNotFoundException;
 
 public class UserFinder {
+    
+    /** 
+     * @param userID
+     * @return User
+     * @throws ModelNotFoundException
+     */
     private static User findStudent(String userID) throws ModelNotFoundException {
         return StudentRepository.getInstance().getByID(userID);
     }

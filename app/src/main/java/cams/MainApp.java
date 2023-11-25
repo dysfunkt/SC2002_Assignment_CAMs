@@ -1,25 +1,25 @@
 package cams;
 
-
 import cams.util.ui.Welcome;
 import cams.boundary.login.LoginMenuUI;
 import cams.controller.account.user.CurrentUser;
 import cams.controller.repository.RepositoryManager;
 import cams.controller.repository.UniqueIDHandler;
 
-
 import java.io.IOException;
-
 
 /**
  * Main Application Class
  * Entry point of the CAMs application
- * This class should initialise all necessary items of the application and read all data from CSVs
- * 
+ * This class will handle initialisation upon startup and saving app data upon shutdown
+ * @author Willy Tang
  */
 
 public class MainApp {
-
+    /** 
+     * Loads app data from data files and initialises CurrentUser.
+     * Then it displays the welcome page.
+     */
     public static void init() {
         System.out.println("Initializing Program...");
         RepositoryManager.loadAll();
@@ -36,6 +36,11 @@ public class MainApp {
         Welcome.getGreeting();
     }
 
+    
+    /** 
+     * Saves all data into its relevant CSV files on disk
+     * @return true if successful, false otherwise
+     */
     public static boolean saveAll() {
         RepositoryManager.saveAll();
         try {
@@ -51,6 +56,14 @@ public class MainApp {
     }
 
 
+    
+    /** 
+     * Entry point of the program.
+     * Sets shutdown hook to save data upon shutdown.
+     * Calls init method to load app data.
+     * Initialises LoginMenuUI class and starts the program by invoking start main menu of LoginMenuUI
+     * @param args Command line arguments passed to the program (Not used in this implementation)
+     */
     public static void main(String[] args) {
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             saveAll();

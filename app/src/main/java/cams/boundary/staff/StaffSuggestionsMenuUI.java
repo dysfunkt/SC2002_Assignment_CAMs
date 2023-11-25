@@ -16,6 +16,10 @@ import cams.util.exception.ModelNotFoundException;
 import cams.util.ui.ScannerHelper;
 
 public class StaffSuggestionsMenuUI extends BaseUI{
+    
+    /** 
+     * @return int
+     */
     protected int generateMenuScreen() {
         printHeader("Staff Suggestions Menu");
         System.out.println("1) View All Suggestions");

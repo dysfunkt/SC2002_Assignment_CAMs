@@ -22,6 +22,10 @@ import java.util.Scanner;
 public class StudentEnquiryMenuUI extends BaseUI{
     private Scanner input = ScannerHelper.getScannerInput();
     
+    
+    /** 
+     * @return int
+     */
     protected int generateMenuScreen() {
         printHeader("Student Enquiry Menu");
         System.out.println("1) Submit an Enquiry");

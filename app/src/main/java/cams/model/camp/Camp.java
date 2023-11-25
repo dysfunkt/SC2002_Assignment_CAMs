@@ -90,6 +90,10 @@ public class Camp implements Model, DisplayableHeader{
         this.visibility = Boolean.valueOf(csv[14]);
     }
 
+    
+    /** 
+     * @return String[]
+     */
     public String[] toSaveString() {
         String[] c = new String[15];
         c[0] = this.campID;

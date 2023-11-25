@@ -22,6 +22,10 @@ public class StaffEditCampMenuUI extends BaseUI{
 
     private Scanner input = ScannerHelper.getScannerInput();
 
+    
+    /** 
+     * @return int
+     */
     protected int generateMenuScreen() {
         printHeader("Camp Edit Menu");
         System.out.println("Choose detail to edit: ");

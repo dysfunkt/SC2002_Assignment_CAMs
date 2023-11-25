@@ -28,6 +28,10 @@ public class UniqueIDHandler implements Savable{
         this.suggestionID = 0;
     }
 
+    
+    /** 
+     * @return UniqueIDHandler
+     */
     public static UniqueIDHandler getInstance() {
         if (mInstance == null) mInstance = new UniqueIDHandler();
         return mInstance;

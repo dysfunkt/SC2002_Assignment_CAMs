@@ -8,7 +8,14 @@ import cams.repository.appitem.SuggestionRepository;
 import cams.repository.person.StaffRepository;
 import cams.repository.person.StudentRepository;
 
+/** 
+* This class is responsible for loading and saving repositories.
+* @author Willy Tang
+*/
 public class RepositoryManager {
+    /** 
+     * Invokes the load method of all repositories.
+     */
     public static void loadAll() {
         try{
             System.out.println("Loading Student infomation from file...");
@@ -36,6 +43,11 @@ public class RepositoryManager {
         }
     }
 
+    
+    /** 
+     * Invokes save method of all repositories
+     * @return true if successful, false if otherwise
+     */
     public static boolean saveAll() {
         try{
             System.out.println("Saving current Student infomation to file...");
