@@ -22,6 +22,9 @@ import cams.util.exception.ModelNotFoundException;
 import cams.util.exception.OperationCancelledException;
 import cams.util.ui.ScannerHelper;
 
+/**
+ * This class allows
+ */
 public class CCActionsMenuUI extends BaseUI{
     private Scanner input = ScannerHelper.getScannerInput();
 
@@ -75,7 +78,11 @@ public class CCActionsMenuUI extends BaseUI{
         }
         return 0;
     }
-    
+
+
+    /**
+     *
+     */
     private void viewCampDetails() {
         printHeader("Camp Details");
         Camp camp = null;
