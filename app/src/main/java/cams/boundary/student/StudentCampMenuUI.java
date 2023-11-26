@@ -192,7 +192,7 @@ public class StudentCampMenuUI extends BaseUI{
         Collections.sort(campList, Comparator.comparing(Camp::getCampName));
         ModelDisplayer.displayListOfDisplayable(campList);
         printBreaks();
-        String campChoice = ScannerHelper.getIDInput("Enter ID of camp to register (Enter 0 to cancel): ", IDHelper.extractCampIDs(campList), "Enter one of the IDs!");
+        String campChoice = ScannerHelper.getIDInput("Enter ID of camp to withdraw from (Enter 0 to cancel): ", IDHelper.extractCampIDs(campList), "Enter one of the IDs!");
         if (campChoice.equals("0") ) {
             System.out.println("Withdrawal cancelled. Returning to Camp Menu...");
             return;
