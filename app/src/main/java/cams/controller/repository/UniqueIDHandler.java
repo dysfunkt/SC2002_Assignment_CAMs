@@ -54,7 +54,7 @@ public class UniqueIDHandler implements Savable{
 
     /** 
      * Returns instance of UniqueIDHandler class if it exist; creates one if it does not exist.
-     * @return UniqueIDHandler
+     * @return Instance of UniqueIDHandler.
      */
     public static UniqueIDHandler getInstance() {
         if (mInstance == null) mInstance = new UniqueIDHandler();
@@ -63,7 +63,7 @@ public class UniqueIDHandler implements Savable{
 
     /** 
      * Sets the uniqueID.
-     * @param csv[]
+     * @param csv[] Array of values to set.
      */
     private void set(String csv[]) {
         this.campID = Integer.valueOf(csv[0]);
@@ -73,7 +73,7 @@ public class UniqueIDHandler implements Savable{
 
     /** 
      * Creates a string with all the savable attributes of the class.
-     * @return String[]
+     * @return String with values.
      */
     public String[] toSaveString() {
         String[] u = new String[3];
@@ -148,6 +148,7 @@ public class UniqueIDHandler implements Savable{
 
     /** 
      * Load unique ID data from save file.
+     * @throws IOException if cannot get file.
      */
     public void load() throws IOException {
         if (!FileIOHelper.exists(FILE_NAME)) return;
@@ -159,6 +160,7 @@ public class UniqueIDHandler implements Savable{
 
     /** 
      * Save unique ID data to save file.
+     * @throws IOException if cannot get file.
      */
     public void save() throws IOException {
         String[] header = {"CampID, EnquiryID, SuggestionID"};

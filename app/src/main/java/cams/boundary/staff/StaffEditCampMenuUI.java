@@ -29,12 +29,12 @@ public class StaffEditCampMenuUI extends BaseUI{
 
     /**
      * Default constructor of the class
-     * @param ID
+     * @param ID ID of camp to edit.
      */
     protected StaffEditCampMenuUI(String ID){
         this.campID = ID;
     }
- 
+
     /** 
      * Displays the UI for staff to edit camp details.
      * @return -1 to return to the previous menu, 1 to exit the application, otherwise 0.

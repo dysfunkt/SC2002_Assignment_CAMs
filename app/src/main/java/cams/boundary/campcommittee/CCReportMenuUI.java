@@ -19,6 +19,7 @@ public class CCReportMenuUI extends BaseUI{
 
     /**
      * Default constructor of this class.
+     * @param ID ID of camp to generate report for.
      */
     protected CCReportMenuUI(String ID){
         this.campID = ID;

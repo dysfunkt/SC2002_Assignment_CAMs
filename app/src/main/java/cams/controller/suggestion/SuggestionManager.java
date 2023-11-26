@@ -123,8 +123,8 @@ public class SuggestionManager {
 
     /** 
      * Gets a list of unprocessed suggestions from a list of camps.
-     * @param campIDList
-     * @return List<Suggestion>
+     * @param campIDList List of camps to retrieve suggestions for.
+     * @return List of unprocessed suggestions.
      */
     public static List<Suggestion> getUnprocessedListByCampIDList(List<String> campIDList) {
         List<Suggestion> list = getListByCampIDList(campIDList);

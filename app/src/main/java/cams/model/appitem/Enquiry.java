@@ -13,12 +13,13 @@ public class Enquiry implements Model, DisplayableSplitter{
     private String campID;
     private String createdBy;
     private Boolean processed;
-    private Boolean deleted;
+    private Boolean deleted; //not in use, delete will remove enquiry from repository.
     private String enquiryMessage;
     private String enquiryReply;
     private Boolean replyViewed; //not in use, currently use to pad the CSV so no error while reading
 
     /**
+     * Default constructor of this class.
      * @param enquiryID Id of the enquiry.
      * @param campID Id of the camp associated with the enquiry.
      * @param createdBy Id of the user the enquiry is associated with.
@@ -42,6 +43,7 @@ public class Enquiry implements Model, DisplayableSplitter{
     }
 
     /**
+     * Constructor for new enquiry.
      * @param enquiryID Id of the enquiry.
      * @param campID Id of the camp associated with the enquiry.
      * @param createdBy Id of the user the enquiry is associated with.
@@ -59,7 +61,8 @@ public class Enquiry implements Model, DisplayableSplitter{
     }
 
     /**
-     * @param csv
+     * Construct class from CSV.
+     * @param csv Array of string with attributes.
      */
     public Enquiry(String csv[]) {
         this.enquiryID = csv[0];
@@ -74,8 +77,8 @@ public class Enquiry implements Model, DisplayableSplitter{
 
     
     /**
-     * Converts the enquiry submitted by user to an array for saving to the csv
-     * @return String[] representing the enquiry data to be saved.
+     * Generate an array of class attributes in string format to save to CSV. 
+     * @return String array of enquiry data to be saved.
      */
     public String[] toSaveString() {
         String[] e = new String[8];
@@ -92,70 +95,81 @@ public class Enquiry implements Model, DisplayableSplitter{
     
 
     /**
-     * @return String return the enquiryID
+     * Get enquiryID. 
+     * @return The enquiryID
      */
     public String getID() {
         return enquiryID;
     }
 
     /**
-     * @return String return the campID
+     * Get ID of camp the enquiry is for.
+     * @return CampID
      */
     public String getCampID() {
         return campID;
     }
 
     /**
-     * @return String return the createdBy
+     * Get ID of the user that created the enquiry.
+     * @return User ID
      */
     public String getCreatedBy() {
         return createdBy;
     }
 
     /**
-     * @return Boolean return the processed
+     * Get processed boolean.
+     * @return True if processed, false if not processed.
      */
     public Boolean isProcessed() {
         return processed;
     }
 
     /**
-     * @return Boolean return the deleted
+     * Get deleted boolean.
+     * @return True if deleted, false if not deleted.
      */
     public Boolean isDeleted() {
         return deleted;
     }
 
     /**
-     * @param deleted the deleted to set
+     * Deletes the enquiry.
+     * @param deleted Set delete.
      */
     public void delete(Boolean deleted) {
         this.deleted = deleted;
     }
 
     /**
-     * @return String return the enquiryMessage
+     * Get enquiry message.
+     * @return Enquiry message.
      */
     public String getEnquiryMessage() {
         return enquiryMessage;
     }
 
     /**
-     * @param enquiryMessage the enquiryMessage to set
+     * Set enquiry message.
+     * @param enquiryMessage The enquiryMessage to set.
      */
     public void editEnquiryMessage(String enquiryMessage) {
         this.enquiryMessage = enquiryMessage;
     }
 
     /**
-     * @return String return the enquiryReply
+     * Get reply message.
+     * @return The reply message.
      */
     public String viewReply() {
         return enquiryReply;
     }
 
     /**
-     * @param enquiryReply the enquiryReply to set
+     * Set reply message.
+     * Will set processed to true.
+     * @param enquiryReply The reply message.
      */
     public void reply(String enquiryReply) {
         this.enquiryReply = enquiryReply;

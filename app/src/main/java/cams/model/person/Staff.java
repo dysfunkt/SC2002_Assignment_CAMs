@@ -20,6 +20,7 @@ public class Staff extends User{
     private String csvpad;
 
     /**
+     * Default constructor.
      * @param name Name of the staff member.
      * @param email Email of the staff member.
      * @param facultyString Faculty that the staff member belongs to.
@@ -30,6 +31,7 @@ public class Staff extends User{
     public Staff(String name, String email, String facultyString, String userID, String password, Boolean firstLogin) {
         super(name, email, facultyString, userID, password, firstLogin);
         this.campsInChargeID = new ArrayList<String>();
+        this.csvpad = "0";
     }
 
     /**
@@ -44,6 +46,7 @@ public class Staff extends User{
     
     
     /** 
+     * Converts the staff details to a string array for saving.
      * @return String[]
      */
     @Override
@@ -60,7 +63,7 @@ public class Staff extends User{
 
     /**
      * Gets the list of camp IDs that the staff member is in charge of.
-     * @return ArrayList<Staff> return the list of camp IDs the staff member is in charge of.
+     * @return List of camp IDs the staff member is in charge of.
      */
     public ArrayList<String> getCampsInChargeID() {
         return campsInChargeID;

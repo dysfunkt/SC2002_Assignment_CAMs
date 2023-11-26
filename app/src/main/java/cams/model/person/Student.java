@@ -33,6 +33,7 @@ public class Student extends User{
 
 
     /**
+     * Default constructor.
      * @param name Name of the student.
      * @param email Email of the student.
      * @param facultyString Faculty the student belongs to.
@@ -69,7 +70,8 @@ public class Student extends User{
 
     
     /** 
-     * @return String[]
+     * Get an array of attributes of the student object.
+     * @return The array of sttributes in string form.
      */
     @Override
     public String[] toSaveString() {

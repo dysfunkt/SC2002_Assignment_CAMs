@@ -19,6 +19,7 @@ public class StaffReportMenuUI extends BaseUI{
 
     /**
      * Default constructor of this class.
+     * @param ID ID of camp to generate report for.
      */
     protected StaffReportMenuUI(String ID){
         this.campID = ID;
