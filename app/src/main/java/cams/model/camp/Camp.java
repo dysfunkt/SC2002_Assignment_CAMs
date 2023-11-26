@@ -463,8 +463,9 @@ public class Camp implements Model, DisplayableHeader{
      * @return True if there is a clash, false otherwise.
      */
     public Boolean isClash(Date start, Date end) {
-        return !end.before(startDate) && !start.after(endDate);
-        
+        if ((!startDate.before(start) && !startDate.after(end)) || (!endDate.before(start) && (!endDate.after(end)))) return true;
+        if ((!start.before(startDate) && !start.after(endDate)) || (!end.before(startDate) && (!end.after(endDate)))) return true;
+        return false;
     }
 
     /**

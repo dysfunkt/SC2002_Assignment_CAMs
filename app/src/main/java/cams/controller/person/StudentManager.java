@@ -48,9 +48,10 @@ public class StudentManager {
             return false;
         }
         for (String i : ((Student)CurrentUser.get()).getJoinedCamps()) {
-            if (CampRepository.getInstance().getByID(i).isClash(c1.getStartDate(), c1.getEndDate()));
-            System.out.println("The dates of this camp clashes with your joined camps.");
-            return false;
+            if (c1.isClash(CampRepository.getInstance().getByID(i).getStartDate(), CampRepository.getInstance().getByID(i).getEndDate())){
+                System.out.println("The dates of this camp clashes with your joined camps.");
+                return false;
+            }
         }
         if (c1.remainingAttendeeSlots() == 0 && c1.remainingCommitteeSlots() == 0) {
             System.out.println("There are no more available slots in the camp");
