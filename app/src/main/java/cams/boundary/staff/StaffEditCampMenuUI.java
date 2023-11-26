@@ -16,18 +16,28 @@ import cams.util.ui.ScannerHelper;
 
 /**
  * This class provides a UI for staff to edit camp details.
+ * This class extends the BaseUI class.
  */
 public class StaffEditCampMenuUI extends BaseUI{
+
+    private Scanner input = ScannerHelper.getScannerInput();
+    
+    /**
+     * ID of the camp to edit.
+     */
     private String campID;
+
+    /**
+     * Default constructor of the class
+     * @param ID
+     */
     protected StaffEditCampMenuUI(String ID){
         this.campID = ID;
     }
-
-    private Scanner input = ScannerHelper.getScannerInput();
-
-    
+ 
     /** 
-     * @return int
+     * Displays the UI for staff to edit camp details.
+     * @return -1 to return to the previous menu, 1 to exit the application, otherwise 0.
      */
     protected int generateMenuScreen() {
         printHeader("Camp Edit Menu");

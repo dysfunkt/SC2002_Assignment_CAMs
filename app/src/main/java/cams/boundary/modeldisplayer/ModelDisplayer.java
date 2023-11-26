@@ -14,7 +14,8 @@ import cams.model.camp.Camp;
 public class ModelDisplayer {
     
     /** 
-     * @param displayable
+     * Helper method to display a single Displayable item.
+     * @param displayable Displayable item to display.
      */
     public static void displaySingleDisplayable(Displayable displayable) {
         if (displayable == null) {
@@ -31,7 +32,8 @@ public class ModelDisplayer {
     }
 
     /**
-     * @param displayableList
+     * Helper method to display a list of Displayable items.
+     * @param displayableList List of Displayable items to display.
      */
     public static void displayListOfDisplayable(List<? extends Displayable> displayableList) {
         if (Objects.isNull(displayableList) || displayableList.isEmpty()) {

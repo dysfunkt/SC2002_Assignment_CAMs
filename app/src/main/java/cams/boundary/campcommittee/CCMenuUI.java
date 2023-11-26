@@ -6,14 +6,13 @@ import cams.util.exception.MenuChoiceInvalidException;
 
 /**
  * This class provides the main menu UI for camp committee members.
+ * This class extends the BaseUI class.
  */
 public class CCMenuUI extends BaseUI {
 
-    
     /**
      * Displays the UI for camp committee member to access further menus to manage camps, manage enquiries, perform committee specific actions or to change their password.
-     * @return int -1 to return to the previous menu, 1 to exit the application, otherwise 0.
-
+     * @return -1 to return to the previous menu, 1 to exit the application, otherwise 0.
      */
     protected int generateMenuScreen() {
         printHeader("Camp Committee Main Menu");

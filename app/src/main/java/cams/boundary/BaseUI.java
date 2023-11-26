@@ -1,15 +1,15 @@
 package cams.boundary;
 
 import java.util.stream.Stream;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 import cams.util.exception.MenuChoiceInvalidException;
 import cams.util.ui.ScannerHelper;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
 /**
- * Abstract class where all menu UIs inherits from.
+ * This abstract class provides basic menu functions.
+ * All UI classes should extend from this class.
  */
 public abstract class BaseUI {
     /**
@@ -18,7 +18,8 @@ public abstract class BaseUI {
     private static final int PRINT_MAX_WINDOW_SIZE = 40;
 
     /**
-     * An abstract class that subclasses must override and implement this method to create the menu content.
+     * An abstract method that subclasses must override and implement this method to create the menu content.
+     * @return -1 to return to the previous menu, 1 to exit the application, otherwise 0.
      */
     protected abstract int generateMenuScreen();
 
@@ -83,9 +84,9 @@ public abstract class BaseUI {
 
     /**
      * Handles the user's input for menu choice
-     * @param max the maximum valid menu option.
-     * @param specialEscape special user keyboard command to force close the CAMs program.
-     * @return the user's menu choice.
+     * @param max The maximum valid menu option.
+     * @param specialEscape Special user keyboard command to cancel menu selection.
+     * @return The user's menu choice.
      */
     protected static int doMenuChoice(int max, int specialEscape) {
         Scanner input = ScannerHelper.getScannerInput();

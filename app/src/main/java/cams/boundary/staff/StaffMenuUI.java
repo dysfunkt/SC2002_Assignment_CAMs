@@ -5,14 +5,15 @@ import cams.boundary.login.ChangePasswordUI;
 import cams.util.exception.MenuChoiceInvalidException;
 
 /**
- * This class provides a main menu UI for staff
+ * This class provides a main menu UI for staff.
+ * This class extends the BaseUI class.
  */
 public class StaffMenuUI extends BaseUI {
 
     
     /**
-     * isplays the UI for staff to access further menus to manage camps, manage enquiries, manage suggestions or to change their password.
-     * @return int -1 to return to the previous menu, 1 to exit the application, otherwise 0.
+     * Displays the UI for staff to access further menus to manage camps, manage enquiries, manage suggestions or to change their password.
+     * @return -1 to return to the previous menu, 1 to exit the application, otherwise 0.
      */
     protected int generateMenuScreen() {
         printHeader("Staff Main Menu");

@@ -1,4 +1,4 @@
-package cams.boundary.staff;
+package cams.boundary.campcommittee;
 
 import java.io.IOException;
 
@@ -7,11 +7,11 @@ import cams.controller.report.ReportFactory;
 import cams.util.exception.MenuChoiceInvalidException;
 
 /**
- * This class provides a UI for staff to generate various reports.
+ * This class provides a UI for camp committee to generate various reports.
  * This class extends the BaseUI class.
  */
-public class StaffReportMenuUI extends BaseUI{
-
+public class CCReportMenuUI extends BaseUI{
+    
     /**
      * ID of the camp to generate report.
      */
@@ -20,10 +20,9 @@ public class StaffReportMenuUI extends BaseUI{
     /**
      * Default constructor of this class.
      */
-    protected StaffReportMenuUI(String ID){
+    protected CCReportMenuUI(String ID){
         this.campID = ID;
     }
-
 
     /** 
      * Displays a UI for generating various reports.
@@ -33,8 +32,7 @@ public class StaffReportMenuUI extends BaseUI{
         printHeader("Generate Report");
         System.out.println("Choose Report Type: ");
         System.out.println("1) Participant List");
-        System.out.println("2) Camp Commitee Performance Report");
-        System.out.println("3) Students' Enquiry Report");
+        System.out.println("2) Students' Enquiry Report");
         System.out.println("0) Cancel");
         printBreaks();
         int choice = doMenuChoice(3, 0);
@@ -48,13 +46,6 @@ public class StaffReportMenuUI extends BaseUI{
                 break;
             case 2:
                 try {
-                    ReportFactory.generatePerformanceReport(campID);
-                } catch (IOException e) {
-                    System.out.println("[ERROR] Failed to generate report. (" + e.getLocalizedMessage() + ")");
-                }
-                break;
-            case 3:
-                try {
                     ReportFactory.generateStudentEnquiryReport(campID);
                 } catch (IOException e) {
                     System.out.println("[ERROR] Failed to generate report. (" + e.getLocalizedMessage() + ")");
@@ -67,7 +58,6 @@ public class StaffReportMenuUI extends BaseUI{
         }
         return -1;
     }
-
 
     /**
      * This method displays a menu to filter and generate reports based on participant types for a camp.
@@ -98,5 +88,6 @@ public class StaffReportMenuUI extends BaseUI{
                 break;
         }
     }
+
 
 }

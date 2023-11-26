@@ -164,7 +164,7 @@ public class Suggestion implements Model, DisplayableSplitter{
         this.processed = true;
     }
 
-    /**
+/**
      * Template for displayable suggestion string.
      */
     private final String FORMAT_TEMPLATE = "Suggestion ID: %s\n" + 
@@ -188,8 +188,27 @@ public class Suggestion implements Model, DisplayableSplitter{
      * @return String return a single formatted suggestion
      */
     public String getSingleSuggestionString() {
-        if (isProcessed()) return String.format(FORMAT_TEMPLATE, suggestionID, campID, createdBy, suggestionMessage, String.valueOf(isProcessed()), String.valueOf(isApproved()));
-        else return String.format(FORMAT_TEMPLATE, suggestionID, campID, createdBy, suggestionMessage, String.valueOf(isProcessed()), "Not yet processed");
+        if (isProcessed()) {
+            return String.format(
+                    FORMAT_TEMPLATE,
+                    suggestionID,
+                    campID,
+                    createdBy,
+                    suggestionMessage,
+                    String.valueOf(isProcessed()),
+                    String.valueOf(isApproved())
+            );
+        } else {
+            return String.format(
+                    FORMAT_TEMPLATE,
+                    suggestionID,
+                    campID,
+                    createdBy,
+                    suggestionMessage,
+                    String.valueOf(isProcessed()),
+                    "Not yet processed"
+            );
+}
     }
 
 

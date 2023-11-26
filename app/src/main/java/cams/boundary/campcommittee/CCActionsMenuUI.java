@@ -24,14 +24,15 @@ import cams.util.ui.ScannerHelper;
 
 /**
  * This class provides a UI for camp committee members to manage enquiries and suggestions for camps they are committeeing for.
+ * This class extends the BaseUI class.
  */
 public class CCActionsMenuUI extends BaseUI{
+
     private Scanner input = ScannerHelper.getScannerInput();
 
-    
     /**
      * Displays the UI for camp committee actions.
-     * @return int -1 to return to go to the previous menu, 1 to exit the application, otherwise 0.
+     * @return -1 to return to the previous menu, 1 to exit the application, otherwise 0.
      */
     protected int generateMenuScreen() {
         printHeader("Camp Committee Actions Menu");
@@ -42,6 +43,7 @@ public class CCActionsMenuUI extends BaseUI{
         System.out.println("5) View My Suggestions");
         System.out.println("6) Edit a Suggestion");
         System.out.println("7) Delete a Suggestion");
+        System.out.println("8) Generate Camp Report");
         System.out.println("8) Return to Camp Committee Menu");
         System.out.println("0) Exit Application");
         printBreaks();
@@ -69,6 +71,9 @@ public class CCActionsMenuUI extends BaseUI{
                 deleteSuggestion();
                 break;
             case 8:
+                generateReport();
+                break;
+            case 9:
                 System.out.println("Switching back to Camp Committee Menu.");
                 return -1;
             case 0:
@@ -80,6 +85,10 @@ public class CCActionsMenuUI extends BaseUI{
         return 0;
     }
 
+    private void generateReport() {
+        String campID = ((Student)CurrentUser.get()).getCampIDCommittingFor();
+        new CCReportMenuUI(campID).startMainMenu();
+    }
 
     /**
      * Displays details of the camp for which the camp committee member is registered.

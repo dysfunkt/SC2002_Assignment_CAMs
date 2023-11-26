@@ -82,6 +82,8 @@ public class ReportFactory {
             }
         }
         ReportIOHelper.writeToTxtFile(toWrite, txtFile);
+        System.out.println("Report " + fileName + " generated successfully.");
+        System.out.println("Report can be found in the ./data/reports folder");
     }
 
     /** 
@@ -116,7 +118,8 @@ public class ReportFactory {
             }
         }
         ReportIOHelper.writeToTxtFile(toWrite, txtFile);
-        System.out.println("Report " + fileName + " Generated Successfully.");
+        System.out.println("Report " + fileName + " generated successfully.");
+        System.out.println("Report can be found in the ./data/reports folder");
     }
 
     /** 
@@ -151,7 +154,8 @@ public class ReportFactory {
             }
         }
         ReportIOHelper.writeToTxtFile(toWrite, txtFile);
-        System.out.println("Report " + fileName + " Generated Successfully.");
+        System.out.println("Report " + fileName + " generated successfully.");
+        System.out.println("Report can be found in the ./data/reports folder");
     }
 
     /** 
@@ -186,7 +190,8 @@ public class ReportFactory {
             }
         }
         ReportIOHelper.writeToTxtFile(toWrite, txtFile);
-        System.out.println("Report " + fileName + " Generated Successfully.");
+        System.out.println("Report " + fileName + " generated successfully.");
+        System.out.println("Report can be found in the ./data/reports folder");
     }
 
     /** 
@@ -221,6 +226,7 @@ public class ReportFactory {
             }
         }
         ReportIOHelper.writeToTxtFile(toWrite, txtFile);
-        System.out.println("Report " + fileName + " Generated Successfully.");
+        System.out.println("Report " + fileName + " generated successfully.");
+        System.out.println("Report can be found in the ./data/reports folder");
     }
 }

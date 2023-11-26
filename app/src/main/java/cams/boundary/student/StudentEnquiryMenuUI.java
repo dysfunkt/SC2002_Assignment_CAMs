@@ -21,13 +21,15 @@ import java.util.Scanner;
 
 /**
  * This class provides a UI for student to manage enquiries.
+ * This class extends the BaseUI class.
  */
 public class StudentEnquiryMenuUI extends BaseUI{
     private Scanner input = ScannerHelper.getScannerInput();
     
     
-    /** 
-     * @return int
+    /**
+     * Displays the UI for student to manage enquiries.
+     * @return -1 to return to the previous menu, 1 to exit the application, otherwise 0.
      */
     protected int generateMenuScreen() {
         printHeader("Student Enquiry Menu");
