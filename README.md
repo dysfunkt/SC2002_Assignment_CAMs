@@ -17,7 +17,10 @@ We are group 5 from tutorial group SCMC, Nanyang Technological University, Singa
 | Willy Tang Jing Lin  | WTANG015@e.ntu.edu.sg |
 
 ## Documentation
+The report can be found in `Deliverables\report`
+UML diagrams can be found in `Deliverables\UML`
 The Javadoc can be found at `app\build\docs\javadoc\index.html`.  
+The GAI declaration forms can be found in `Deliverables\GAIDeclaration`
 
 ## Features
 - [x] User
@@ -73,11 +76,16 @@ The project is built with Java 21.
 
 ## Run
 The built jar file is at `app\build\libs\app.jar`.  
-To run app:
+To run app:  
+There is a shell script `run.sh` and a Windows command script `run.cmd` to run the program.  
+Or you can run the jar file with the following command:  
 ```
     java -jar app\build\libs\app.jar
 ```
-The main class is at `app\src\main\java\cams\MainApp.java`.
+The main class is at `app\src\main\java\cams\MainApp.java`.  
 Source code can be found in `app\src\main\java\cams`.  
 Data files are found in `data`.
-Output folder for camp reports is `data\reports`.
+Output folder for camp reports is `data\reports`.  
+  
+To reset data to state before running test case, copy all the csv files in the `data\reinit\Test Cases` folder and paste it to the root data folder.
+Replace all files when prompted to.
