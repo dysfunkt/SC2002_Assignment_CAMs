@@ -72,4 +72,6 @@ To run app:
     java -jar app\build\libs\app.jar
 ```
 The main class is at `app\src\main\java\cams\MainApp.java`.
-Source code can be found in `app\src\main\java\cams`.
+Source code can be found in `app\src\main\java\cams`.  
+Data files are found in `data`.
+Output folder for camp reports is `data\reports`.
