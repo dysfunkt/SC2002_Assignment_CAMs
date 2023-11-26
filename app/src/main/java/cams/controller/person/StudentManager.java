@@ -52,7 +52,7 @@ public class StudentManager {
             System.out.println("The dates of this camp clashes with your joined camps.");
             return false;
         }
-        if (c1.remainingAttendeeSlots() == 0) {
+        if (c1.remainingAttendeeSlots() == 0 && c1.remainingCommitteeSlots() == 0) {
             System.out.println("There are no more available slots in the camp");
             return false;
         }
