@@ -315,7 +315,8 @@ public class CampManager {
                 throw new ParticipantAlreadyRegisteredException();
             }
             c1.setVisibility(visibility);
-        }
+        } else c1.setVisibility(visibility);
+        
     }
 
     /** 
