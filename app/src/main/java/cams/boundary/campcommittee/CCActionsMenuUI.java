@@ -47,7 +47,7 @@ public class CCActionsMenuUI extends BaseUI{
         System.out.println("9) Return to Camp Committee Menu");
         System.out.println("0) Exit Application");
         printBreaks();
-        int choice = doMenuChoice(8,0);
+        int choice = doMenuChoice(9,0);
         switch (choice) {
             case 1:
                 viewCampDetails();
