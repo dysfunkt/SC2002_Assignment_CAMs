@@ -145,7 +145,7 @@ public class EnquiryManager {
         List<Enquiry> list = getListByCampIDList(campIDList);
         List<Enquiry> unprocessed = new ArrayList<>();
         for (Enquiry enquiry : list) {
-            if (enquiry.isProcessed()) {
+            if (!enquiry.isProcessed()) {
                 unprocessed.add(enquiry);
             }
         }

@@ -130,7 +130,7 @@ public class SuggestionManager {
         List<Suggestion> list = getListByCampIDList(campIDList);
         List<Suggestion> unprocessed = new ArrayList<>();
         for (Suggestion suggestion : list) {
-            if (suggestion.isProcessed()) {
+            if (!suggestion.isProcessed()) {
                 unprocessed.add(suggestion);
             }
         }
