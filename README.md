@@ -13,6 +13,9 @@ We are group 5 from tutorial group SCMC, Nanyang Technological University, Singa
 | Tan Jun Yan Xavier   | XTAN102@e.ntu.edu.sg  |
 | Willy Tang Jing Lin  | WTANG015@e.ntu.edu.sg |
 
+## Documentation
+The Javadoc can be found at `app\build\docs\javadoc\index.html`.  
+
 ## Features
 - [x] User
   - [x] Login
