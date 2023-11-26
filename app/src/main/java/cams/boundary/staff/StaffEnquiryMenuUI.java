@@ -17,14 +17,16 @@ import cams.util.id.IDHelper;
 import cams.util.ui.ScannerHelper;
 
 /**
- * This CLass provides a UI for staff to manage camp enquires
+ * This CLass provides a UI for staff to manage camp enquires.
+ * This class extends the BaseUI class.
  */
 public class StaffEnquiryMenuUI extends BaseUI{
     private Scanner input = ScannerHelper.getScannerInput();
 
     
     /** 
-     * @return int
+     * Displays the UI for staff to manage enquiries.
+     * @return -1 to return to the previous menu, 1 to exit the application, otherwise 0.
      */
     protected int generateMenuScreen() {
         printHeader("Staff Enquiry Menu");

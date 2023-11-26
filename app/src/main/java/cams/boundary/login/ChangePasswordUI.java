@@ -9,14 +9,16 @@ import cams.util.exception.PasswordIncorrectException;
 import cams.util.ui.ScannerHelper;
 
 /**
- * This CLass displays a UI for the user to change their password.
+ * This cLass displays a UI for the user to change their password.
+ * This class extends the BaseUI class.
  */
 public class ChangePasswordUI extends BaseUI{
+    
     private Scanner input = ScannerHelper.getScannerInput();
 
-    
     /** 
-     * @return int
+     * Displays a UI for the user to change their password.
+     * @return -1 to return to the previous menu, 1 to exit the application, otherwise 0.
      */
     protected int generateMenuScreen() {
         printHeader("Change Password");

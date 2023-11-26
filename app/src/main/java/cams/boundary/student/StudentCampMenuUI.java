@@ -21,13 +21,15 @@ import cams.util.id.IDHelper;
 import cams.util.ui.ScannerHelper;
 
 /**
- * This class allows students to manage all camp related actions.
+ * This class provides a UI for students to manage all camp related actions.
+ * This class extends the BaseUI class.
  */
 public class StudentCampMenuUI extends BaseUI{
 
     
     /** 
-     * @return int
+     * Displays the UI for students to manage all camp related actions.
+     * @return -1 to return to the previous menu, 1 to exit the application, otherwise 0.
      */
     protected int generateMenuScreen() {
         printHeader("Student Camps Menu");

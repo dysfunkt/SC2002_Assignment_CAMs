@@ -14,7 +14,8 @@ import cams.util.ui.ScannerHelper;
 import java.util.Scanner;
 
 /**
- * This class provides a user interface (UI) for the user to login.
+ * This class provides a UI for the user to login.
+ * This class extends the BaseUI class.
  */
 public class LoginMenuUI extends BaseUI{
 
@@ -22,7 +23,8 @@ public class LoginMenuUI extends BaseUI{
 
     
     /** 
-     * @return int
+     * Displays a UI for the user to login.
+     * @return -1 to return to the previous menu, 1 to exit the application, otherwise 0.
      */
     protected int generateMenuScreen() {
         printHeader("Login Menu");

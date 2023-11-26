@@ -20,15 +20,16 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- *  This class provides a UI for camp committee members to manage enquiries.
+ * This class provides a UI for camp committee members to manage enquiries.
+ * This class extends the BaseUI class.
  */
 public class CCEnquiryMenuUI extends BaseUI{
+
     private Scanner input = ScannerHelper.getScannerInput();
 
-    
     /**
-     * Display the UI for camp committee member to manage enquires
-     * @return int
+     * Display the UI for camp committee member to manage enquires.
+     * @return -1 to return to the previous menu, 1 to exit the application, otherwise 0.
      */
     protected int generateMenuScreen() {
         printHeader("Camp Committee Enquiry Menu");

@@ -16,12 +16,14 @@ import cams.util.id.IDHelper;
 import cams.util.ui.ScannerHelper;
 
 /**
- * This class provides a UI for staff to manage camp suggestions
+ * This class provides a UI for staff to manage camp suggestions.
+ * This class extends the BaseUI class.
  */
 public class StaffSuggestionsMenuUI extends BaseUI{
     
     /** 
-     * @return int
+     * Displays a UI for staff to manage camp suggestions.
+     * @return -1 to return to the previous menu, 1 to exit the application, otherwise 0.
      */
     protected int generateMenuScreen() {
         printHeader("Staff Suggestions Menu");

@@ -25,7 +25,8 @@ import cams.util.id.IDHelper;
 import cams.util.ui.ScannerHelper;
 
 /**
- * This Class provides a UI for Staff to manage camps
+ * This Class provides a UI for Staff to manage camps.
+ * This class extends the BaseUI class.
  */
 public class StaffCampMenuUI extends BaseUI{
 
@@ -33,7 +34,8 @@ public class StaffCampMenuUI extends BaseUI{
 
     
     /** 
-     * @return int
+     * Displays a UI for Staff to manage camps.
+     * @return -1 to return to the previous menu, 1 to exit the application, otherwise 0.
      */
     protected int generateMenuScreen() {
         printHeader("Staff Camps Menu");
