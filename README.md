@@ -17,10 +17,10 @@ We are group 5 from tutorial group SCMC, Nanyang Technological University, Singa
 | Willy Tang Jing Lin  | WTANG015@e.ntu.edu.sg |
 
 ## Documentation
-The report can be found in `Deliverables\report`
-UML diagrams can be found in `Deliverables\UML`
+The report can be found in `Deliverables\report`.  
+UML diagrams can be found in `Deliverables\UML`.  
 The Javadoc can be found at `app\build\docs\javadoc\index.html`.  
-The GAI declaration forms can be found in `Deliverables\GAIDeclaration`
+The GAI declaration forms can be found in `Deliverables\GAIDeclaration`.  
 
 ## Features
 - [x] User
