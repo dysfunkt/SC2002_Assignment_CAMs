@@ -62,7 +62,7 @@ public class StaffSuggestionsMenuUI extends BaseUI{
      */
     public void viewAllSuggestions() {
         printHeader("View All Suggestions");
-        List<Suggestion> list = SuggestionManager.getUnprocessedListByCampIDList(((Staff)CurrentUser.get()).getCampsInChargeID());
+        List<Suggestion> list = SuggestionManager.getListByCampIDList(((Staff)CurrentUser.get()).getCampsInChargeID());
         Collections.sort(list, Comparator.comparing(Suggestion::getID));
         ModelDisplayer.displayListOfDisplayable(list);
     }

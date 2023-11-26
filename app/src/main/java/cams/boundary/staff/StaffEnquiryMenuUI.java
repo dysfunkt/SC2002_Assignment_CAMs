@@ -61,7 +61,7 @@ public class StaffEnquiryMenuUI extends BaseUI{
      */
     public void viewAllEnquiries() {
         printHeader("View All Enquiries");
-        List<Enquiry> list = EnquiryManager.getUnprocessedListByCampIDList(((Staff)CurrentUser.get()).getCampsInChargeID());
+        List<Enquiry> list = EnquiryManager.getListByCampIDList(((Staff)CurrentUser.get()).getCampsInChargeID());
         Collections.sort(list, Comparator.comparing(Enquiry::getID));
         ModelDisplayer.displayListOfDisplayable(list);
     }
