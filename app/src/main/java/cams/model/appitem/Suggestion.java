@@ -167,10 +167,12 @@ public class Suggestion implements Model, DisplayableSplitter{
     /**
      * Template for displayable suggestion string.
      */
-    private final String FORMAT_TEMPLATE = "Suggestion ID: %s\n" +
+    private final String FORMAT_TEMPLATE = "Suggestion ID: %s\n" + 
                                             "Camp ID: %s\n" +
                                             "Created By: %s\n" +
-                                            "Suggestion Message: %s";
+                                            "Suggestion Message: %s\n" + 
+                                            "Processed: %s\n" +
+                                            "Approved: %s";
 
     /**
      * Retrieves a formatted string representation of the suggestion.
