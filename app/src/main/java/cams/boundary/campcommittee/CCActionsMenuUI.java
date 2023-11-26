@@ -44,7 +44,7 @@ public class CCActionsMenuUI extends BaseUI{
         System.out.println("6) Edit a Suggestion");
         System.out.println("7) Delete a Suggestion");
         System.out.println("8) Generate Camp Report");
-        System.out.println("8) Return to Camp Committee Menu");
+        System.out.println("9) Return to Camp Committee Menu");
         System.out.println("0) Exit Application");
         printBreaks();
         int choice = doMenuChoice(8,0);
