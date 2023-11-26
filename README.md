@@ -2,7 +2,7 @@
 NTU AY2023/24 Semester 1 SC2002 Group Project - Camp Application and Management System (CAMs).
 Camp Application and Management System (CAMs) is a Java console application designed for staff and students to manage, view and register for camps within NTU. The application acts as a centralised hub for all staff and students.  
 CAMs was designed with the aim of providing extensibility, maintainability and reusability, through the use of various SOLID and Object-Oriented Programming principles, to ensure our software design is efficient and understandable. We also aim to make the application as user-friendly as possible. 
-ZNEO011@e.ntu.edu.sg
+
 ## Team Members
 We are group 5 from tutorial group SCMC, Nanyang Technological University, Singapore. There are 5 members in our group: 
 | Name                 | Email                 |
