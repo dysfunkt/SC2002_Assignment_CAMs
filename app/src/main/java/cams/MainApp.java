@@ -7,6 +7,7 @@ import cams.controller.repository.RepositoryManager;
 import cams.controller.repository.UniqueIDHandler;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 /**
  * Main Application Class
@@ -67,6 +68,7 @@ public class MainApp {
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             saveAll();
             System.out.println("Shutting down program...");
+            new Scanner(System.in).nextLine();
         }));
 
         init();

@@ -53,6 +53,7 @@ Clone the repository.
     git clone https://github.com/dysfunkt/SC2002_Assignment_CAMs.git
     cd SC2002_Assignment_CAMs
 ```
+This is a Gradle project.
 To compile and build app:  
 - Windows
 ```
@@ -65,9 +66,10 @@ To compile and build app:
 The project is built with Java 21.
 
 ## Run
-The built jar file is at `app\build\libs\app.jar`.
+The built jar file is at `app\build\libs\app.jar`.  
 To run app:
 ```
     java -jar app\build\libs\app.jar
 ```
 The main class is at `app\src\main\java\cams\MainApp.java`.
+Source code can be found in `app\src\main\java\cams`.
