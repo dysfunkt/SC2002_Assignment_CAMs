@@ -44,7 +44,7 @@ public class StudentManager {
             return false;
         }
         if (c1.getLeavers().contains(CurrentUser.get().getID())) {
-            System.out.println("You withdrew from this camp before. Registering again is not allowed. Returning to Camp Menu...");
+            System.out.println("You withdrew from this camp before. Registering again is not allowed.");
             return false;
         }
         for (String i : ((Student)CurrentUser.get()).getJoinedCamps()) {
