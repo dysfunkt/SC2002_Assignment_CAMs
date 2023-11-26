@@ -43,7 +43,7 @@ public class CSVStringHelper {
     public static ArrayList<String> CSVStringtoArraylistString(String inputString) {
         ArrayList<String> resultList = new ArrayList<>();
         if (inputString != null && !inputString.isEmpty()) {
-            String[] items = inputString.split(", ");
+            String[] items = inputString.split(",");
 
             // Add the items to the ArrayList
             resultList.addAll(Arrays.asList(items));

@@ -1,2 +1,4 @@
 CampID|||CampName|||StartDate|||EndDate|||RegistrationCloseDate|||UserGroup|||CampLocation|||CampTotalSlots|||CampCommitteeSlots|||CampDescription|||staffInCharge|||listOfAttendees|||ListOfCampCommittees|||Leavers|||Visibility
 1|||test|||2024-02-02|||2024-02-04|||2024-01-15|||ADM|||NORTHSPINE|||30|||10|||test|||OURIN|||||||||DON84|||true
+4|||test1|||2023-12-20|||2023-12-23|||2023-11-30|||SCSE|||NORTHSPINE|||15|||3|||test1|||HUKUMAR||||||||||||true
+5|||test2|||2023-12-25|||2023-12-27|||2023-11-30|||NTU|||SOUTHSPINE|||30|||10|||test2|||HUKUMAR||||||||||||true

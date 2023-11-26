@@ -160,7 +160,7 @@ public class Camp implements Model, DisplayableHeader{
     /**
      * Template for displayable camp string for staff.
      */
-    private final String staffFormatTemplate = "%-3s| %-20s| %-11s| %-11s| %-11s| %-16s| %-8s| %-12s| %-16s| %-16s| %s";
+    private final String staffFormatTemplate = "%-3s| %-20s| %-11s| %-11s| %-11s| %-11s| %-16s| %-8s| %-12s| %-16s| %-16s| %s";
 
     /**
      * Template for displayable camp string for student.
@@ -175,7 +175,7 @@ public class Camp implements Model, DisplayableHeader{
     @Override
     public String getHeaderString(){
         if (CurrentUser.get() instanceof Staff) {
-            return String.format(staffFormatTemplate, "ID", "Camp Name","Visibility", "Start Date", "End Date", "Reg. Close Date", "Faculty", "Location", "Att. slots left", "Com. slots left", "Description"); 
+            return String.format(staffFormatTemplate, "ID", "Camp Name","Created By", "Visibility", "Start Date", "End Date", "Reg. Close Date", "Faculty", "Location", "Att. slots left", "Com. slots left", "Description"); 
         } else {
             return String.format(studentFormatTemplate, "ID", "Camp Name", "Start Date", "End Date", "Reg. Close Date", "Faculty", "Location", "Att. slots left", "Com. slots left", "Description"); 
 
@@ -199,7 +199,7 @@ public class Camp implements Model, DisplayableHeader{
      */
     public String getSingleCampString(){
         if (CurrentUser.get() instanceof Staff) {
-            return String.format(staffFormatTemplate, campID, campName, visibility, DateHandler.dateToString(startDate), DateHandler.dateToString(endDate), DateHandler.dateToString(regCloseDate), String.valueOf(userGroup), String.valueOf(campLocation), String.valueOf(remainingAttendeeSlots()), String.valueOf(remainingCommitteeSlots()), campDescription);
+            return String.format(staffFormatTemplate, campID, campName, staffInCharge, visibility, DateHandler.dateToString(startDate), DateHandler.dateToString(endDate), DateHandler.dateToString(regCloseDate), String.valueOf(userGroup), String.valueOf(campLocation), String.valueOf(remainingAttendeeSlots()), String.valueOf(remainingCommitteeSlots()), campDescription);
         } else {
             return String.format(studentFormatTemplate, campID, campName, DateHandler.dateToString(startDate), DateHandler.dateToString(endDate), DateHandler.dateToString(regCloseDate), String.valueOf(userGroup), String.valueOf(campLocation), String.valueOf(remainingAttendeeSlots()), String.valueOf(remainingCommitteeSlots()), campDescription);
         }
