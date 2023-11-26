@@ -109,7 +109,8 @@ public class Camp implements Model, DisplayableHeader{
     }
 
     /**
-     * @param csv
+     * Constructs a camp object from the csv array
+     * @param csv array containing the camp information.
      */
     public Camp(String[] csv) {
         this.campID = csv[0];
@@ -130,8 +131,9 @@ public class Camp implements Model, DisplayableHeader{
     }
 
     
-    /** 
-     * @return String[]
+    /**
+     * Converts the camp information to an array for saving to the csv
+     * @return String[] representing the camp information to be saved.
      */
     public String[] toSaveString() {
         String[] c = new String[15];

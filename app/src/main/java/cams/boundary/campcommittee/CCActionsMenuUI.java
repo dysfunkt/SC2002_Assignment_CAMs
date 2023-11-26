@@ -23,14 +23,15 @@ import cams.util.id.IDHelper;
 import cams.util.ui.ScannerHelper;
 
 /**
- * This class provides a UI for camp committee members to manage enquiries and suggestions for camps they are committeeing for
+ * This class provides a UI for camp committee members to manage enquiries and suggestions for camps they are committeeing for.
  */
 public class CCActionsMenuUI extends BaseUI{
     private Scanner input = ScannerHelper.getScannerInput();
 
     
-    /** 
-     * @return int
+    /**
+     * Displays the UI for camp committee actions.
+     * @return int -1 to return to go to the previous menu, 1 to exit the application, otherwise 0.
      */
     protected int generateMenuScreen() {
         printHeader("Camp Committee Actions Menu");

@@ -73,8 +73,9 @@ public class Enquiry implements Model, DisplayableSplitter{
     }
 
     
-    /** 
-     * @return String[]
+    /**
+     * Converts the enquiry submitted by user to an array for saving to the csv
+     * @return String[] representing the enquiry data to be saved.
      */
     public String[] toSaveString() {
         String[] e = new String[8];
@@ -169,7 +170,10 @@ public class Enquiry implements Model, DisplayableSplitter{
         return replyViewed;
     }
 
-    private final String FORMAT_TEMPLATE = "Enquiry ID: %s\n" + 
+    /**
+     * Template to display the enquiry information.
+     */
+    private final String FORMAT_TEMPLATE = "Enquiry ID: %s\n" +
                                             "Camp ID: %s\n" +
                                             "Created By: %s\n" +
                                             "Enquiry Message: %s\n" +

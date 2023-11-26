@@ -11,8 +11,9 @@ import cams.util.exception.MenuChoiceInvalidException;
  */
 public class StudentMenuUI extends BaseUI{
     
-    /** 
-     * @return int
+    /**
+     * Displays the UI for student to access further menus to manage camps, manage enquiries or to change their password.
+     * @return int -1 to return to the previous menu, 1 to exit the application, otherwise 0.
      */
     protected int generateMenuScreen() {
         if (AccountManager.checkCC(CurrentUser.get())) return -1;

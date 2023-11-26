@@ -54,7 +54,8 @@ public class Suggestion implements Model, DisplayableSplitter{
     }
 
     /**
-     * @param csv
+     * Constructs a Suggestion from the csv array.
+     * @param csv array containing information about the suggestion
      */
     public Suggestion(String csv[]) {
         this.suggestionID = csv[0];
@@ -66,9 +67,10 @@ public class Suggestion implements Model, DisplayableSplitter{
         this.approved = Boolean.valueOf(csv[6]);
     }
 
-    
-    /** 
-     * @return String[]
+
+    /**
+     * Converts the suggestion submitted by user to an array for saving to the csv
+     * @return String[] representing the suggestion data to be saved.
      */
     public String[] toSaveString() {
         String[] s = new String[7];
@@ -162,10 +164,13 @@ public class Suggestion implements Model, DisplayableSplitter{
         this.processed = true;
     }
 
-    private final String FORMAT_TEMPLATE = "Enquiry ID: %s\n" + 
+    /**
+     * Template for displayable suggestion string.
+     */
+    private final String FORMAT_TEMPLATE = "Suggestion ID: %s\n" +
                                             "Camp ID: %s\n" +
                                             "Created By: %s\n" +
-                                            "Enquiry Message: %s";
+                                            "Suggestion Message: %s";
 
     /**
      * Retrieves a formatted string representation of the suggestion.
@@ -173,15 +178,35 @@ public class Suggestion implements Model, DisplayableSplitter{
      */
     @Override
     public String getDisplayableString() {
-        return getSingleEnquiryString();
+        return getSingleSuggestionString();
     }
 
     /**
      * Retrieves a formatted string representation of a single suggestion.
      * @return String return a single formatted suggestion
      */
-    public String getSingleEnquiryString() {
-        return String.format(FORMAT_TEMPLATE, suggestionID, campID, createdBy, suggestionMessage);
+    public String getSingleSuggestionString() {
+        if (isProcessed()) {
+            return String.format(
+                    FORMAT_TEMPLATE,
+                    suggestionID,
+                    campID,
+                    createdBy,
+                    suggestionMessage,
+                    String.valueOf(isProcessed()),
+                    String.valueOf(isApproved())
+            );
+        } else {
+            return String.format(
+                    FORMAT_TEMPLATE,
+                    suggestionID,
+                    campID,
+                    createdBy,
+                    suggestionMessage,
+                    String.valueOf(isProcessed()),
+                    "Not yet processed"
+            );
+        }
     }
 
 

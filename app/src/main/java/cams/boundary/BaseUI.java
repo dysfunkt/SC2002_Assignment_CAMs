@@ -23,8 +23,9 @@ public abstract class BaseUI {
     protected abstract int generateMenuScreen();
 
     
-    /** 
-     * @return boolean
+    /**
+     * Initiates the main menu and continuously prompts the user for menu choices.
+     * @return True if the user chooses to exit the application, otherwise false
      */
     public boolean startMainMenu() {
         while (true) {
@@ -41,7 +42,6 @@ public abstract class BaseUI {
 
     /**
      * Helper method to print the header of a menu.
-     *
      * @param headerName The name of the menu
      */
     protected static void printHeader(String headerName) {
@@ -81,6 +81,12 @@ public abstract class BaseUI {
         printBreaks(PRINT_MAX_WINDOW_SIZE);
     }
 
+    /**
+     * Handles the user's input for menu choice
+     * @param max the maximum valid menu option.
+     * @param specialEscape special user keyboard command to force close the CAMs program.
+     * @return the user's menu choice.
+     */
     protected static int doMenuChoice(int max, int specialEscape) {
         Scanner input = ScannerHelper.getScannerInput();
         int selection;

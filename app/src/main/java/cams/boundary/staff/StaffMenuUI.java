@@ -10,8 +10,9 @@ import cams.util.exception.MenuChoiceInvalidException;
 public class StaffMenuUI extends BaseUI {
 
     
-    /** 
-     * @return int
+    /**
+     * isplays the UI for staff to access further menus to manage camps, manage enquiries, manage suggestions or to change their password.
+     * @return int -1 to return to the previous menu, 1 to exit the application, otherwise 0.
      */
     protected int generateMenuScreen() {
         printHeader("Staff Main Menu");
