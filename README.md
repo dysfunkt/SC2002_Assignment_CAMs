@@ -1,15 +1,58 @@
-# NTU SCSE SC2002 OOP Assignment
-This is the main repository for the OOP Assignment
+# CAMs
+NTU AY2023/24 Semester 1 SC2002 Group Project - Camp Application and Management System (CAMs).
+Camp Application and Management System (CAMs) is a Java console application designed for staff and students to manage, view and register for camps within NTU. The application acts as a centralised hub for all staff and students.  
+CAMs was designed with the aim of providing extensibility, maintainability and reusability, through the use of various SOLID and Object-Oriented Programming principles, to ensure our software design is efficient and understandable. We also aim to make the application as user-friendly as possible. 
+ZNEO011@e.ntu.edu.sg
+## Team Members
+We are group 5 from tutorial group SCMC, Nanyang Technological University, Singapore. There are 5 members in our group: 
+| Name                 | Email                 |
+|----------------------|-----------------------|
+| Neo Zhi Xuan         | ZNEO011@e.ntu.edu.sg  |
+| Samuel Tan           | C220193@e.ntu.edu.sg  |
+| Seow Ming Han Samuel | MSEOW001@e.ntu.edu.sg |
+| Tan Jun Yan Xavier   | XTAN102@e.ntu.edu.sg  |
+| Willy Tang Jing Lin  | WTANG015@e.ntu.edu.sg |
 
-## How to collaborate
-To begin collaborating, git clone the repository onto your device.
-Go to your desired repository in command line and type in this:
+## Features
+- [x] User
+  - [x] Login
+  - [x] Change password
+- [x] Student
+  - [x] View all camps
+  - [x] Register for camp
+  - [x] View joined camps
+  - [x] Submit enquiry
+  - [x] View enquiries
+  - [x] Edit enquiry
+  - [x] Delete enquiry
+  - [x] Leave camp
+- [x] Camp Committee (also a student)
+  - [x] View camp details
+  - [x] View enquiries to camp
+  - [x] Reply enquiry
+  - [x] Submit suggestion
+  - [x] View my suggestions
+  - [x] Edit suggestion
+  - [x] Delete suggestion
+  - [x] Generate report
+- [x] Staff 
+  - [x] Create camp
+  - [x] Edit camp
+  - [x] Delete camp
+  - [x] View all camps
+  - [x] View my camps
+  - [x] View enquiries
+  - [x] Reply enquiry
+  - [x] View suggestions
+  - [x] Approve suggestions
+  - [x] Generate report
+
+## Build
+Clone the repository.
 ```
     git clone https://github.com/dysfunkt/SC2002_Assignment_CAMs.git
     cd SC2002_Assignment_CAMs
 ```
-Please import this as a **GRADLE PROJECT** to prevent unnecessary stuff from being added to Git.  
-### Gradle
 To compile and build app:  
 - Windows
 ```
@@ -19,31 +62,9 @@ To compile and build app:
 ```
     gradlew build    
 ```
+The project is built with Java 21.
+## Run
 To run app:
 ```
     java -jar app\build\libs\app.jar
 ```
-### Git
-Main branch will be locked from being pushed. All changes are to be made in your own branch and merged via pull requests.  
-To create a new branch:
-```
-    git checkout -b <branch-name>
-```
-To save your work to your branch locally:
-```
-    git add <file-name OR folder-name>
-    OR
-    git add . (to commit whole directory)
-    THEN
-    git commit -m "COMMENT TO DESCRIBE THE INTENTION OF THE COMMIT"
-```
-After committing locally, to push to remote repository:
-```
-    git push origin <branch-name>
-```
-### Merging and pull requests
-To merge to main branch, first push your branch. Then create a pull request by clicking "Compare & pull request" and contact me after.
-
-## References
-- [Git Tutorial For Dummies (video)](https://www.youtube.com/watch?v=mJ-qvsxPHpY)
-- [The Ultimate Github Collaboration Guide (article)](https://medium.com/@jonathanmines/the-ultimate-github-collaboration-guide-df816e98fb67)
