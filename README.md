@@ -84,7 +84,7 @@ Or you can run the jar file with the following command:
 ```
 The main class is at `app\src\main\java\cams\MainApp.java`.  
 Source code can be found in `app\src\main\java\cams`.  
-Data files are found in `data`.
+Data files are found in `data`.  
 Output folder for camp reports is `data\reports`.  
   
 To reset data to state before running test case, copy all the csv files in the `data\reinit\Test Cases` folder and paste it to the root data folder.
