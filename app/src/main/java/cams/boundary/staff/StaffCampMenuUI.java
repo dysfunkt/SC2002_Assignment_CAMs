@@ -101,9 +101,21 @@ public class StaffCampMenuUI extends BaseUI{
 
         startDate = ScannerHelper.getDateInput("Enter the date (yyyy-MM-DD) that the camp starts: ");
 
-        endDate = ScannerHelper.getDateInput("Enter the date (yyyy-MM-DD) that the camp ends: ");
+        do {
+            endDate = ScannerHelper.getDateInput("Enter the date (yyyy-MM-DD) that the camp ends: ");
+            if (!endDate.after(startDate)){ 
+                System.out.println("Enter a date after the start date!");
+            }
+        } while (!endDate.after(startDate));
+    
+        do {
+            regCloseDate = ScannerHelper.getDateInput("Enter the date (yyyy-MM-DD) that the registration ends: ");
+            if (!regCloseDate.before(startDate)){ 
+                System.out.println("Enter a date before the start date!");
+            }
+        } while (!regCloseDate.before(startDate));
 
-        regCloseDate = ScannerHelper.getDateInput("Enter the date (yyyy-MM-DD) that the registration ends: ");
+
 
         int choice = ScannerHelper.getIntegerInput("Set group camp is open to (1 for your faculty, 2 for whole NTU): ", 0 ,3);
         switch (choice) {
