@@ -63,8 +63,11 @@ To compile and build app:
     gradlew build    
 ```
 The project is built with Java 21.
+
 ## Run
+The built jar file is at `app\build\libs\app.jar`.
 To run app:
 ```
     java -jar app\build\libs\app.jar
 ```
+The main class is at `app\src\main\java\cams\MainApp.java`.
