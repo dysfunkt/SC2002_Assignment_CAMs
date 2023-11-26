@@ -80,7 +80,7 @@ public class StudentEnquiryMenuUI extends BaseUI{
         Collections.sort(enquiryList, Comparator.comparing(Enquiry::getID));
         ModelDisplayer.displayListOfDisplayable(enquiryList);
         printBreaks();
-        String enquiryID = ScannerHelper.getIDInput("Enter ID of enquiry to delete (Enter 0 to cancel): ", IDHelper.extractEnquiryIDs(enquiryList), "Enter one of the IDs!");
+        String enquiryID = ScannerHelper.getIDInput("Enter ID of enquiry to edit (Enter 0 to cancel): ", IDHelper.extractEnquiryIDs(enquiryList), "Enter one of the IDs!");
         if (enquiryID.equals("0")){
             System.out.println("Cancelling edit. Returning to Enquiry Menu...");
             return;
