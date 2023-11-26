@@ -33,7 +33,7 @@ public class StaffSuggestionsMenuUI extends BaseUI{
         System.out.println("4) Return to Staff Menu");
         System.out.println("0) Exit Application");
         printBreaks();
-        int choice = doMenuChoice(3, 0);
+        int choice = doMenuChoice(4, 0);
         switch (choice) {
             case 1:
                 viewAllSuggestions();
