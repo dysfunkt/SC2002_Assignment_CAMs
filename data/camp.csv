@@ -1,6 +1,6 @@
 CampID|||CampName|||StartDate|||EndDate|||RegistrationCloseDate|||UserGroup|||CampLocation|||CampTotalSlots|||CampCommitteeSlots|||CampDescription|||staffInCharge|||listOfAttendees|||ListOfCampCommittees|||Leavers|||Visibility
 1|||ArtsClass|||2023-12-12|||2023-12-15|||2023-12-01|||ADM|||NORTHSPINE|||15|||5|||Camp4Arts|||OURIN||||||||||||true
-2|||WholeNTU|||2023-12-20|||2023-12-22|||2023-12-15|||NTU|||ARC|||20|||10|||All NTU|||HUKUMAR|||ELI34,LE51|||YCHERN||||||true
-3|||SCSE buds|||2023-12-09|||2023-12-11|||2023-12-05|||SCSE|||HIVE|||20|||10|||ILoveSCSE|||HUKUMAR|||LE51|||||||||true
+2|||WholeNTU|||2023-12-20|||2023-12-22|||2023-12-15|||NTU|||ARC|||20|||10|||All NTU|||HUKUMAR|||ELI34|||YCHERN||||||true
+3|||SCSE buds|||2023-12-09|||2023-12-11|||2023-12-05|||SCSE|||HIVE|||20|||10|||ILoveSCSE|||HUKUMAR||||||||||||true
 4|||SocietyEngineer|||2023-12-29|||2023-12-31|||2023-12-25|||EEE|||SOUTHSPINE|||20|||5|||So fun|||UPAM||||||||||||false
 5|||Buziness|||2023-12-16|||2023-12-19|||2023-12-13|||NBS|||SOUTHSPINE|||30|||10|||bzz bzz|||ARVI||||||||||||true
