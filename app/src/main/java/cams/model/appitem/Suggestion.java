@@ -18,6 +18,7 @@ public class Suggestion implements Model, DisplayableSplitter{
     private Boolean approved;
 
     /**
+     * Default constructor.
      * @param suggestionID Id of the suggestion.
      * @param campID Id of the camp associated with the suggestion.
      * @param createdBy Id of the user the suggestion is associated with.
@@ -38,6 +39,7 @@ public class Suggestion implements Model, DisplayableSplitter{
     }
 
     /**
+     * Create new suggestion.
      * @param suggestionID Id of the suggestion.
      * @param campID Id of the camp associated with the suggestion.
      * @param createdBy Id of the user the suggestion is associated with.
@@ -85,63 +87,72 @@ public class Suggestion implements Model, DisplayableSplitter{
     }
 
     /**
-     * @return String return the suggestionID
+     * Get suggestion ID.
+     * @return The suggestionID.
      */
     public String getID() {
         return suggestionID;
     }
 
     /**
-     * @return int return the campID
+     * Get ID of camp the suggestion id for.
+     * @return The campID.
      */
     public String getCampID() {
         return campID;
     }
 
     /**
-     * @return String return the createdBy
+     * Get ID of user that created the suggestion.
+     * @return The user ID.
      */
     public String getCreatedBy() {
         return createdBy;
     }
 
     /**
-     * @return Boolean return the processed
+     * Get processed boolean.
+     * @return True if processed, false if not.
      */
     public Boolean isProcessed() {
         return processed;
     }
 
     /**
-     * @return Boolean return the deleted
+     * Get deleted boolean.
+     * @return True if deleted, false if not.
      */
     public Boolean isDeleted() {
         return deleted;
     }
 
     /**
-     * @param deleted the deleted to set
+     * Set deleted boolean.
+     * @param deleted The deleted to set.
      */
     public void delete(Boolean deleted) {
         this.deleted = deleted;
     }
 
     /**
-     * @return String return the suggestionMessage
+     * Get suggestion message.
+     * @return The suggestion message.
      */
     public String getSuggestionMessage() {
         return suggestionMessage;
     }
 
     /**
-     * @param suggestionMessage the suggestionMessage to set
+     * Edit the suggestion message.
+     * @param suggestionMessage The suggestion message to set
      */
     public void editSuggestionMessage(String suggestionMessage) {
         this.suggestionMessage = suggestionMessage;
     }
 
     /**
-     * @return Boolean return the approved
+     * Check if suggestion is approved.
+     * @return true if approved, false if not.
      */
     public Boolean isApproved() {
         return approved;
@@ -164,7 +175,7 @@ public class Suggestion implements Model, DisplayableSplitter{
         this.processed = true;
     }
 
-/**
+    /**
      * Template for displayable suggestion string.
      */
     private final String FORMAT_TEMPLATE = "Suggestion ID: %s\n" + 

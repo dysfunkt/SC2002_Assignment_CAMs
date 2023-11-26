@@ -150,7 +150,6 @@ public class ScannerHelper {
 
     /** 
      * Prints a list of faculties and get user input.
-     * @param prompt Text to prompt for the input, pass in empty string for no prompt.
      * @return Faculty.
      */
     public static eFaculty getFacultyInput() {
@@ -179,7 +178,6 @@ public class ScannerHelper {
 
     /** 
      * Prints a list of faculties and get user input.
-     * @param prompt Text to prompt for the input, pass in empty string for no prompt.
      * @return Faculty.
      */
     public static eLocation getLocationInput() {

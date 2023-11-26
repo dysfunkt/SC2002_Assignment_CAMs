@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.StringJoiner;
 
-/*
+/**
  * This helper class provides helper methods to format strings in the file I/O process.
  */
 public class CSVStringHelper {
@@ -37,7 +37,7 @@ public class CSVStringHelper {
     
     /** 
      * Split a string into an ArrayList of elements.
-     * @param inputString
+     * @param inputString String to split.
      * @return ArrayList of string elements after split.
      */
     public static ArrayList<String> CSVStringtoArraylistString(String inputString) {

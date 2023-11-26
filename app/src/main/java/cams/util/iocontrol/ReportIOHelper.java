@@ -72,11 +72,11 @@ public class ReportIOHelper {
 
     
     /**
-     * Get the Buffered Writer object from the file
+     * Writes a list of String Arrays to a TXT file
+     * Note: This will overwrite the file
      *
-     * @param name filename with extension
-     * @return Buffered Writer of the file
-     * @throws IOException File Not Found Exception
+     * @param writeStrings List of String arrays to write to
+     * @param writer The BufferedWriter object instance to the CSV file.}
      */
     public static void writeToTxtFile(List<String> writeStrings, BufferedWriter writer) {
         PrintWriter w = new PrintWriter(writer);

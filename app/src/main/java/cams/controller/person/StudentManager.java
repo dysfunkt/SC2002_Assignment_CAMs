@@ -63,7 +63,7 @@ public class StudentManager {
      * Join a camp as attendee.
      * Student will be current user.
      * @param ID ID of camp to join.
-     * @throws ModelNotFoundException
+     * @throws ModelNotFoundException if camp with ID cannot be found.
      */
     public static void joinAsAttendee(String ID) throws ModelNotFoundException{
         CampManager.addAttendee(ID);

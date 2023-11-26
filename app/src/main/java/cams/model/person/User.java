@@ -15,6 +15,7 @@ public class User implements Model{
     private Boolean firstLogin;
 
     /**
+     * Default constructor.
      * @param name Name of the user.
      * @param email Email of the user.
      * @param facultyString Faculty the user belongs to.

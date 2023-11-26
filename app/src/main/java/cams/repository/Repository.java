@@ -185,11 +185,13 @@ public abstract class Repository<ModelObject extends Model> implements Iterable<
 
     /** 
      * Load list of Model objects from repository file.
+     * @throws IOException if unable to get file.
      */
     public abstract void load() throws IOException;
 
     /** 
      * Save list of Model objects from repository file.
+     * @throws IOException if unable to get file.
      */
     public abstract void save() throws IOException;
 }
